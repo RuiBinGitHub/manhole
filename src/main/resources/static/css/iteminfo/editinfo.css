@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f1f1f1;
+}
+
+#main {
+	width: 1220px;
+	margin: 0px auto;
+	margin-top: 20px;
+	background-color: #fff;
+}
+
+#mainTop {
+	width: 100%;
+	height: 48px;
+	font-size: 20px;
+	font-family: "宋体";
+	font-weight: 700;
+	text-indent: 20px;
+	line-height: 48px;
+	background-color: #fff;
+	border-bottom: 2px solid #5EA500;
+	float: left;
+}
+
+#mainTop input {
+	width: 80px;
+	height: 30px;
+	color: #fff;
+	border: none;
+	margin: 9px 6px;
+	float: left;
+}
+
+#mainTop input:hover {
+	cursor: pointer;
+	color: #F4EA2A;
+}
+
+#mainInfo {
+	width: 100%;
+	background-color: #fff;
+	float: left;
+}
+
+.table {
+	width: 590px;
+	font-size: 14px;
+	text-align: left;
+	font-family: Times New Roman;
+	margin: 20px 10px 0px 10px;
+	border-collapse: collapse;
+	border: 2px solid #000;
+	table-layout: fixed;
+	float: left;
+}
+
+.title {
+	width: 225px;
+	height: 40px;
+	font-size: 14px;
+	font-weight: 600;
+	font-style: italic;
+	text-align: center;
+	line-height: 40px;
+	border: 2px solid #000;
+}
+
+.mcell {
+	border: 1px solid #000;
+}
+
+.icell {
+	border: none;
+	border-bottom: 1px solid #000;
+}
+
+.table img {
+	max-width: 470px;
+	max-height: 315px;
+	cursor: pointer;
+}
+
+.table input {
+	width: 100%;
+	height: 50px;
+	text-indent: 5px;
+	outline: none;
+	border: none;
+	float: left;
+}
+
+#append {
+	width: 588px;
+	height: 820px;
+	font-size: 80px;
+	font-family: 宋体;
+	font-weight: 700;
+	border: 1px dashed #000;
+	margin: 20px 10px;
+	float: left;
+}
+
+#append div {
+	width: 150px;
+	height: 150px;
+	color: #515151;
+	text-align: center;
+	line-height: 150px;
+	border: 2px solid #515151;
+	border-radius: 150px;
+	margin: 306px auto;
+}
+
+#append div:hover {
+	cursor: pointer;
+	color: #ccc;
+}

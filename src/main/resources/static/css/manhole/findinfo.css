@@ -1,0 +1,314 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color: #f1f1f1;
+}
+
+#main {
+	width: 1460px;
+	height: 1965px;
+	margin: 20px auto;
+	padding: 0px 20px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+#logo {
+	width: 580px;
+	height: 110px;
+	margin: 20px 420px 40px 0px;
+	float: left;
+}
+
+#idms {
+	width: 458px;
+	height: 110px;
+	font-size: 24px;
+	font-family: Times New Roman;
+	font-style: italic;
+	font-weight: 700;
+	text-align: center;
+	line-height: 110px;
+	margin: 20px 0px 40px 0px;
+	border: 1px solid #000;
+	float: left;
+}
+
+.table {
+	font-size: 10px;
+	text-align: left;
+	font-family: Times New Roman;
+	border-collapse: collapse;
+	float: left;
+}
+
+.icell {
+	border: 1px solid #000;
+}
+
+.ycell {
+	border: 1px solid #000;
+}
+
+.ncell {
+	border: none;
+}
+
+.cella {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px solid #000;
+}
+
+.cellb {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px dashed #000;
+}
+
+.cellc {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px dashed #000;
+}
+
+.celld {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px solid #000;
+}
+
+.celle {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px dashed #000;
+}
+
+.cellf {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px dashed #000;
+}
+
+.cellg {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #000;
+}
+
+.cellh {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px dashed #000;
+}
+
+.celli {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px dashed #000;
+}
+
+#table1 {
+	width: 100%;
+	float: left;
+}
+
+#table1 tr {
+	height: 36px;
+}
+
+#table1 tr td div {
+	width: 99%;
+	height: 16px;
+	text-align: left;
+	line-height: 20px;
+	float: left;
+}
+
+.apache {
+	width: 50px;
+	font-size: 13px;
+	text-align: center;
+	font-family: Times New Roman;
+	margin: 45px 0px 0px 50px;
+	font-weight: 600;
+	float: left;
+}
+
+.apache tr {
+	height: 28px;
+}
+
+#table2 {
+	width: 1360px;
+	margin-top: 10px;
+	text-align: center;
+	float: left;
+}
+
+#table2 thead tr td {
+	border: 1px solid #000;
+}
+
+#table2 tbody tr {
+	height: 30px;
+}
+
+#table2 tbody tr td {
+	border: 1px solid #000;
+}
+
+#itab1, #itab2 {
+	width: 200px;
+	margin: 10px 64px 0px 0px;
+	text-align: center;
+	float: left;
+}
+
+#itab1 tbody tr td, #itab2 tbody tr td {
+	width: 100px;
+	border: 1px solid #000;
+}
+
+#table3 {
+	width: 1360px;
+	margin-top: 10px;
+	text-align: center;
+	float: left;
+}
+
+#table3 thead tr td {
+	border: 1px solid #000;
+}
+
+#table3 tbody tr {
+	height: 30px;
+}
+
+#table3 tbody tr td {
+	border: 1px solid #000;
+}
+
+.ptab {
+	width: 200px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.ptab tr {
+	height: 32px;
+}
+
+.ptab tr td {
+	width: 100px;
+	border: 1px solid #000;
+}
+
+#table4 {
+	width: 532px;
+	margin-top: 10px;
+}
+
+#table4 tr {
+	height: 30px;
+}
+
+#table4 tr td {
+	border: 1px solid #000;
+}
+
+#table5 {
+	width: 895px;
+	margin-top: 10px;
+	margin-left: 32px;
+}
+
+#table5 tr {
+	height: 60px;
+}
+
+#table5 tr td {
+	border: 1px solid #000;
+}
+
+#table6 {
+	width: 1460px;
+	margin-top: 10px;
+	float: left;
+}
+
+#table6 tr td {
+	border: 1px solid #000;
+}
+
+#table6 tr td img {
+	max-width: 700px;
+	max-height: 460px;
+	margin: 0px auto;
+}
+
+#table7 {
+	width: 300px;
+	margin-right: 1000px;
+	margin-top: 10px;
+	float: left;
+}
+
+#table7 tr {
+	height: 30px;
+}
+
+#table7 tr td {
+	width: 50%;
+	border: 1px solid #000;
+}
+
+
+#remark {
+	width: 100%;
+	height: 40px;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	line-height: 40px;
+	font-family: Times New Roman;
+	margin-top: 10px;
+	float: left;
+}
+
+#common {
+	width: 120px;
+	height: 36px;
+	color: #ffffff;
+	font-size: 14px;
+	font-family: 宋体;
+	font-weight: 600;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: #f9691c;
+	border: none;
+	float: left;
+}
+
+#common:hover {
+	background-color: #F97935;
+	cursor: pointer;
+}

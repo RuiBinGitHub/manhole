@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springboot.dao.ManholeDao">
+
+	<insert id="insertManhole" parameterType="Manhole" useGeneratedKeys="true" keyProperty="id">
+		insert into manhole values(null, 
+			#{node},
+			#{gridx},
+			#{gridy},
+			#{areacode},
+			#{surveyname},
+			#{surveydate},
+			#{projectno},
+			#{workorder},
+			#{manholeid},
+			#{drainage},
+			#{location},
+			#{yearlaid},
+			#{status},
+			#{method},
+			#{nodetype},
+			#{shape},
+			#{hinge},
+			#{locker},
+			#{duties},
+			#{cover1},
+			#{cover2},
+			#{side},
+			#{course},
+			#{depths},
+			#{shaft1},
+			#{shaft2},
+			#{soffit},
+			#{steps},
+			#{ladder},
+			#{lndgs},
+			#{csize1},
+			#{csize2},
+			#{toxic},
+			#{evidences},
+			#{construct},
+			#{depthflow},
+			#{depthsilt},
+			#{height},
+			#{mdepth},
+			#{mcover},
+			#{cond},
+			#{crit},
+			#{cover},
+			#{iron},
+			#{shaft},
+			#{chambers},
+			#{benching},
+			#{other},
+			#{photo1},
+			#{photo2},
+			#{photo3},
+			#{photo4},
+			#{photo5},
+			#{photo6},
+			#{util1},
+			#{util2},
+			#{util3},
+			#{util4},
+			#{util5},
+			#{util6},
+			#{photono1},
+			#{photono2},
+			#{slopeno},
+			#{remarks},
+			#{dplan},
+			#{rplan},
+			#{ctype},
+			#{rtype},
+			#{path1},
+			#{path2},
+			#{with1},
+			#{with2},
+			#{with3}
+		)
+	</insert>
+
+	<update id="updateManhole" parameterType="Manhole">
+		update manhole set node = #{node},
+			gridx = #{gridx},
+			gridy = #{gridy},
+			areacode = #{areacode},
+			surveyname = #{surveyname},
+			surveydate = #{surveydate},
+			projectno = #{projectno},
+			workorder = #{workorder},
+			manholeid = #{manholeid},
+			drainage = #{drainage},
+			location = #{location},
+			yearlaid = #{yearlaid},
+			status = #{status},
+			method = #{method},
+			nodetype = #{nodetype},
+			shape = #{shape},
+			hinge = #{hinge},
+			locker = #{locker},
+			duties = #{duties},
+			cover1 = #{cover1},
+			cover2 = #{cover2},
+			side = #{side},
+			course = #{course},
+			depths = #{depths},
+			shaft1 = #{shaft1},
+			shaft2 = #{shaft2},
+			soffit = #{soffit},
+			steps = #{steps},
+			ladder = #{ladder},
+			lndgs = #{lndgs},
+			csize1 = #{csize1},
+			csize2 = #{csize2},
+			toxic = #{toxic},
+			evidences = #{evidences},
+			construct = #{construct},
+			depthflow = #{depthflow},
+			depthsilt = #{depthsilt},
+			height = #{height},
+			mdepth = #{mdepth},
+			mcover = #{mcover},
+			cond = #{cond},
+			crit = #{crit},
+			cover = #{cover},
+			iron = #{iron},
+			shaft = #{shaft},
+			chambers = #{chambers},
+			benching = #{benching},
+			other = #{other},
+			photo1 = #{photo1},
+			photo2 = #{photo2},
+			photo3 = #{photo3},
+			photo4 = #{photo4},
+			photo5 = #{photo5},
+			photo6 = #{photo6},
+			util1 = #{util1},
+			util2 = #{util2},
+			util3 = #{util3},
+			util4 = #{util4},
+			util5 = #{util5},
+			util6 = #{util6},
+			photono1 = #{photono1},
+			photono2 = #{photono2},
+			slopeno = #{slopeno},
+			remarks = #{remarks},
+			dplan = #{dplan},
+			rplan = #{rplan},
+			ctype = #{ctype},
+			rtype = #{rtype},
+			path1 = #{path1},
+			path2 = #{path2},
+			with1 = #{with1},
+			with2 = #{with2},
+			with3 = #{with3}
+		where id = #{id}
+	</update>
+
+	<delete id="deleteManhole" parameterType="Manhole">
+		delete from manhole where id = #{id}
+	</delete>
+
+	<select id="findInfoManhole" parameterType="Map" resultType="Manhole">
+		select * from manhole
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findListManhole" parameterType="Map" resultType="Manhole">
+		select * from manhole
+		<where>
+			<if test="name != null">
+				and projectno like #{name}
+			</if>
+		</where>
+		order by id desc
+		<if test="size != null and size >= 0">
+			limit 15 offset #{size}
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="Map" resultType="int">
+		select count(*) from manhole
+		<where>
+			<if test="name != null">
+				and projectno like #{name}
+			</if>
+			<if test="company != null">
+				and companyid = #{company.id}
+			</if>
+		</where>
+	</select>
+	
+</mapper>
+ 

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title>上传图片</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="/survey/css/iteminfo/editinfo.css"/>
+    <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/survey/js/iteminfo/editinfo.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="mainTop">
+        <span style="margin-right:930px;float:left;">上传图片</span>
+        <input type="button" value="确定" style="background-color: #3CB44B;"/>
+        <input type="button" value="删除" style="background-color: #FF2828;"/>
+      </div>
+      <div id="mainInfo">
+        <form action="update" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" th:value="${param.id}"/>
+        <table class="table" th:each="item:${items}">
+          <tr height="80px">
+            <td colspan="3"><img src="/survey/img/title.png"></td>
+            <td colspan="2"><div class="title">Manhole Survey Photographs</div></td>
+          </tr>
+          <tr height="25px">
+            <td width="118px">Project No.:</td>
+            <td width="118px" class="icell" th:text="${manhole.projectno}"></td>
+            <td width="118px"></td>
+            <td width="118px">Manhole Reference: </td>
+            <td width="118px" class="icell" th:text="${manhole.node}"></td>
+          </tr>
+          <tr height="25px">
+            <td>WO No.: </td>
+            <td class="icell" th:text="${manhole.workorder}"></td>
+            <td colspan="3"><input type="hidden" th:value="${item.id}"/></td>
+          </tr>
+          <tr height="5px"><td colspan="5"></td></tr>
+          <!-- 输出图片 -->
+          <tr>
+            <td rowspan="8" colspan="4" align="center" class="mcell">
+              <img th:if="${#strings.isEmpty(item.path1)}" src="/survey/img/appimg.png"/>
+              <img th:if="${!#strings.isEmpty(item.path1)}" th:src="${path + item.path1 + '.png'}"/>
+              <input type="file" accept="image/*" style="display:none"/>
+              <input type="hidden" name="" th:value="${item.path1}"/>
+            </td>
+            <td height="25px" class="mcell">Photograph No. :</td>
+          </tr>
+          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.photono1}"></td></tr>
+          <tr><td height="25px" class="mcell">Location:</td></tr>
+          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.location}"></td></tr>
+          <tr><td height="25px" class="mcell">Description:</td></tr>
+          <tr><td height="50px" class="mcell" align="center">Manhole Location</td></tr>
+          <tr><td height="25px" class="mcell">Remark:</td></tr>
+          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.remark1}"/></td></tr>
+          <tr height="32px"><td colspan="5" class="mcell"></td></tr>
+          <tr>
+            <td rowspan="8" colspan="4" class="mcell" align="center">
+              <img th:if="${#strings.isEmpty(item.path2)}" src="/survey/img/appimg.png"/>
+              <img th:if="${!#strings.isEmpty(item.path2)}" th:src="${path + item.path2 + '.png'}"/>
+              <input type="file" accept="image/*" style="display:none"/>
+              <input type="hidden" name="" th:value="${item.path2}"/>
+            </td>
+            <td height="25px" class="mcell">Photograph No. :</td>
+          </tr>
+          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.photono2}"></td></tr>
+          <tr><td height="25px" class="mcell">Location:</td></tr>
+          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.location}"></td></tr>
+          <tr><td height="25px" class="mcell">Description:</td></tr>
+          <tr><td height="50px" class="mcell" align="center">Manhole Internal Photo</td></tr>
+          <tr><td height="25px" class="mcell">Remark:</td></tr>
+          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.remark2}"/></td></tr>
+        </table>
+        </form>
+        <div id="append"><div>+</div></div>
+      </div>
+    </div>
+    <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
+      <p>香港麦斯迪埃高科技有限责任公司</p>
+      <p>Copyright © 2017 All Rights Reserved</p>	
+    </div>
+  </body>
+</html>
