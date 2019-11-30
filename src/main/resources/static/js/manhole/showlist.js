@@ -1,18 +1,17 @@
 $(document).ready(function() {
     // 获取当前语言
-    var language = $("#infoTop").text() == "項目列表" ? "zh" : "en";
-    
-    var tipsText1 = language == "zh" ? "數據正在上傳中..." : "Data uploading...";
-    var tipsText2 = language == "zh" ? "確定要提交該數據嗎？" : "Are you sure you want to submit this data?";
-    var tipsText3 = language == "zh" ? "數據提交成功！" : "Operating successfully!";
-    var tipsText4 = language == "zh" ? "確定要刪除該數據嗎？" : "Are you sure you want to delete this data?";
-    var tipsText5 = language == "zh" ? "數據刪除成功！" : "Operating successfully!";
+    var language = $("#infoTop").text() == "沙井列表" ? "zh" : "en";
+    var tipsText1 = language == "zh" ? "确定提交该数据吗？" : "Are you sure you want to submit this data?";
+    var tipsText2 = language == "zh" ? "数据提交成功！" : "Operating successfully!";
+    var tipsText3 = language == "zh" ? "确定删除该数据吗？" : "Are you sure you want to delete this data?";
+    var tipsText4 = language == "zh" ? "数据删除成功！" : "Operating successfully!";
     /********************************************************************/
     var width = $("#infoMenu span:eq(0)").css("width");
     var length = width.substring(0, width.length - 2);
-    $("#infoMenu div:eq(0)").css("width", 536 - length);
+    $("#infoMenu div:eq(0)").css("width", 575 - length);
     /********************************************************************/
     if ($("#menuText").val().trim() == "") {
+    	$("#menuBtn1").css("color", "#aaa");
         $("#menuBtn1").attr("disabled", true);
     }
     $("#menuText").keydown(function() {
@@ -27,19 +26,15 @@ $(document).ready(function() {
         if (name.trim() != "")
             window.location.href = "showlist?name=" + name;
     });
-    /********************************************************************/
     /** 新建项目 */
     $("#append").click(function() {
-        window.open("insertview");
-    });
-    /** 导入按钮 */
-    $("#import").click(function() {
-    	console.log("管理");
+        window.open("findview");
     });
     /********************************************************************/
     /** 初始化表格 */
     var name = $("#menuText").val();
     $("#tab1 tbody tr").each(function(i) {
+    	var id = $(this).attr("id");
         $(this).find("td:eq(1) a").attr("target", "_blank");
         /*********************************************/
         if (name.trim() != "") {
@@ -50,21 +45,26 @@ $(document).ready(function() {
             $(this).find("td:eq(1) a").html(cont);
         }
         /*********************************************/
-        var id = $(this).attr("id");
         $(this).find("input[type=button]:eq(0)").click(function() {
-            window.open("updateview?id=" + id);
+            window.open("findview?id=" + id);
         });
         $(this).find("input[type=button]:eq(1)").click(function() {
-        	window.open("/survey/downfile/pdf?id=" + id);
+        	if (!confirm(tipsText1))
+        		return false;
+        	$(this).css("background-color", "#ccc");
+            $(this).attr("disabled", true);
+            if (Ajax("submit", {id: id}))
+                showTips(tipsText2);
+            setTimeout("location.reload()", 2000);
         });
         $(this).find("input[type=button]:eq(2)").click(function() {
-            if (confirm(tipsText4)) {
-                $(this).css("background-color", "#ccc");
-                $(this).attr("disabled", true);
-                if (Ajax("delete", {id: id}))
-                    showTips(tipsText5);
-                setTimeout("location.reload()", 2000);
-            }
+        	if (!confirm(tipsText3))
+        		return false;
+        	$(this).css("background-color", "#ccc");
+            $(this).attr("disabled", true);
+            if (Ajax("delete", {id: id}))
+                showTips(tipsText4);
+            setTimeout("location.reload()", 2000);
         });
         $(this).click(function() {
             $("#tab1 tbody tr:even").find("td:eq(0)").css("background-color", "#FAFAFA");
@@ -98,8 +98,8 @@ $(document).ready(function() {
     }
     /********************************************************************/
     function showTips(text) {
-        $("#Tip").show().delay(1800).hide(200);
-        $("#Tip").text(text);
+        $("#tips").show().delay(1800).hide(200);
+        $("#tips span").text(text);
     }
     /********************************************************************/
     function Ajax(url, data) {

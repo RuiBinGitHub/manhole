@@ -17,6 +17,4 @@ public interface ManholeDao {
 
 	public List<Manhole> findListManhole(Map<String, Object> map);
 
-	public int getCount(Map<String, Object> map);
-
 }

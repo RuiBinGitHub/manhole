@@ -11,7 +11,7 @@ import com.springboot.biz.PipeBiz;
 import com.springboot.dao.PipeDao;
 import com.springboot.entity.Manhole;
 import com.springboot.entity.Pipe;
-import com.springboot.util.AppHelper;
+import com.springboot.util.MyHelper;
 
 @Service
 public class PipeBizImpl implements PipeBiz {
@@ -42,7 +42,7 @@ public class PipeBizImpl implements PipeBiz {
 	}
 
 	public List<Pipe> findListPipe(Manhole manhole) {
-		map = AppHelper.getMap("manhole", manhole);
+		map = MyHelper.getMap("manhole", manhole);
 		return findListPipe(map);
 	}
 

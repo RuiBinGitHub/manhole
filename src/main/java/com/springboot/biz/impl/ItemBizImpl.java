@@ -15,7 +15,7 @@ import com.springboot.biz.ItemBiz;
 import com.springboot.dao.ItemDao;
 import com.springboot.entity.Item;
 import com.springboot.entity.Manhole;
-import com.springboot.util.AppHelper;
+import com.springboot.util.MyHelper;
 
 @Service
 public class ItemBizImpl implements ItemBiz {
@@ -37,23 +37,24 @@ public class ItemBizImpl implements ItemBiz {
 
 	public void deleteItem(Item item) {
 		itemDao.deleteItem(item);
+		String path = myfile + "/ItemImage/";
 		if (!StringUtils.isEmpty(item.getPath1())) {
-			File file = new File(myfile + "ItemImage/" + item.getPath1());
+			File file = new File(path + item.getPath1());
 			file.delete();
 		}
 		if (!StringUtils.isEmpty(item.getPath2())) {
-			File file = new File(myfile + "ItemImage/" + item.getPath2());
+			File file = new File(path + item.getPath2());
 			file.delete();
 		}
 	}
 
 	public Item findInfoItem(int id, String name) {
-		map = AppHelper.getMap("id", id, "name", name);
+		map = MyHelper.getMap("id", id, "name", name);
 		return itemDao.findInfoItem(map);
 	}
 
 	public List<Item> findListItem(Manhole manhole) {
-		map = AppHelper.getMap("manhole", manhole);
+		map = MyHelper.getMap("manhole", manhole);
 		return itemDao.findListItem(map);
 	}
 

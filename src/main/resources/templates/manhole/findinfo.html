@@ -3,134 +3,141 @@
   <head>
     <title>沙井调查</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link type="text/css" rel="stylesheet" href="/survey/css/manhole/findinfo.css"/>
+    <link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/survey/css/manhole/findinfo.css"/>
     <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/survey/js/laydate/laydate.js"></script>
     <script type="text/javascript" src="/survey/js/manhole/findinfo.js"></script>
   </head>
   <body>
+    <div th:replace="navigation::navigation"></div>
     <div id="main">
-      <img id="logo" src="/survey/img/mlogo.png"/>
+      <img id="logo" src="/survey/img/mlogo.png">
       <div id="idms">IDMS Manhole Record Card</div>
-      <input type="hidden" name="id" th:value="${param.id}"/>
+      
+      <form id="form1" action="findinfo" method="post">
+      <input type="hidden" name="id" th:value="${manhole?.id}"/>
+      <input type="hidden" name="type" value="next"/>
       <!-- 表格1开始 -->
       <table id="table1" class="table">
         <tr>
           <td class="ncell" colspan="9"></td>
           <td class="ncell" colspan="3"></td>
           <td class="ncell">(1) Node ref.</td>
-          <td class="ycell" colspan="2" th:text="${manhole.node}"></td>
+          <td class="ycell" colspan="2"><input type="text" name="node" th:value="${manhole?.node}"/></td>
         </tr>           
        <tr>                 
-          <td class="icell">(6) Project no.</td>
-          <td class="ycell" colspan="3" th:text="${manhole.projectno}"></td>
-          <td class="icell">(8) IDMS Manhole ID.</td>
-          <td class="ycell" colspan="4" th:text="${manhole.manholeid}"></td>
+          <td class="ycell">(6) Project no.</td>
+          <td class="ycell" colspan="3"><input type="text" name="projectno" th:value="${manhole?.projectno}"/></td>
+          <td class="ycell">(8) IDMS Manhole ID.</td>
+          <td class="ycell" colspan="4"><input type="text" name="manholeid" th:value="${manhole?.manholeid}"/></td>
           <td class="ncell" colspan="3"></td>
           <td class="ncell">(2) Grid ref.</td>
           <td class="ycell" colspan="2">
-            <div th:text="${'X：' + manhole.gridx}"></div>
-            <div th:text="${'Y：' + manhole.gridy}"></div>
+            <div>X：</div><input type="text" name="gridx" th:value="${manhole?.gridx}" style="width:88%;height:14px;float:left;"/>
+            <div>Y：</div><input type="text" name="gridy" th:value="${manhole?.gridy}" style="width:88%;height:14px;float:left;"/>
           </td>
         </tr>               
         <tr>                
-          <td class="icell">(7) WO no.</td>
-          <td class="ycell" colspan="3" th:text="${manhole.workorder}"></td>
-          <td class="icell">(9) DSD ref.</td>
-          <td class="ycell" colspan="4" th:text="${manhole.drainage}"></td>
+          <td class="ycell">(7) WO no.</td>
+          <td class="ycell" colspan="3"><input type="text" name="workorder" th:value="${manhole?.workorder}"/></td>
+          <td class="ycell">(9) DSD ref.</td>
+          <td class="ycell" colspan="4"><input type="text" name="drainage" th:value="${manhole?.drainage}"/></td>
           <td class="ncell" colspan="3"></td>
           <td class="ncell">(3) Drainage area code</td>
-          <td class="ycell" colspan="2" th:text="${manhole.areacode}"></td>
+          <td class="ycell" colspan="2"><input type="text" name="areacode" th:value="${manhole?.areacode}"/></td>
         </tr>               
         <tr>                
-          <td class="icell">(10) Location</td>
-          <td class="ycell" colspan="8" th:text="${manhole.location}"></td>
+          <td class="ycell">(10) Location</td>
+          <td class="ycell" colspan="8"><input type="text" name="location" th:value="${manhole?.location}"/></td>
           <td class="ncell" colspan="3"></td>
           <td class="ncell">(4) Survey by</td>
-          <td class="ycell" colspan="2" th:text="${manhole.surveyname}"></td>
+          <td class="ycell" colspan="2"><input type="text" name="surveyname" th:value="${manhole?.surveyname}"/></td>
         </tr>
         <tr>
           <td class="ncell"></td>
           <td class="ncell">(11) Year laid<br>YYYY</td>
-          <td class="ycell" th:text="${manhole.yearlaid}"></td>
+          <td class="ycell"><input type="text" name="yearlaid" th:value="${manhole?.yearlaid}"/></td>
           <td class="ncell">(12) Status*</td>
-          <td class="ycell" th:text="${manhole.status}"></td>
+          <td class="ycell"><input type="text" name="status" th:value="${manhole?.status}" list="list1"/></td>
           <td class="ncell">(13)Function*</td>
-          <td class="ycell" th:text="${manhole.method}"></td>
+          <td class="ycell"><input type="text" name="method" th:value="${manhole?.method}" list="list2"/></td>
           <td class="ncell">(14) Node type*</td>
-          <td class="ycell" th:text="${manhole.nodetype}"></td>
-          <td colspan="3"></td>
+          <td class="ycell"><input type="text" name="nodetype" th:value="${manhole?.nodetype}" list="list3"/></td>
+          <td></td>
+          <td align="center"><br/>(dia.) (mm)</td>
+          <td></td>
           <td class="ncell">(5) Survey date (DD/MM/YYYY)</td>
-          <td class="ycell" colspan="2" th:text="${manhole.surveydate}"></td>
+          <td class="ycell" colspan="2"><input type="text" name="surveydate" th:value="${manhole?.surveydate}"/></td>
         </tr>
         <tr>
-          <td width="100px" class="ncell">COVER</td>
+          <td width="100px" class="ncell"><span style="font-weight:600">COVER</span></td>
           <td width="100px" class="ncell">(15) Shape*</td>
-          <td width="100px" class="ycell" th:text="${manhole.shape}"></td>
+          <td width="100px" class="ycell"><input type="text" name="shape" th:value="${manhole?.shape}" list="list4"/></td>
           <td width="100px" class="ncell">(16) Hinged</td>
-          <td width="100px" class="ycell" th:text="${manhole.hinge}"></td>
+          <td width="100px" class="ycell"><input type="text" name="hinge" th:value="${manhole?.hinge}"/></td>
           <td width="100px" class="ncell">(17) Lock</td>
-          <td width="100px" class="ycell" th:text="${manhole.locker}"></td>
+          <td width="100px" class="ycell"><input type="text" name="locker" th:value="${manhole?.locker}"/></td>
           <td width="100px" class="ncell">(18) Duty*</td>
-          <td width="100px" class="ycell" th:text="${manhole.duties}"></td>
+          <td width="100px" class="ycell"><input type="text" name="duties" th:value="${manhole?.duties}" list="list5"/></td>
           <td width="100px" class="ncell">(19) Cover size</td>
-          <td width="120px" class="cella" th:text="${manhole.cover1}"></td>
-          <td width="50px" class="cellb">*</td>
-          <td width="120px" class="cellc" th:text="${manhole.cover2}"></td>
+          <td width="120px" class="cella"><input type="text" name="cover1" th:value="${manhole?.cover1}" class="num1"/></td>
+          <td width="50px" class="cellb" align="center">*</td>
+          <td width="120px" class="cellc"><input type="text" name="cover2" th:value="${manhole?.cover2}" class="num1"/></td>
           <td width="120px" class="ncell">(29) Toxic atmosphere</td>
-          <td width="50px" class="ycell" th:text="${manhole.toxic}"></td>
+          <td width="50px" class="ycell"><input type="text" name="toxic" th:value="${manhole?.toxic}"/></td>
         </tr>
         <tr>
-          <td class="ncell">SHAFT</td>
+          <td class="ncell"><span style="font-weight:600">SHAFT</span></td>
           <td class="ncell">(20) Side entry</td>
-          <td class="ycell" th:text="${manhole.side}"></td>
+          <td class="ycell"><input type="text" name="side" th:value="${manhole?.side}"/></td>
           <td class="ncell">(21) Regular course</td>
-          <td class="ycell" th:text="${manhole.course}"></td>
+          <td class="ycell"><input type="text" name="course" th:value="${manhole?.course}"/></td>
           <td class="ncell">(22) Depth (mm)</td>
-          <td class="ycell" th:text="${manhole.depths}"></td>
+          <td class="ycell"><input type="text" name="depths" th:value="${manhole?.depths}"/></td>
           <td class="ncell"></td>
           <td class="ncell"></td>
           <td class="ncell">(23) Shaft size</td>
-          <td class="celld" th:text="${manhole.shaft1}"></td>
-          <td class="celle">*</td>
-          <td class="cellf" th:text="${manhole.shaft2}"></td>
+          <td class="celld"><input type="text" name="shaft1" th:value="${manhole?.shaft1}"/></td>
+          <td class="celle" align="center">*</td>
+          <td class="cellf"><input type="text" name="shaft2" th:value="${manhole?.shaft2}"/></td>
           <td class="ncell">(30) Evidence of vermin</td>
-          <td class="ycell" th:text="${manhole.evidences}"></td>
+          <td class="ycell"><input type="text" name="evidences" th:value="${manhole?.evidences}"/></td>
         </tr>
         <tr>
           <td class="ncell">CHAMBER</td>
           <td class="ncell">(24) Soffit*</td>
-          <td class="ycell" th:text="${manhole.soffit}"></td>
+          <td class="ycell"><input type="text" name="soffit" th:value="${manhole?.soffit}" list="list6"/></td>
           <td class="ncell">(25) Steps</td>
-          <td class="ycell" th:text="${manhole.steps}"></td>
+          <td class="ycell"><input type="text" name="steps" th:value="${manhole?.steps}"/></td>
           <td class="ncell">(26) Ladders</td>
-          <td class="ycell" th:text="${manhole.ladder}"></td>
+          <td class="ycell"><input type="text" name="ladder" th:value="${manhole?.ladder}"/></td>
           <td class="ncell">(27) LNDGS</td>
-          <td class="ycell" th:text="${manhole.lndgs}"></td>
+          <td class="ycell"><input type="text" name="lndgs" th:value="${manhole?.lndgs}"/></td>
           <td class="ncell">(28) Chamber size</td>
-          <td class="cellg" th:text="${manhole.csize1}"></td>
-          <td class="cellh">*</td>
-          <td class="celli" th:text="${manhole.csize2}"></td>
+          <td class="cellg"><input type="text" name="csize1" th:value="${manhole?.csize1}"/></td>
+          <td class="cellh" align="center">*</td>
+          <td class="celli"><input type="text" name="csize2" th:value="${manhole?.csize2}"/></td>
           <td class="ncell">(31) Construct code *</td>
-          <td class="ycell" th:text="${manhole.construct}"></td>
+          <td class="ycell"><input type="text" name="construct" th:value="${manhole?.construct}" list="list7"/></td>
         </tr>
         <tr style="height:10px;"><td class="ncell" colspan="15"></td></tr>
         <tr>
           <td class="ncell"></td>
           <td class="ncell">(32) Depth of flow (mm)</td>
-          <td class="ycell" th:text="${manhole.depthflow}"></td>
+          <td class="ycell"><input type="text" name="depthflow" th:value="${manhole?.depthflow}" class="num1"/></td>
           <td class="ncell">(33) Depth of silt (mm)</td>
-          <td class="ycell" th:text="${manhole.depthsilt}"></td>
+          <td class="ycell"><input type="text" name="depthsilt" th:value="${manhole?.depthsilt}" class="num1"/></td>
           <td class="ncell">(34) Height surch (mm)</td>
-          <td class="ycell" th:text="${manhole.height}"></td>
+          <td class="ycell"><input type="text" name="height" th:value="${manhole?.height}" class="num1"/></td>
           <td class="ncell">(61) MH depth (m)</td>
-          <td class="ycell" th:text="${manhole.mdepth}"></td>
+          <td class="ycell"><input type="text" name="mdepth" th:value="${manhole?.mdepth}" class="num1"/></td>
           <td class="ncell">(35) Cover level (mPD)</td>
-          <td class="ycell" th:text="${manhole.mcover}"></td>
+          <td class="ycell"><input type="text" name="mcover" th:value="${manhole?.mcover}" class="num1"/></td>
           <td class="ncell" colspan="4"></td>
         </tr>
       </table>
       <!-- 表格1完成 -->
-      
       <table class="apache">
         <tr><td>A</td></tr>
         <tr><td>B</td></tr>
@@ -156,23 +163,45 @@
           <td rowspan="2">(71) Photo no.</td>
           <td colspan="2">(63) For office use</td>
         </tr>
-        <tr height="15px"><td>Wall No.</td><td>Location (m).</td></tr>
+        <tr height="15px">
+          <td>Wall No.</td>
+          <td>Location (m).</td>
+        </tr>
         </thead>
-        <tbody>
-        <tr th:each="pipe,status:${pipes}" th:if="${status.index < 8}">
-          <td width="100px" th:text="${pipe.upstream}"></td>
-          <td width="100px" th:text="${pipe.shape}"></td>
-          <td width="110px" th:text="${pipe.size1}"></td>
+        <tbody th:if="${#lists.isEmpty(pipes)}">
+        <tr th:each="i:${#numbers.sequence(0,8)}">
+          <td style="display:none"><input type="hidden" value="0"/></td>
+          <td width="100px"><input type="text" value=""/></td>
+          <td width="100px"><input type="text" value="" list="list8"/></td>
+          <td width="110px"><input type="text" value="" class="num1"/></td>
           <td width="44px">*</td>
-          <td width="110px" th:text="${pipe.size2}"></td>
-          <td width="100px" th:text="${pipe.backdrop}"></td>
-          <td width="100px" th:text="${pipe.material}"></td>
-          <td width="100px" th:text="${pipe.lining}"></td>
-          <td width="100px" th:text="${pipe.depth}"></td>
-          <td width="100px" th:text="${pipe.level}"></td>
-          <td width="100px" th:text="${pipe.photo}"></td>
-          <td width="148px" th:text="${pipe.office1}"></td>
-          <td width="148px" th:text="${pipe.office2}"></td>
+          <td width="110px"><input type="text" value=""/></td>
+          <td width="100px"><input type="text" value=""/></td>
+          <td width="100px"><input type="text" value=""/></td>
+          <td width="100px"><input type="text" value="" list="list9"/></td>
+          <td width="100px"><input type="text" value="" class="num1"/></td>
+          <td width="100px"><input type="text" value="" class="num1"/></td>
+          <td width="100px"><input type="text" value=""/></td>
+          <td width="148px"><input type="text" value=""/></td>
+          <td width="148px"><input type="text" value=""/></td>
+        </tr>
+        </tbody>
+        <tbody th:if="${!#lists.isEmpty(pipes)}">
+        <tr th:each="pipe,status:${pipes}" th:if="${status.index<8}">
+          <td style="display:none"><input type="hidden" th:value="${pipe.id}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.upstream}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.shape}" list="list8"/></td>
+          <td width="110px"><input type="text" th:value="${pipe.size1}" class="num1"/></td>
+          <td width="44px">*</td>              
+          <td width="110px"><input type="text" th:value="${pipe.size2}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.backdrop}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.material}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.lining}" list="list9"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.depth}" class="num1"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.level}" class="num1"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.photo}"/></td>
+          <td width="148px"><input type="text" th:value="${pipe.office1}"/></td>
+          <td width="148px"><input type="text" th:value="${pipe.office2}"/></td>
         </tr>
         </tbody>
       </table>
@@ -180,10 +209,10 @@
       <!-- 表格CCTV 和 CRITY开始 -->
       <div style="width:100px;height:34px;margin-top:10px;float:left;"></div>
       <table id="itab1" class="table">
-        <tr height="32px"><td>(44) CCTV COND</td><td th:text="${manhole.cond}"></td></tr>
+        <tr height="32px"><td>(44) CCTV COND</td><td><input type="text" name="cond" th:value="${manhole?.cond}"/></td></tr>
       </table>
       <table id="itab2" class="table">
-        <tr height="32px"><td>(45) CRITY</td><td th:text="${manhole.crit}"></td></tr>
+        <tr height="32px"><td>(45) CRITY</td><td><input type="text" name="crit" th:value="${manhole?.crit}"/></td></tr>
       </table>
       <div style="width:832px;height:34px;margin-top:10px;float:left;"></div>
       <!-- 表格CCTV 和 CRITY结束 -->
@@ -209,128 +238,281 @@
         </tr>
         <tr height="15px">
           <td>Wall No.</td>
-          <td>Location (m).</td></tr>
+          <td>Location (m).</td>
+        </tr>
         </thead>
-        <tbody>
-        <tr th:each="pipe,status:${pipes}" th:if="${status.index > 7}">
-          <td width="100px" th:text="${pipe.upstream}"></td>
-          <td width="100px" th:text="${pipe.shape}"></td>
-          <td width="110px" th:text="${pipe.size1}"></td>
+        <tbody th:if="${#lists.isEmpty(pipes)}">
+        <tr th:each="i:${#numbers.sequence(0,1)}">
+          <td style="display:none"><input type="hidden" value="0"/></td>
+          <td width="100px"><input type="text" value=""/></td>
+          <td width="100px"><input type="text" value="" list="list8"/></td>
+          <td width="110px"><input type="text" value="" class="num1"/></td>
           <td width="44px">*</td>
-          <td width="110px" th:text="${pipe.size2}"></td>
-          <td width="100px" th:text="${pipe.backdrop}"></td>
-          <td width="100px" th:text="${pipe.material}"></td>
-          <td width="100px" th:text="${pipe.lining}"></td>
-          <td width="100px" th:text="${pipe.depth}"></td>
-          <td width="100px" th:text="${pipe.level}"></td>
-          <td width="100px" th:text="${pipe.photo}"></td>
-          <td width="148px" th:text="${pipe.office1}"></td>
-          <td width="148px" th:text="${pipe.office2}"></td>
+          <td width="110px"><input type="text" value=""/></td>
+          <td width="100px"><input type="text" value=""/></td>
+          <td width="100px"><input type="text" value=""/></td>
+          <td width="100px"><input type="text" value="" list="list9"/></td>
+          <td width="100px"><input type="text" value="" class="num1"/></td>
+          <td width="100px"><input type="text" value="" class="num1"/></td>
+          <td width="100px"><input type="text" value=""/></td>
+          <td width="148px"><input type="text" value=""/></td>
+          <td width="148px"><input type="text" value=""/></td>
+        </tr>
+        </tbody>
+        <tbody th:if="${!#lists.isEmpty(pipes)}">
+        <tr th:each="pipe,status:${pipes}" th:if="${status.index>7}">
+          <td style="display:none"><input type="hidden" th:value="${pipe.id}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.upstream}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.shape}" list="list8"/></td>
+          <td width="110px"><input type="text" th:value="${pipe.size1}" class="num1"/></td>
+          <td width="44px">*</td>              
+          <td width="110px"><input type="text" th:value="${pipe.size2}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.backdrop}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.material}"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.lining}" list="list9"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.depth}" class="num1"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.level}" class="num1"/></td>
+          <td width="100px"><input type="text" th:value="${pipe.photo}"/></td>
+          <td width="148px"><input type="text" th:value="${pipe.office1}"/></td>
+          <td width="148px"><input type="text" th:value="${pipe.office2}"/></td>
         </tr>
         </tbody>
       </table>
       
-      <!-- 表格ptab开始 -->
+      <!-- 表格table开始 -->
       <table style="width:100px;margin-top:10px;float:left;" class="table">
-        <tr height="32px"><td style="font-weight:600;">Conditions</td></tr>
-        <tr height="32px"><td style="font-weight:600;">(52) Photo no.</td></tr>
+        <tr height="30px"><td style="font-weight:600;">Conditions</td></tr>
+        <tr height="30px"><td style="font-weight:600;">(52) Photo no.</td></tr>
       </table>
       <table class="ptab table">
-        <tr><td>(46) Cover</td><td th:text="${manhole.cover}"></td></tr>
-        <tr><td colspan="2" th:text="${manhole.photo1}"></td></tr>
-      </table>
-      <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
-      <table class="ptab table">
-        <tr><td>(47) Iron / Ladder</td><td th:text="${manhole.iron}"></td></tr>
-        <tr><td colspan="2" th:text="${manhole.photo2}"></td></tr>
+        <tr><td>(46) Cover</td><td><select name="cover" th:value="${manhole?.cover}"></select></td></tr>
+        <tr><td colspan="2"><input type="text" name="photo1" th:value="${manhole?.photo1}"/></td></tr>
       </table>
       <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
       <table class="ptab table">
-        <tr><td>(48) Shaft</td><td th:text="${manhole.shaft}"></td></tr>
-        <tr><td colspan="2" th:text="${manhole.photo3}"></td></tr>
+        <tr><td>(47) Iron / Ladder</td><td><select name="iron" th:value="${manhole?.iron}"></select></td></tr>
+        <tr><td colspan="2"><input type="text" name="photo2" th:value="${manhole?.photo2}"/></td></tr>
       </table>
       <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
       <table class="ptab table">
-        <tr><td>(49) Chamber</td><td th:text="${manhole.chambers}"></td></tr>
-        <tr><td colspan="2" th:text="${manhole.photo4}"></td></tr>
+        <tr><td>(48) Shaft</td><td><select name="shaft" th:value="${manhole?.shaft}"></select></td></tr>
+        <tr><td colspan="2"><input type="text" name="photo3" th:value="${manhole?.photo3}"/></td></tr>
       </table>
       <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
       <table class="ptab table">
-        <tr><td>(50) Benching</td><td th:text="${manhole.benching}"></td></tr>
-        <tr><td colspan="2" th:text="${manhole.photo5}"></td></tr>
+        <tr><td>(49) Chamber</td><td><select name="chambers" th:value="${manhole?.chambers}"></select></td></tr>
+        <tr><td colspan="2"><input type="text" name="photo4" th:value="${manhole?.photo4}"/></td></tr>
       </table>
       <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
       <table class="ptab table">
-        <tr><td>(51) Others</td><td th:text="${manhole.other}"></td></tr>
-        <tr><td colspan="2" th:text="${manhole.photo6}"></td></tr>
+        <tr><td>(50) Benching</td><td><select name="benching" th:value="${manhole?.benching}"></select></td></tr>
+        <tr><td colspan="2"><input type="text" name="photo5" th:value="${manhole?.photo5}"/></td></tr>
+      </table>
+      <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
+      <table class="ptab table">
+        <tr><td>(51) Others</td><td><select name="other" th:value="${manhole?.other}"></select></td></tr>
+        <tr><td colspan="2"><input type="text" name="photo6" th:value="${manhole?.photo6}"/></td></tr>
       </table>
       
       <!-- 表格4 -->
       <table id="table4" class="table">
         <tr>
-          <td width="100px">(53) UTR</td>
-          <td width="100px" align="center" th:text="${manhole.util1}"></td>
-          <td width="130px" rowspan="2">(59) Location photo no.</td>
-          <td width="202px" rowspan="2" align="center" th:text="${manhole.photono1}"></td>
+          <td width="100px;">(53) UTR</td>
+          <td width="100px;"><select name="util1" th:value="${manhole?.util1}"></select></td>
+          <td width="130px;" rowspan="2">(59) Location photo no.</td>
+          <td width="202px" rowspan="2"><textarea name="photono1" th:text="${manhole?.photono1}"></textarea></td>
         </tr>
-        <tr><td>(54) UTL</td><td align="center" th:text="${manhole.util2}"></td></tr>
+        <tr><td>(54) UTL</td><td><select name="util2" th:value="${manhole?.util2}"></select></td></tr>
         <tr>
           <td>(55) UTGA</td>
-          <td align="center" th:text="${manhole.util3}"></td>
+          <td><select name="util3" th:value="${manhole?.util3}"></select></td>
           <td rowspan="2">(60) Internal photo no.</td>
-          <td rowspan="2" align="center" th:text="${manhole.photono2}"></td>
+          <td rowspan="2"><textarea name="photono2" th:text="${manhole?.photono2}"></textarea></td>
         </tr>
-        <tr><td>(56) UTS</td><td align="center" th:text="${manhole.util4}"></td></tr>
+        <tr><td>(56) UTS</td><td><select name="util4" th:value="${manhole?.util4}"></select></td></tr>
         <tr>
           <td>(57) JETTING</td>
-          <td align="center" th:text="${manhole.util5}"></td>
-          <td rowspan="2" align="center">Slope No. </td>
-          <td rowspan="2" align="center" th:text="${manhole.slopeno}"></td>
+          <td><select name="util5" th:value="${manhole?.util5}"></select></td>
+          <td rowspan="2">Slope No. </td>
+          <td rowspan="2"><textarea name="slopeno" th:text="${manhole?.slopeno}"></textarea></td>
         </tr>
-        <tr><td>(58) ON-SLOPE</td><td align="center" th:text="${manhole.util6}"></td></tr>
+        <tr><td>(58) ON-SLOPE</td><td><select name="util6" th:value="${manhole?.util6}"></select></td></tr>
       </table>
       
       <!-- 表格5 -->
       <table id="table5" class="table">
-        <tr><td>(63) Remarks</td><td colspan="2" align="center" th:text="${manhole.remarks}"></td></tr>
+        <tr><td>(63) Remarks</td><td colspan="2"><textarea name="remarks"></textarea></td></tr>
         <tr>
           <td width="100px">(64) Record plan difference</td>
-          <td width="100px" align="center" th:text="${manhole.dplan}"></td>
-          <td width="695px" align="center" th:text="${manhole.rplan}"></td>
+          <td width="100px"><select name="dplan" th:value="${manhole?.dplan}"></select></td>
+          <td width="695px"><textarea name="rplan" th:text="${manhole?.rplan}"></textarea></td>
         </tr>
         <tr>
           <td>(65) Cover type</td>
-          <td align="center" th:text="${manhole.ctype}"></td>
-          <td align="center" th:text="${manhole.rtype}"></td>
+          <td><input type="text" name="ctype" th:value="${manhole?.ctype}" list="ctype"/></td>
+          <td><textarea name="rtype" th:text="${manhole?.rtype}"></textarea></td>
         </tr>
       </table>
       
       <!-- 表格6 -->
+      <input type="hidden" id="path1" name="path1" th:value="${manhole?.path1}"/>
+      <input type="hidden" id="path2" name="path2" th:value="${manhole?.path2}"/>
       <table id="table6" class="table">
         <tr height="32px;">
           <td width="730px">(66) Location Sketch</td>
           <td width="730px">(67) Plan of MH</td>
         </tr>
         <tr height="480px">
-          <td style="background-image:url('/survey/img/mbg.png');text-align:center;">
-            <img th:if="${!#strings.isEmpty(manhole.path1)}" th:src="${path + manhole.path1 + '.png'}"/>
+          <td style="background-image: url('/survey/img/mbg.png');">
+            <div id="picture1" contenteditable="true">
+              <img th:if="${!#strings.isEmpty(manhole?.path1)}" th:src="${path+manhole.path1+'.png'}"/>
+            </div>
           </td>
-          <td style="background-image:url('/survey/img/mbg.png');text-align:center;">
-            <img th:if="${!#strings.isEmpty(manhole.path2)}" th:src="${path + manhole.path2 + '.png'}"/>
+          <td style="background-image: url('/survey/img/mbg.png');">
+            <div id="picture2" contenteditable="true">
+              <img th:if="${!#strings.isEmpty(manhole?.path2)}" th:src="${path+manhole.path2+'.png'}"/>
+            </div>
           </td>
         </tr>
       </table>
       
-      <!-- 表格7 -->
       <table id="table7" class="table">
-        <tr><td>(68) With Risk Assessment</td><td align="center" th:text="${manhole.with1}"></td></tr>
-        <tr><td>(69) With Permit to Work</td><td align="center" th:text="${manhole.with2}"></td></tr>
-        <tr><td>(70) With Traffic Permit</td><td align="center" th:text="${manhole.with3}"></td></tr>
+        <tr><td>(68) With Risk Assessment</td><td><select name="with1" th:value="${manhole?.with1}"></select></td></tr>
+        <tr><td>(69) With Permit to Work</td><td><select name="with2" th:value="${manhole?.with2}"></select></td></tr>
+        <tr><td>(70) With Traffic Permit</td><td><select name="with3" th:value="${manhole?.with3}"></select></td></tr>
       </table>
+      </form>
       <div id="remark">Remarks:  * - Code description refers to Appendix - Quick Reference for Code in IDMS Manhole Card</div>
-      <input type="button" id="common" value="下一步"/>
+      <input type="button" id="common1" value="保存"/>
+      <input type="button" id="common2" value="保存/下一步"/>
     </div>
-    <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
+    <!-- main结束 -->
+    <div id="tips"><span></span></div>
+    
+    <datalist id="list1">
+      <option value="PU">Public</option>
+	  <option value="PR">Private</option>
+	  <option value="HD">Highway drain</option>
+	  <option value="WA">Watercourse</option>
+	  <option value="TR">Trunk</option>
+	  <option value="AB">Abandoned</option>
+	  <option value="TC">To be constructed</option>
+	  <option value="HC">Housing Committee</option>
+	  <option value="WA">Water Company Maintained</option>
+	  <option value="U">Unspecified</option>
+    </datalist>
+    <datalist id="list2">
+      <option value="F">Foul</option>
+	  <option value="S">Surface</option>
+	  <option value="C">Combined</option>
+	  <option value="O">Overflow</option>
+	  <option value="U">Unspecified</option>
+    </datalist>
+    <datalist id="list3">
+      <option value="A">Catch Pit</option>
+	  <option value="B">Hydrobrake</option>
+	  <option value="C">Cascade</option>
+	  <option value="D">Dual function Manhole</option>
+	  <option value="E">Ejector</option>
+	  <option value="F">Outfall</option>
+	  <option value="G">Ghost</option>
+	  <option value="H">Hatchbox</option>
+	  <option value="I">Inlet</option>
+	  <option value="J">Junction(Saddle)</option>
+	  <option value="K">Combined</option>
+	  <option value="L">Lamphole</option>
+	  <option value="M">Manhol</option>
+	  <option value="N">Dead End</option>
+	  <option value="O">Oil Inteerceptor</option>
+	  <option value="P">Pumping Station</option>
+	  <option value="Q">Transition</option>
+	  <option value="R">Rodding eye</option>
+	  <option value="S">Soak-away</option>
+	  <option value="T">Vent Column</option>
+	  <option value="U">Unspecified</option>
+	  <option value="V">Storm Overflow</option>
+	  <option value="W">Treatment works</option>
+	  <option value="X">Unreliable</option>
+	  <option value="Y">Gully</option>
+	  <option value="Z">Ghost in rising main</option>
+    </datalist>
+    <datalist id="list4">
+      <option value="S">Square</option>
+	  <option value="R">Retangular</option>
+	  <option value="T">Triangular</option>
+	  <option value="D">Dobule Triangular</option>
+	  <option value="C">Circular</option>
+	  <option value="U">Unspecified</option>
+    </datalist>
+    <datalist id="list5">
+      <option value="L">Light</option>
+	  <option value="M">Medium</option>
+	  <option value="H">Heavy</option>
+	  <option value="U">Unspecified</option>
+    </datalist>
+    <datalist id="list6">
+      <option value="S">Reducing Slab</option>
+	  <option value="T">Taper</option>
+	  <option value="A">Arch</option>
+	  <option value="C">Corbel</option>
+	  <option value="N">None</option>
+	  <option value="U">Unspecified</option>
+    </datalist>
+    <datalist id="list7">
+	  <option value="I">In-Situ</option>
+      <option value="B">Brick</option>
+	  <option value="P">Pre-cast Units</option>
+	  <option value="S">Segmental</option>
+	  <option value="R">Rendered</option>
+    </datalist>
+    <datalist id="list8">
+      <option value="">--</option>
+      <option value="A">Arch(with flat- bottom)</option>
+	  <option value="B">Barrel</option>
+	  <option value="C">Circular</option>
+	  <option value="E">Egg</option>
+	  <option value="F">U-shaped(with flat-top)</option>
+	  <option value="H">Horseshoe,inverted</option>
+	  <option value="O">Oval</option>
+	  <option value="R">Rectangular</option>
+	  <option value="S">Square</option>
+	  <option value="T">Trapezodial</option>
+	  <option value="U">Unspecified</option>
+	</datalist>
+	<datalist id="list9">
+      <option value="AK">Alkathene</option>
+	  <option value="AC">Asbestos Cement</option>
+	  <option value="BR">Brick</option>
+	  <option value="CI">Cast Iron</option>
+	  <option value="CO">Concrete</option>
+	  <option value="CSB">Concrete Segemnts Bolted</option>
+	  <option value="CSU">Concrete Segemnts</option>
+	  <option value="CC">Concrete Box Culvert</option>
+	  <option value="DI">Ductile Iron</option>
+	  <option value="GRC">Glass Reinforeced</option>
+	  <option value="GRP">Glass Reinforeced</option>
+	  <option value="PSC">Plastic/Steel Composite</option>
+	  <option value="PVC">Polyvinyl Chloride</option>
+	  <option value="PE">Polyethylene</option>
+	  <option value="RPM">Reinforced Plastic Matrix</option>
+	  <option value="SI">Spun iron</option>
+	  <option value="ST">Steel</option>
+	  <option value="VC">Vitrified Clay</option>
+	  <option value="PP">Polypropylene</option>
+	  <option value="PF">Pitch Fibre</option>
+	  <option value="MAC">Masonry, coursed</option>
+	  <option value="MAR">Masonry, random</option>
+	  <option value="U">Unspecified</option>
+    </datalist>
+	<datalist id="ctype">
+	  <option value="ST">Standard</option>
+	  <option value="SL">Standard-Large</option>
+	  <option value="MC">Multiple Cover</option>
+	  <option value="LA">Large</option>
+	  <option value="WD">With Decoration Cover</option>
+	  <option value="U">Others</option>
+	</datalist>
+	<div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
       <p>香港麦斯迪埃高科技有限责任公司</p>
       <p>Copyright © 2017 All Rights Reserved</p>	
     </div>

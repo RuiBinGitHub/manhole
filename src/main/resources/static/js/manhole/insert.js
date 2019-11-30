@@ -286,4 +286,9 @@ $(document).ready(function() {
 		};
 		reader.readAsDataURL(file);
 	};
+	
+	function showTips(text) {
+        $("#tips").show().delay(1800).hide(200);
+        $("#tips span").text(text);
+    }
 });

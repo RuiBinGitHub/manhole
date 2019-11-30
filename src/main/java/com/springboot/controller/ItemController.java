@@ -19,7 +19,7 @@ import com.springboot.biz.ItemBiz;
 import com.springboot.biz.ManholeBiz;
 import com.springboot.entity.Item;
 import com.springboot.entity.Manhole;
-import com.springboot.util.AppHelper;
+import com.springboot.util.MyHelper;
 
 @RestController
 @RequestMapping(value = "/item")
@@ -39,7 +39,7 @@ public class ItemController {
 	@RequestMapping(value = "/editinfo")
 	public ModelAndView editInfo(@RequestParam(defaultValue = "0") int id) {
 		ModelAndView view = new ModelAndView("user/failure");
-		Manhole manhole = manholeBiz.findInfoManhole(id);
+		Manhole manhole = manholeBiz.findInfoManhole(id, null);
 		if (StringUtils.isEmpty(manhole))
 			return view;
 		List<Item> items = itemBiz.findListItem(manhole);
@@ -55,7 +55,7 @@ public class ItemController {
 	@RequestMapping(value = "/findinfo")
 	public ModelAndView findInfo(@RequestParam(defaultValue = "0") int id) {
 		ModelAndView view = new ModelAndView("user/failure");
-		Manhole manhole = manholeBiz.findInfoManhole(id);
+		Manhole manhole = manholeBiz.findInfoManhole(id ,null);
 		if (StringUtils.isEmpty(manhole))
 			return view;
 		List<Item> items = itemBiz.findListItem(manhole);
@@ -74,7 +74,7 @@ public class ItemController {
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isEmpty())
 				continue;
-			String name = AppHelper.UUIDCode();
+			String name = MyHelper.UUIDCode();
 			File dest = new File(myfile + "ItemImage/" + name + ".png");
 			files[i].transferTo(dest);
 			if (i % 2 == 0)

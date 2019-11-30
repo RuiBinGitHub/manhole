@@ -20,7 +20,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-public class AppHelper {
+public class MyHelper {
 
 	/** 获取参数列表 */
 	public static Map<String, Object> getMap(Object... values) {

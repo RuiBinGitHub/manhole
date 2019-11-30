@@ -78,6 +78,8 @@ public class Manhole {
 	private String with1;
 	private String with2;
 	private String with3;
+	private String state;
+	private User user;
 
 	private List<Pipe> pipes;
 	private List<Item> items;
@@ -672,6 +674,22 @@ public class Manhole {
 
 	public void setWith3(String with3) {
 		this.with3 = with3;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<Pipe> getPipes() {

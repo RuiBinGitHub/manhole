@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.biz.ManholeBiz;
 import com.springboot.entity.Manhole;
-import com.springboot.util.AppHelper;
+import com.springboot.util.MyHelper;
 import com.springboot.util.HelperPDF;
 
 @RestController
 public class HelperController {
 
 	@Value("${myfile}")
-	private String path;
+	private String myfile;
 	@Resource
 	private ManholeBiz manholeBiz;
 	@Resource
@@ -32,16 +32,16 @@ public class HelperController {
 
 	@RequestMapping(value = "/downfile")
 	public void findUserList(@RequestParam(defaultValue = "0") int id) {
-		Manhole manhole = manholeBiz.findInfoManhole(id);
+		Manhole manhole = manholeBiz.findInfoManhole(id, null);
 		if (StringUtils.isEmpty(manhole))
 			return; // 查询项目为空
-		HttpServletResponse response = AppHelper.getResponse();
+		HttpServletResponse response = MyHelper.getResponse();
 		response.setHeader("Content-disposition", "attachment;filename=manhole.pdf");
 		response.setContentType("application/octet-stream");
 
-		String name = AppHelper.UUIDCode();
-		helperPDF.initPDF(manhole, path + "report/", name);
-		File file = new File(path + "report/" + name + ".pdf");
+		String name = MyHelper.UUIDCode();
+		helperPDF.initPDF(manhole, myfile + "report/", name);
+		File file = new File(myfile + "report/" + name + ".pdf");
 		try {
 			int len = -1;
 			byte[] buffer = new byte[1024];
