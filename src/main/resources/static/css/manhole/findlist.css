@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+#showmap {
+	width: 64px;
+	height: 30px;
+	color: #ffffff;
+	margin: 5px 0px 5px 10px;
+	background-color: #3CB44B;
+	border: none;
+	float: left;
+}
+
+#showmap:hover {
+	background-color: #50c55f;
+	cursor: pointer;
+}

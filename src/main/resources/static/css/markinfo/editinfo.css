@@ -1,42 +1,38 @@
-@CHARSET "UTF-8";
+@charset "UTF-8";
 
 body {
 	background-color: #f1f1f1;
 }
 
 #main {
-	width: 1460px;
-	height: 1965px;
+	width: 1500px;
+	height: 1980px;
 	margin: 20px auto;
-	padding: 0px 20px;
-	border: 1px solid #ccc;
-	background-color: #fff;
 }
 
-#logo {
-	width: 580px;
-	height: 110px;
-	margin: 20px 420px 40px 0px;
+#title1 {
+	width: 1500px;
+	height: 48px;
+	font-size: 24px;
+	font-family: 宋体;
+	font-weight: 600;
+	text-indent: 20px;
+	line-height: 48px;
+	background-color: #fff;
+	border-bottom: 2px solid #999;
 	float: left;
 }
 
-#idms {
-	width: 458px;
-	height: 110px;
-	font-size: 24px;
-	font-family: Times New Roman;
-	font-style: italic;
-	font-weight: 700;
-	text-align: center;
-	line-height: 110px;
-	margin: 20px 0px 40px 0px;
-	border: 1px solid #000;
+#value1 {
+	width: 1460px;
+	padding: 20px;
+	margin-bottom: 20px;
+	background-color: #fff;
 	float: left;
 }
 
 .table {
 	font-size: 10px;
-	text-align: left;
 	font-family: Times New Roman;
 	border-collapse: collapse;
 	float: left;
@@ -51,20 +47,12 @@ body {
 	border: none;
 }
 
-.table tbody tr td select {
-	width: 100%;
-	font-size: 14px;
-	text-indent: 5px;
-	font-family: Times New Roman;
-	outline: none;
-	border: none;
-}
-
 .icell {
 	border: 1px solid #000;
 }
 
 .ycell {
+	text-align: center;
 	border: 1px solid #000;
 }
 
@@ -73,6 +61,7 @@ body {
 }
 
 .cella {
+	text-align: center;
 	border-top: 1px solid #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px dashed #000;
@@ -80,6 +69,7 @@ body {
 }
 
 .cellb {
+	text-align: center;
 	border-top: 1px solid #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px dashed #000;
@@ -87,6 +77,7 @@ body {
 }
 
 .cellc {
+	text-align: center;
 	border-top: 1px solid #000;
 	border-right: 1px solid #000;
 	border-bottom: 1px dashed #000;
@@ -94,6 +85,7 @@ body {
 }
 
 .celld {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px dashed #000;
@@ -101,6 +93,7 @@ body {
 }
 
 .celle {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px dashed #000;
@@ -108,6 +101,7 @@ body {
 }
 
 .cellf {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px solid #000;
 	border-bottom: 1px dashed #000;
@@ -115,6 +109,7 @@ body {
 }
 
 .cellg {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px solid #000;
@@ -122,6 +117,7 @@ body {
 }
 
 .cellh {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px solid #000;
@@ -129,6 +125,7 @@ body {
 }
 
 .celli {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px solid #000;
 	border-bottom: 1px solid #000;
@@ -136,7 +133,7 @@ body {
 }
 
 #table1 {
-	width: 100%;
+	width: 1460px;
 	float: left;
 }
 
@@ -145,20 +142,17 @@ body {
 }
 
 #table1 tr td input {
-	height: 30px;
-}
-
-#table1 tr td select {
-	height: 33px;
+	height: 31px;
 }
 
 #table1 tr td div {
-	width: 15%;
+	width: 100%;
 	height: 16px;
-	text-align: center;
-	line-height: 20px;
+	text-align: left;
+	text-indent: 5px;
+	line-height: 16px;
 	float: left;
-	line-height: 20px;
+	line-height: 16px;
 }
 
 .apache {
@@ -387,55 +381,167 @@ body {
 #table7 tr td select {
 	height: 26px;
 }
+/** ******************************************************************* */
+#title2 {
+	width: 1500px;
+	height: 48px;
+	font-size: 24px;
+	font-family: 宋体;
+	font-weight: 600;
+	text-indent: 20px;
+	line-height: 48px;
+	background-color: #fff;
+	border-bottom: 2px solid #999;
+	float: left;
+}
 
-#remark {
-	width: 100%;
+#value2 {
+	width: 1500px;
+	background-color: #fff;
+	float: left;
+}
+
+#value2 .table {
+	width: 600px;
+	font-size: 13px;
+	margin: 20px 75px;
+	border: 2px solid #000;
+	font-family: Times New Roman;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+#value2 .title {
+	width: 225px;
 	height: 40px;
-	font-size: 18px;
-	font-weight: 700;
+	font-size: 14px;
+	font-weight: 600;
+	font-style: italic;
 	text-align: center;
 	line-height: 40px;
-	font-family: Times New Roman;
+	border: 2px solid #000;
+}
+
+#value2 .mcell {
+	border: 1px solid #000;
+}
+
+#value2 .icell {
+	border: none;
+	text-align: center;
+	border-bottom: 1px solid #000;
+}
+
+#value2 .table img {
+	max-width: 470px;
+	max-height: 315px;
+}
+/** ******************************************************************* */
+.mark1 {
+	left: 0;
+	right: 0;
+	bottom: 2px;
+	width: 1500px;
+	height: 325px;
+	margin: auto;
+	position: fixed;
+	background-color: #fff;
+	z-index: 9;
+}
+.mark2 {
+	width: 1500px;
+	height: 325px;
+	margin-top: 20px;
+	background-color: #fff;
+	float: left;
+}
+
+#title3 {
+	width: 1500px;
+	height: 48px;
+	font-size: 24px;
+	font-family: 宋体;
+	font-weight: 600;
+	text-indent: 20px;
+	line-height: 48px;
+	background-color: #fff;
+	border-bottom: 2px solid #999;
+	float: left;
+}
+
+.markinfo {
+	width: 720px;
+	height: 200px;
 	margin-top: 10px;
+	margin-left: 20px;
 	float: left;
 }
-
-#common1 {
+.markinfo div {
 	width: 120px;
-	height: 36px;
-	color: #ffffff;
-	font-size: 14px;
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 18px;
 	font-family: 宋体;
 	font-weight: 600;
+	text-align: center;
+	line-height: 30px;
+	background-color: #DDD;
+	float: left;
+}
+.markinfo input {
+	width: 590px;
+	height: 28px;
+	margin-top: 10px;
+	font-size: 18px;
+	font-family: 宋体;
+	text-indent: 10px;
+	background-color: #DDD;
+	outline: none;
+	border: none;
+	float: left;
+}
+.markinfo textarea {
+	width: 574px;
+	height: 134px;
+	padding: 8px;
+	margin-top: 10px;
+	font-size: 18px;
+	font-family: 宋体;
+	background-color: #DDD;
+	outline: none;
+	border: none;
+	resize: none;
+	float: left;
+}
+
+.explains {
+	width: 720px;
+	height: 190px;
 	margin-top: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	background-color: #00A1D6;
+	margin-left: 20px;
+	background-color: #DDD;
+	float: left;
+}
+.explains p {
+	font-size: 18px;
+	font-family: 宋体;
+	text-indent: 10px;
+}
+
+.commit {
+	width: 160px;
+	height: 32px;
+	color: #fff;
+	font-size: 18px;
+	font-family: 宋体;
+	margin-top: 15px;
+	margin-left: 150px;
+	background-color: #00953E;
 	border: none;
 	float: left;
 }
 
-#common1:hover {
-	background-color: #02c0ff;
-	cursor: pointer;
-}
-
-#common2 {
-	width: 140px;
-	height: 36px;
-	color: #ffffff;
-	font-size: 14px;
-	font-family: 宋体;
-	font-weight: 600;
-	margin-top: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	background-color: #38A80C;
-	border: none;
-	float: left;
-}
-
-#common2:hover {
-	background-color: #43cc0f;
+.commit:hover {
+	background-color: #00ac49;
 	cursor: pointer;
 }

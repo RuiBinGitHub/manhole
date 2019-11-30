@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title>用户登录</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="/survey/css/userview/loginview.css"/>
+	<script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/survey/js/userview/loginview.js"></script>
+  </head>
+  <body>
+    <div id="main">
+	  <div id="title">
+	    <img src="/survey/img/msdi.png">
+	    <div class="p1">深圳麦斯迪埃高科技有限公司</div>
+	    <div class="p2">ShenZhen MSDI high technology Company Limited</div>
+	  </div>
+	  <form id="form1" action="login" method="post">
+	  <table id="info">
+	    <tr><td><span>用户登录</span></td></tr>
+	    <tr><td><input type="text" name="username" class="textbox"/></td></tr>
+	    <tr><td><input type="text" name="password" class="textbox"/></td></tr>
+	    <tr><td><a href="#">忘记密码</a></td></tr>
+	    <tr><td><input type="button" value="登录" class="commit"/></td></tr>
+	  </table>
+	  </form>
+    </div>
+    <!-- main结束 -->
+    <div id="tips"><span></span></div>
+  </body>
+</html>
