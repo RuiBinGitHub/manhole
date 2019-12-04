@@ -17,7 +17,7 @@
         <input type="button" value="删除" style="background-color: #FF2828;"/>
       </div>
       <div id="mainInfo">
-        <form action="update" method="post" enctype="multipart/form-data">
+        <form action="commit" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" th:value="${param.id}"/>
         <table class="table" th:each="item:${items}">
           <tr height="80px">
@@ -25,14 +25,14 @@
             <td colspan="2"><div class="title">Manhole Survey Photographs</div></td>
           </tr>
           <tr height="25px">
-            <td width="118px">Project No.:</td>
+            <td width="118px" style="text-indent:5px;">Project No.:</td>
             <td width="118px" class="icell" th:text="${manhole.projectno}"></td>
             <td width="118px"></td>
             <td width="118px">Manhole Reference: </td>
             <td width="118px" class="icell" th:text="${manhole.node}"></td>
           </tr>
           <tr height="25px">
-            <td>WO No.: </td>
+            <td style="text-indent:5px;">WO No.: </td>
             <td class="icell" th:text="${manhole.workorder}"></td>
             <td colspan="3"><input type="hidden" th:value="${item.id}"/></td>
           </tr>
@@ -76,6 +76,7 @@
         <div id="append"><div>+</div></div>
       </div>
     </div>
+    
     <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
       <p>香港麦斯迪埃高科技有限责任公司</p>
       <p>Copyright © 2017 All Rights Reserved</p>	

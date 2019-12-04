@@ -89,8 +89,7 @@ public class ManholeBizImpl implements ManholeBiz {
 				pipe.setManhole(manhole);
 				pipeBiz.insertPipe(pipe);
 			}
-		}
-		else {
+		} else {
 			this.updateManhole(manhole);
 			for (Pipe pipe : manhole.getPipes()) {
 				pipe.setNo(no++);

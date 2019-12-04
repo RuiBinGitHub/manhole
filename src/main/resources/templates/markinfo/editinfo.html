@@ -239,28 +239,23 @@
         <tr><td>(46) Cover</td><td th:text="${manhole.cover}"></td></tr>
         <tr><td colspan="2" th:text="${manhole.photo1}"></td></tr>
       </table>
-      <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
       <table class="ptab table">
         <tr><td>(47) Iron / Ladder</td><td th:text="${manhole.iron}"></td></tr>
         <tr><td colspan="2" th:text="${manhole.photo2}"></td></tr>
       </table>
-      <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
       <table class="ptab table">
         <tr><td>(48) Shaft</td><td th:text="${manhole.shaft}"></td></tr>
         <tr><td colspan="2" th:text="${manhole.photo3}"></td></tr>
       </table>
-      <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
       <table class="ptab table">
         <tr><td>(49) Chamber</td><td th:text="${manhole.chambers}"></td></tr>
         <tr><td colspan="2" th:text="${manhole.photo4}"></td></tr>
       </table>
-      <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
       <table class="ptab table">
         <tr><td>(50) Benching</td><td th:text="${manhole.benching}"></td></tr>
         <tr><td colspan="2" th:text="${manhole.photo5}"></td></tr>
       </table>
-      <div style="width:32px;height:65px;margin-top:10px;float:left;"></div>
-      <table class="ptab table">
+      <table class="ptab table" style="margin-right:0px;">
         <tr><td>(51) Others</td><td th:text="${manhole.other}"></td></tr>
         <tr><td colspan="2" th:text="${manhole.photo6}"></td></tr>
       </table>
@@ -284,7 +279,7 @@
         <tr>
           <td>(57) JETTING</td>
           <td align="center" th:text="${manhole.util5}"></td>
-          <td rowspan="2" align="center">Slope No. </td>
+          <td rowspan="2">Slope No. </td>
           <td rowspan="2" align="center" th:text="${manhole.slopeno}"></td>
         </tr>
         <tr><td>(58) ON-SLOPE</td><td align="center" th:text="${manhole.util6}"></td></tr>
@@ -292,16 +287,27 @@
       
       <!-- 表格5 -->
       <table id="table5" class="table">
-        <tr><td>(63) Remarks</td><td colspan="2" align="center" th:text="${manhole.remarks}"></td></tr>
         <tr>
-          <td width="100px">(64) Record plan difference</td>
-          <td width="100px" align="center" th:text="${manhole.dplan}"></td>
-          <td width="695px" align="center" th:text="${manhole.rplan}"></td>
+          <td>(63) Remarks</td>
+          <td colspan="6" align="center" th:text="${manhole.remarks}"></td></tr>
+        <tr>
+          <td>(64) Record plan difference</td>
+          <td align="center" th:text="${manhole.dplan}"></td>
+          <td colspan="5" align="center" th:text="${manhole.rplan}"></td>
         </tr>
         <tr>
-          <td>(65) Cover type</td>
-          <td align="center" th:text="${manhole.ctype}"></td>
-          <td align="center" th:text="${manhole.rtype}"></td>
+          <td width="100px">(65) Cover type</td>
+          <td width="100px" class="ctype1" th:if="${#strings.substring(manhole.ctype,0,1)=='Y'}">Standard</td>
+          <td width="100px" class="ctype2" th:if="${#strings.substring(manhole.ctype,0,1)!='Y'}">Standard</td>
+          <td width="100px" class="ctype1" th:if="${#strings.substring(manhole.ctype,2,3)=='Y'}">Standard - Large</td>
+          <td width="100px" class="ctype2" th:if="${#strings.substring(manhole.ctype,2,3)!='Y'}">Standard - Large</td>
+          <td width="100px" class="ctype1" th:if="${#strings.substring(manhole.ctype,4,5)=='Y'}">Multiple Cover</td>
+          <td width="100px" class="ctype2" th:if="${#strings.substring(manhole.ctype,4,5)!='Y'}">Multiple Cover</td>
+          <td width="100px" class="ctype1" th:if="${#strings.substring(manhole.ctype,6,7)=='Y'}">Large</td>
+          <td width="100px" class="ctype2" th:if="${#strings.substring(manhole.ctype,6,7)!='Y'}">Large</td>
+          <td width="100px" class="ctype1" th:if="${#strings.substring(manhole.ctype,8,9)=='Y'}">With decoration<br/>cover</td>
+          <td width="100px" class="ctype2" th:if="${#strings.substring(manhole.ctype,8,9)!='Y'}">With decoration<br/>cover</td>
+          <td width="195px" align="center" th:text="${manhole.rtype}"></td>
         </tr>
       </table>
       
@@ -379,19 +385,27 @@
           <tr><td height="50px" class="mcell" th:text="${item.remark2}"></td></tr>
         </table>
       </div>
-      <div id="mark" class="mark2">
+      <div id="mark" class="mark1">
         <div id="title3">评分信息</div>
+        <form id="form1" action="update" method="post">
+        <input type="hidden" name="id" th:value="${param.id}"/>
+        <input type="hidden" name="date" th:value="${markItem.date}"/>
+        <input type="hidden" name="manhole.id" th:value="${markItem.manhole.id}"/>
+        <input type="hidden" name="user.id" th:value="${markItem.user.id}"/>
         <div class="markinfo">
-          <div style="height:30px;">项目分数：</div>
-          <input type="text" name="score"/>
+          <div style="height:030px;">项目分数：</div>
+          <input type="text" name="score" th:value="${markItem.score}"/>
           <div style="height:150px;">备注说明：</div>
-          <textarea name="remark"></textarea>
+          <textarea name="remark" th:text="${markItem.remark}"></textarea>
         </div>
+        </form>
         <div class="explains">
-          <p>评分说明：</p>
-          <p>1、哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
-          <p>1、哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
-          <p>1、哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+          <span style="font-size: 18px;font-weight:600;margin-bottom:8px;">评分规则：</span>
+          <span>1、90-100分：优秀。超越本职位常规标准要求。在规定的时间内完成任务，数量、质量等超出规定标准。</span>
+          <span>2、80-89分：良好。超出本职位常规标准要求。严格按照规定的时间完成任务，数量、质量上超出规定的标准。</span>
+          <span>3、70-79分：一般。经常维持或偶尔超出本职位常规标准要求。基本达到规定的时间、数量、质量等工作标准。</span>
+          <span>4、60-69分：合格。基本维持或偶尔未达到本职位常规标准要求。数量、质量上达不到规定的工作标准。</span>
+          <span>5、50-59下：较差。低于常规本职位正常工作标准要求。工作中出现失误，数量、质量上达不到规定工作标准。</span>
         </div>
         <input type="button" value="确定" class="commit"/>
       </div>

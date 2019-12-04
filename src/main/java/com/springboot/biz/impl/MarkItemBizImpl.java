@@ -12,7 +12,10 @@ import org.springframework.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.springboot.biz.MarkItemBiz;
+import com.springboot.biz.MessageBiz;
 import com.springboot.dao.MarkItemDao;
+import com.springboot.entity.Company;
+import com.springboot.entity.Manhole;
 import com.springboot.entity.MarkItem;
 import com.springboot.entity.User;
 import com.springboot.util.MyHelper;
@@ -23,11 +26,13 @@ public class MarkItemBizImpl implements MarkItemBiz {
 
 	@Resource
 	private MarkItemDao markItemDao;
-
+	@Resource
+	private MessageBiz messageBiz;
+	
 	private Map<String, Object> map = null;
 
-	public void insertMarkItem(MarkItem MarkItem) {
-		markItemDao.insertMarkItem(MarkItem);
+	public void insertMarkItem(MarkItem markItem) {
+		markItemDao.insertMarkItem(markItem);
 	}
 
 	public void updateMarkItem(MarkItem markItem) {
@@ -40,6 +45,11 @@ public class MarkItemBizImpl implements MarkItemBiz {
 
 	public MarkItem findInfoMarkItem(int id, User user) {
 		map = MyHelper.getMap("id", id, "user", user);
+		return markItemDao.findInfoMarkItem(map);
+	}
+
+	public MarkItem findInfoMarkItem(int id, Company company) {
+		map = MyHelper.getMap("id", id, "company", company);
 		return markItemDao.findInfoMarkItem(map);
 	}
 
@@ -65,6 +75,16 @@ public class MarkItemBizImpl implements MarkItemBiz {
 		List<MarkItem> markItems = markItemDao.findListMarkItem(map);
 		PageInfo<MarkItem> info = new PageInfo<MarkItem>(markItems);
 		return info;
+	}
+
+	public int appendMarkItem(Manhole manhole, User user) {
+		MarkItem markItem = new MarkItem();
+		markItem.setDate(MyHelper.getDate(null));
+		markItem.setManhole(manhole);
+		markItem.setUser(user);
+		insertMarkItem(markItem);
+		messageBiz.sendMessage(markItem);
+		return markItem.getId();
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.springboot.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,6 +17,7 @@ import com.springboot.biz.ItemBiz;
 import com.springboot.biz.ManholeBiz;
 import com.springboot.entity.Item;
 import com.springboot.entity.Manhole;
+import com.springboot.entity.User;
 import com.springboot.util.MyHelper;
 
 @RestController
@@ -34,12 +33,12 @@ public class ItemController {
 	private ManholeBiz manholeBiz;
 	@Resource
 	private ItemBiz itemBiz;
-	// private Map<String, Object> map = null;
 
 	@RequestMapping(value = "/editinfo")
 	public ModelAndView editInfo(@RequestParam(defaultValue = "0") int id) {
-		ModelAndView view = new ModelAndView("user/failure");
-		Manhole manhole = manholeBiz.findInfoManhole(id, null);
+		ModelAndView view = new ModelAndView("userview/failure");
+		User user = (User) MyHelper.findMap("user");
+		Manhole manhole = manholeBiz.findInfoManhole(id, user);
 		if (StringUtils.isEmpty(manhole))
 			return view;
 		List<Item> items = itemBiz.findListItem(manhole);
@@ -54,8 +53,8 @@ public class ItemController {
 
 	@RequestMapping(value = "/findinfo")
 	public ModelAndView findInfo(@RequestParam(defaultValue = "0") int id) {
-		ModelAndView view = new ModelAndView("user/failure");
-		Manhole manhole = manholeBiz.findInfoManhole(id ,null);
+		ModelAndView view = new ModelAndView("userview/failure");
+		Manhole manhole = manholeBiz.findInfoManhole(id, null);
 		if (StringUtils.isEmpty(manhole))
 			return view;
 		List<Item> items = itemBiz.findListItem(manhole);
@@ -67,36 +66,18 @@ public class ItemController {
 		view.addObject("path", mypath);
 		return view;
 	}
-	
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public boolean update(Manhole manhole, MultipartFile[] files) throws IOException {
-		List<Item> items = manhole.getItems();
-		for (int i = 0; i < files.length; i++) {
-			if (files[i].isEmpty())
-				continue;
-			String name = MyHelper.UUIDCode();
-			File dest = new File(myfile + "ItemImage/" + name + ".png");
-			files[i].transferTo(dest);
-			if (i % 2 == 0)
-				items.get(i / 2).setPath1(name);
-			else
-				items.get(i / 2).setPath2(name);
-		}
-		int no = 0;
-		for (Item item : items) {
-			item.setNo(no++);
-			item.setManhole(manhole);
-			if (item.getId() == 0)
-				itemBiz.insertItem(item);
-			else
-				itemBiz.updateItem(item);
-		}
-		return true;
+
+	@RequestMapping(value = "/commit", method = RequestMethod.POST)
+	public ModelAndView commit(Manhole manhole, MultipartFile[] files) {
+		ModelAndView view = new ModelAndView("redirect:/success");
+		itemBiz.replacItem(manhole, files);
+		return view;
 	}
 
 	@RequestMapping(value = "/delete")
 	public boolean delete(@RequestParam(defaultValue = "0") int id) {
-		Item item = itemBiz.findInfoItem(id, null);
+		User user = (User) MyHelper.findMap("user");
+		Item item = itemBiz.findInfoItem(id, user);
 		if (!StringUtils.isEmpty(item))
 			itemBiz.deleteItem(item);
 		return true;

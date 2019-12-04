@@ -17,8 +17,8 @@
 	  <form id="form1" action="login" method="post">
 	  <table id="info">
 	    <tr><td><span>用户登录</span></td></tr>
-	    <tr><td><input type="text" name="username" class="textbox"/></td></tr>
-	    <tr><td><input type="text" name="password" class="textbox"/></td></tr>
+	    <tr><td><input type="text" name="username" class="textbox" th:value="${username}"/></td></tr>
+	    <tr><td><input type="text" name="password" class="textbox" th:value="${password}"/></td></tr>
 	    <tr><td><a href="#">忘记密码</a></td></tr>
 	    <tr><td><input type="button" value="登录" class="commit"/></td></tr>
 	  </table>

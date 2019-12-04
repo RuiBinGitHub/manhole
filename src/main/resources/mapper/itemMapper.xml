@@ -22,10 +22,13 @@
 	</delete>
 
 	<select id="findInfoItem" parameterType="Map" resultType="Item">
-		select * from item
+		select i.* from item i left join manhole m on m.id = i.manholeid left join users u on u.id = m.userid
 		<where>
 			<if test="id != null">
-				and id = #{id}
+				and i.id = #{id}
+			</if>
+			<if test="user != null">
+				and u.id = #{user.id}
 			</if>
 		</where>
 	</select>

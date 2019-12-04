@@ -10,11 +10,13 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springboot.biz.ItemBiz;
 import com.springboot.dao.ItemDao;
 import com.springboot.entity.Item;
 import com.springboot.entity.Manhole;
+import com.springboot.entity.User;
 import com.springboot.util.MyHelper;
 
 @Service
@@ -48,8 +50,8 @@ public class ItemBizImpl implements ItemBiz {
 		}
 	}
 
-	public Item findInfoItem(int id, String name) {
-		map = MyHelper.getMap("id", id, "name", name);
+	public Item findInfoItem(int id, User user) {
+		map = MyHelper.getMap("id", id, "user", user);
 		return itemDao.findInfoItem(map);
 	}
 
@@ -66,6 +68,31 @@ public class ItemBizImpl implements ItemBiz {
 		itemDao.insertItem(item);
 		items.add(item);
 		return items;
+	}
+
+	public void replacItem(Manhole manhole, MultipartFile[] files) {
+		List<Item> items = manhole.getItems();
+		String path = myfile + "/ItemImage/";
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isEmpty())
+				continue;
+			String name = MyHelper.UUIDCode();
+			File dest = new File(path + name + ".png");
+			MyHelper.moveFile(files[i], dest);
+			if (i % 2 == 0)
+				items.get(i / 2).setPath1(name);
+			else
+				items.get(i / 2).setPath2(name);
+		}
+		for (int i = 0; i < items.size(); i++) {
+			Item item = items.get(i);
+			item.setNo(i);
+			item.setManhole(manhole);
+			if (item.getId() == 0)
+				insertItem(item);
+			else
+				updateItem(item);
+		}
 	}
 
 }

@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+#img1 {
+	width: 128px;
+	height: 128px;
+	margin-top: 10px;
+	margin-left: 10px;
+	background-color: #F0F0F0;
+	float: left;
+}
+
+#table1 {
+	width: 852px;
+	margin-top: 10px;
+	font-size: 18px;
+	font-family: 宋体;
+	background-color: #F0F0F0;
+	float: left;
+}
+
+#table1 tr {
+	height: 40px;
+}
+
+#table1 tr a {
+	float: right;
+}
+
+#info1 {
+	width: 978px;
+	height: auto;
+	margin-top: 10px;
+	margin-left: 10px;
+	border: 1px solid #ddd;
+	float: left;
+}
+
+#title1 {
+	width: 100%;
+	height: 40px;
+	font-size: 24px;
+	font-family: 宋体;
+	font-weight: 600;
+	line-height: 40px;
+	text-indent: 10px;
+	float: left;
+}
+
+.num {
+	width: 46%;
+	height: 32px;
+	font-size: 18px;
+	font-family: 宋体;
+	text-indent: 14px;
+	line-height: 30px;
+	float: left;
+}
+.num a {
+	color: #FF552E;
+}
+
+#title2 {
+	width: 980px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 10px;
+	font-size: 20px;
+	font-family: 宋体;
+	font-weight: 600;
+	text-indent: 10px;
+	line-height: 30px;
+	border-bottom: 2px solid #ccc;
+	float: left;
+}
+
+.line {
+	width: 980px;
+	height: 70px;
+	margin-left: 10px;
+	font-size: 18px;
+	font-family: 宋体;
+	text-indent: 20px;
+	line-height: 70px;
+	border-bottom: 1px solid #ccc;
+	float: left;
+}
+.line img {
+	width: 27px;
+	height: 27px;
+	margin-top: 21px;
+	margin-right: 20px;
+	float: right;
+}

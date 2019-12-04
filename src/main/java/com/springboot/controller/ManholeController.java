@@ -73,44 +73,33 @@ public class ManholeController {
 	}
 
 	/** 编辑数据 */
-	@RequestMapping(value = "/findview")
+	@RequestMapping(value = "/editinfo")
 	public ModelAndView findview(@RequestParam(defaultValue = "0") int id) {
-		ModelAndView view = new ModelAndView("userview/failure");
-		Manhole manhole = manholeBiz.findInfoManhole(id, null);
-		if (id != 0 && StringUtils.isEmpty(manhole))
-			return view;
-		if (!StringUtils.isEmpty(manhole))
-			pipes = pipeBiz.findListPipe(manhole);
-		view.setViewName("manhole/findinfo");
-		view.addObject("manhole", manhole);
-		view.addObject("pipes", pipes);
-		view.addObject("path", mypath);
-		return view;
-	}
-
-	/** 保存数据 */
-	@RequestMapping(value = "/findinfo", method = RequestMethod.POST)
-	public ModelAndView findInfo(Manhole manhole, String type) {
-		ModelAndView view = new ModelAndView("");
-		User user = (User) MyHelper.findMap("user");
-		int id = manholeBiz.replacManhole(manhole, user);
-		if ("next".equals(type))
-			view.setViewName("redirect:/item/editinfo?id=" + id);
-		else
-			view.setViewName("redirect:findview?id=" + id);
-		return view;
-	}
-
-	/** 浏览数据 */
-	@RequestMapping(value = "/viewinfo")
-	public ModelAndView viewInfo(@RequestParam(defaultValue = "0") int id) {
 		ModelAndView view = new ModelAndView("userview/failure");
 		User user = (User) MyHelper.findMap("user");
 		Manhole manhole = manholeBiz.findInfoManhole(id, user);
 		if (id != 0 && StringUtils.isEmpty(manhole))
 			return view;
 		names = operatorBiz.findListName(user.getCompany());
-		List<Pipe> pipes = pipeBiz.findListPipe(manhole);
+		pipes = pipeBiz.findListPipe(manhole);
+		view.setViewName("manhole/editinfo");
+		view.addObject("manhole", manhole);
+		view.addObject("pipes", pipes);
+		view.addObject("names", names);
+		view.addObject("path", mypath);
+		return view;
+	}
+
+	/** 浏览数据 */
+	@RequestMapping(value = "/findinfo")
+	public ModelAndView viewInfo(@RequestParam(defaultValue = "0") int id) {
+		ModelAndView view = new ModelAndView("userview/failure");
+		User user = (User) MyHelper.findMap("user");
+		Manhole manhole = manholeBiz.findInfoManhole(id, null);
+		if (id != 0 && StringUtils.isEmpty(manhole))
+			return view;
+		names = operatorBiz.findListName(user.getCompany());
+		pipes = pipeBiz.findListPipe(manhole);
 		view.setViewName("manhole/findinfo");
 		view.addObject("manhole", manhole);
 		view.addObject("pipes", pipes);
@@ -119,25 +108,17 @@ public class ManholeController {
 		return view;
 	}
 
-	/** 删除项目 */
-	@RequestMapping(value = "/delete")
-	public boolean delete(@RequestParam(defaultValue = "0") int id) {
+	/** 保存数据 */
+	@RequestMapping(value = "/commit", method = RequestMethod.POST)
+	public ModelAndView findInfo(Manhole manhole, String type) {
+		ModelAndView view = new ModelAndView("userview/failure");
 		User user = (User) MyHelper.findMap("user");
-		Manhole manhole = manholeBiz.findInfoManhole(id, user);
-		if (!StringUtils.isEmpty(manhole))
-			manholeBiz.deleteManhole(manhole);
-		return true;
-	}
-
-	/** 移除项目 */
-	@RequestMapping(value = "/remove")
-	public boolean remove(@RequestParam(defaultValue = "0") int id) {
-		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("id", id, "company", user.getCompany());
-		Manhole manhole = manholeBiz.findInfoManhole(map);
-		if (!StringUtils.isEmpty(manhole))
-			manholeBiz.deleteManhole(manhole);
-		return true;
+		int id = manholeBiz.replacManhole(manhole, user);
+		if ("next".equals(type))
+			view.setViewName("redirect:/item/editinfo?id=" + id);
+		else
+			view.setViewName("redirect:editinfo?id=" + id);
+		return view;
 	}
 
 	/** 提交数据 */
@@ -162,6 +143,27 @@ public class ManholeController {
 			manhole.setState("未提交");
 			manholeBiz.updateManhole(manhole);
 		}
+		return true;
+	}
+
+	/** 删除项目 */
+	@RequestMapping(value = "/delete")
+	public boolean delete(@RequestParam(defaultValue = "0") int id) {
+		User user = (User) MyHelper.findMap("user");
+		Manhole manhole = manholeBiz.findInfoManhole(id, user);
+		if (!StringUtils.isEmpty(manhole))
+			manholeBiz.deleteManhole(manhole);
+		return true;
+	}
+
+	/** 移除项目 */
+	@RequestMapping(value = "/remove")
+	public boolean remove(@RequestParam(defaultValue = "0") int id) {
+		User user = (User) MyHelper.findMap("user");
+		map = MyHelper.getMap("id", id, "company", user.getCompany());
+		Manhole manhole = manholeBiz.findInfoManhole(map);
+		if (!StringUtils.isEmpty(manhole))
+			manholeBiz.deleteManhole(manhole);
 		return true;
 	}
 

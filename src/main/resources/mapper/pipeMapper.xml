@@ -54,13 +54,7 @@
 	</select>
 	
 	<select id="findListPipe" parameterType="Map" resultType="Pipe">
-		select * from pipe
-		<where>
-			<if test="manhole != null">
-				manholeid = #{manhole.id}
-			</if>
-		</where>
-		order by no
+		select * from pipe where manholeid = #{manhole.id} order by no
 	</select>
 	
 </mapper>

@@ -49,8 +49,18 @@ $(document).ready(function() {
 		$(this).next("input").click();
 	});
 	
+	/** 表格内图片点击事件 */
+	$("#mainInfo").on("contextmenu", "table img", function(e) {
+		e.preventDefault(); // 禁止浏览器默认右击事件
+		$(this).attr("src", "/survey/img/appimg.png");
+		var parent = $(this).parents("table");
+		var i = parent.find("img").index($(this));
+		parent.find("input[type=file]").eq(i - 1).val("");
+		parent.find("input[type=hidden]").eq(i).val("");
+	});
+	
 	/** 表格文件框改变事件 */
-	$("#mainInfo").on("change", "table input[type=file]", function() {
+	$("#mainInfo").on("change", "input[type=file]", function() {
 		if (this.files.length == 0)
             return false;
 		var url = getURL(this.files[0]);

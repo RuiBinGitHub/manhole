@@ -1,9 +1,13 @@
 @charset "UTF-8";
 
+body {
+	background-color: #5ac9fe;
+}
+
 #main {
 	width: 920px;
 	height: 470px;
-	margin: 200px auto;
+	margin: 220px auto;
 	background-color: #32435D;
 	border-radius: 6px;
 }
@@ -42,7 +46,7 @@
 	height: 40px;
 	color: #fff;
 	font-size: 14px;
-	font-family: 宋体;
+	font-family: Times New Roman;
 	text-align: center;
 	line-height: 20px;
 	float: left;
@@ -96,14 +100,14 @@
 	color: #fff;
 	font-size: 18px;
 	font-family: 宋体;
-	background-color: #00D3F8;
+	background-color: #00bcdd;
 	border-radius: 30px;
 	outline: none;
 	border: none;
 }
 
 .commit:hover {
-	background-color: #1cddff;
+	background-color: #00cef2;
 	cursor: pointer;
 }
 /** ******************************************************************** */

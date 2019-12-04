@@ -1,5 +1,6 @@
 package com.springboot.util;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 public class MyHelper {
 
@@ -124,6 +126,14 @@ public class MyHelper {
 			output.write(bytes);
 			output.flush();
 			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void moveFile(MultipartFile file, File dest) {
+		try {
+			file.transferTo(dest);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

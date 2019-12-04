@@ -56,6 +56,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	/** 定义识图控制器 */
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/operator/insertview").setViewName("operator/insert");
+		registry.addViewController("/userinfo/center").setViewName("userinfo/center");
 		
 		registry.addViewController("**/authorize").setViewName("userview/authorize");
 		registry.addViewController("**/loginview").setViewName("userview/loginview");

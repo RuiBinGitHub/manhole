@@ -1,0 +1,455 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f1f1f1;
+}
+
+#main {
+	width: 1500px;
+	height: 1980px;
+	margin: 10px auto;
+}
+
+#title1 {
+	width: 1500px;
+	height: 48px;
+	font-size: 24px;
+	font-family: 宋体;
+	font-weight: 600;
+	text-indent: 20px;
+	line-height: 48px;
+	background-color: #fff;
+	border-bottom: 2px solid #999;
+	float: left;
+}
+
+#value1 {
+	width: 1460px;
+	padding: 20px;
+	margin-bottom: 10px;
+	background-color: #fff;
+	float: left;
+}
+
+.table {
+	font-size: 10px;
+	font-family: Times New Roman;
+	border-collapse: collapse;
+	float: left;
+}
+
+.table tbody tr td input {
+	width: 100%;
+	font-size: 14px;
+	text-indent: 8px;
+	font-family: Times New Roman;
+	outline: none;
+	border: none;
+}
+
+.icell {
+	border: 1px solid #000;
+}
+
+.ycell {
+	text-align: center;
+	border: 1px solid #000;
+}
+
+.ncell {
+	border: none;
+}
+
+.cella {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px solid #000;
+}
+
+.cellb {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px dashed #000;
+}
+
+.cellc {
+	text-align: center;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px dashed #000;
+}
+
+.celld {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px solid #000;
+}
+
+.celle {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px dashed #000;
+}
+
+.cellf {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px dashed #000;
+	border-left: 1px dashed #000;
+}
+
+.cellg {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #000;
+}
+
+.cellh {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px dashed #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px dashed #000;
+}
+
+.celli {
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-left: 1px dashed #000;
+}
+
+#table1 {
+	width: 1460px;
+	float: left;
+}
+
+#table1 tr {
+	height: 36px;
+}
+
+#table1 tr td div {
+	width: 100%;
+	height: 16px;
+	text-align: left;
+	text-indent: 5px;
+	line-height: 16px;
+	float: left;
+}
+
+.apache {
+	width: 50px;
+	font-size: 13px;
+	text-align: center;
+	font-family: Times New Roman;
+	margin: 45px 0px 0px 50px;
+	font-weight: 600;
+	float: left;
+}
+
+.apache tr {
+	height: 28px;
+}
+
+#table2 {
+	width: 1360px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+#table2 thead tr td {
+	font-weight: 600;
+	border: 1px solid #000;
+}
+
+#table2 tbody tr {
+	height: 30px;
+}
+
+#table2 tbody tr td {
+	border: 1px solid #000;
+}
+
+#itab1, #itab2 {
+	width: 202px;
+	margin: 10px 60px 0px 0px;
+	text-align: center;
+}
+
+#itab1 tbody tr td, #itab2 tbody tr td {
+	width: 101px;
+	border: 1px solid #000;
+}
+
+#table3 {
+	width: 1360px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+#table3 thead tr td {
+	font-weight: 600;
+	border: 1px solid #000;
+}
+
+#table3 tbody tr {
+	height: 30px;
+}
+
+#table3 tbody tr td {
+	border: 1px solid #000;
+}
+
+.ptab {
+	width: 200px;
+	margin-top: 10px;
+	margin-right: 32px;
+	text-align: center;
+}
+
+.ptab tr {
+	height: 32px;
+}
+
+.ptab tr td {
+	width: 100px;
+	border: 1px solid #000;
+}
+
+#table4 {
+	width: 532px;
+	margin-top: 10px;
+}
+
+#table4 tr {
+	height: 30px;
+}
+
+#table4 tr td {
+	border: 1px solid #000;
+}
+
+
+#table5 {
+	width: 895px;
+	margin-top: 10px;
+	margin-left: 32px;
+}
+
+#table5 tr {
+	height: 60px;
+}
+
+#table5 tr td {
+	border: 1px solid #000;
+}
+
+.ctype1 {
+	color: #000;
+	text-align: center;
+}
+.ctype2 {
+	color: #999;
+	text-align: center;
+}
+
+#table6 {
+	width: 1460px;
+	margin-top: 10px;
+}
+
+#table6 tr td {
+	border: 1px solid #000;
+}
+
+#picture1, #picture2 {
+	width: 715px;
+	height: 466px;
+	padding: 5px;
+	align-items: center;
+	display: flex;
+	float: left;
+}
+
+#picture1 img, #picture2 img {
+	max-width: 700px;
+	max-height: 460px;
+	margin: 0px auto;
+}
+
+#table7 {
+	width: 300px;
+	margin-top: 10px;
+}
+
+#table7 tr {
+	height: 30px;
+}
+
+#table7 tr td {
+	width: 50%;
+	border: 1px solid #000;
+}
+
+/** ******************************************************************* */
+#title2 {
+	width: 1500px;
+	height: 48px;
+	font-size: 24px;
+	font-family: 宋体;
+	font-weight: 600;
+	text-indent: 20px;
+	line-height: 48px;
+	background-color: #fff;
+	border-bottom: 2px solid #999;
+	float: left;
+}
+
+#value2 {
+	width: 1500px;
+	background-color: #fff;
+	float: left;
+}
+
+#value2 .table {
+	width: 600px;
+	font-size: 13px;
+	margin: 20px 75px;
+	border: 2px solid #000;
+	font-family: Times New Roman;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+#value2 .title {
+	width: 225px;
+	height: 40px;
+	font-size: 14px;
+	font-weight: 600;
+	font-style: italic;
+	text-align: center;
+	line-height: 40px;
+	border: 2px solid #000;
+}
+
+#value2 .mcell {
+	border: 1px solid #000;
+}
+
+#value2 .icell {
+	border: none;
+	text-align: center;
+	border-bottom: 1px solid #000;
+}
+
+#value2 .table img {
+	max-width: 470px;
+	max-height: 315px;
+}
+/** ******************************************************************* */
+.mark1 {
+	left: 0;
+	right: 0;
+	bottom: 2px;
+	width: 1500px;
+	height: 280px;
+	margin: auto;
+	position: fixed;
+	background-color: #fff;
+	z-index: 9;
+}
+.mark2 {
+	width: 1500px;
+	height: 280px;
+	margin-top: 10px;
+	background-color: #fff;
+	float: left;
+}
+
+#title3 {
+	width: 1500px;
+	height: 48px;
+	font-size: 24px;
+	font-family: 宋体;
+	font-weight: 600;
+	text-indent: 20px;
+	line-height: 48px;
+	background-color: #fff;
+	border-bottom: 2px solid #999;
+	float: left;
+}
+
+.markinfo {
+	width: 720px;
+	height: 200px;
+	margin-top: 10px;
+	margin-left: 20px;
+	float: left;
+}
+.markinfo div {
+	width: 120px;
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 18px;
+	font-family: 宋体;
+	font-weight: 600;
+	text-align: center;
+	line-height:30px;
+	background-color: #DDD;
+	float: left;
+}
+.markinfo input {
+	width: 590px;
+	height: 28px;
+	margin-top: 10px;
+	font-size: 18px;
+	font-family: 宋体;
+	text-indent: 10px;
+	background-color: #DDD;
+	outline: none;
+	border: none;
+	float: left;
+}
+.markinfo textarea {
+	width: 574px;
+	height: 134px;
+	padding: 8px;
+	margin-top: 10px;
+	font-size: 18px;
+	font-family: 宋体;
+	background-color: #DDD;
+	outline: none;
+	border: none;
+	resize: none;
+	float: left;
+}
+
+.explains {
+	width: 720px;
+	height: 190px;
+	margin-top: 20px;
+	margin-left: 20px;
+	background-color: #DDD;
+	float: left;
+}
+.explains span {
+	width: 96%;
+	margin: 0px 2%;
+	font-size: 14px;
+	font-family: 仿宋;
+	line-height: 30px;
+	float: left;
+}

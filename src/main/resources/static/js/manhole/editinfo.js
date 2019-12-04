@@ -1,22 +1,23 @@
 $(document).ready(function() {
 
-    // 下拉框选项
+	if ($("[name=id]").val() == "")
+    	$("[name=id]").val(0);
     var option = "<option>N</option><option>Y</option>";
-
+    /** 设置select的值 */
+    $("select").html(option);
+    $("select").each(function() {
+        $(this).val($(this).attr("value"));
+    });
+    
     /** 输入框获取焦点事件 */
     $("input[type=text]").focus(function() {
         $(this).select();
     });
-
-    /** 输入框内容修改事件 */
-    $("input[type=text]").on("input", function() {
-        $("input[type=text]").css("background-color", "#fff");
-    });
-
+    
     /** 下拉列表获取焦点事件 */
     $("select").focus(function() {
-        $(this).parent().css("background-color", "#00A1D6");
-        $(this).parent().css("border-color", "#00A1D6");
+        $(this).parent().css("background-color", "#1E90FF");
+        $(this).parent().css("border-color", "#1E90FF");
     });
 
     /** 下拉列表失去焦点事件 */
@@ -25,6 +26,11 @@ $(document).ready(function() {
         $(this).parent().css("border-color", "#000000");
     });
 
+    /** 输入框内容修改事件 */
+    $("input[type=text]").on("input", function() {
+        $(this).css("background-color", "#fff");
+    });
+    
     /** 输入框只能输入数字和小数点 */
     $(".num1").keypress(function(event) {
         if (event.which >= 48 && event.which <= 57 || event.which == 46)
@@ -77,10 +83,15 @@ $(document).ready(function() {
         format: "dd/MM/yyyy",
         value: "01/01/2019"
     });
+    $("[name=rplan]").attr("placeholder", "(Y of attention required)");
+    $("[name=rtype]").attr("placeholder", "Other(                  )");
     /** *************************************************************** */
     $(".ptab").each(function(i) {
         var textbox = $(this).find("input");
+        var select = $(this).find("select");
         $(this).find("select").html(option);
+        if (textbox.val() == "" && select.val() == "N")
+        	textbox.val("N");
         $(this).find("select").change(function() {
             if ($(this).val() == "Y") {
                 textbox.focus();
@@ -88,11 +99,21 @@ $(document).ready(function() {
             } else
                 textbox.val("N");
         });
+        
     });
-    $("select[name=dplan]").html(option);
-    $("#table4 select, #table7 select").html(option);
-    $("select").each(function() {
-        $(this).val($(this).attr("value"));
+    /** *************************************************************** */
+    $("#table5 td[class*=ctype]").each(function(i) {
+    	$(this).click(function() {
+    		if ($(this).attr("class") == "ctype1") {
+    			$(this).addClass("ctype2");
+    			$(this).removeClass("ctype1");
+    			$("input[name=ctype]").eq(i).val("N");
+    		} else {
+    			$(this).addClass("ctype1");
+    			$(this).removeClass("ctype2");
+    			$("input[name=ctype]").eq(i).val("Y");
+    		}
+    	});
     });
     /** *************************************************************** */
     $("input[name=mcover]").on("input", function() {
@@ -116,7 +137,7 @@ $(document).ready(function() {
                 textbox.val((level - $(this).val()).toFixed(2));
             if ($(this).val() == "" || isNaN($(this).val()))
                 textbox.val("");
-        })
+        });
     });
     $("#table3 tbody tr").each(function() {
         var textbox = $(this).find("input[type=text]:eq(8)");
@@ -126,13 +147,13 @@ $(document).ready(function() {
                 textbox.val((level - $(this).val()).toFixed(2));
             if ($(this).val() == "" || isNaN($(this).val()))
                 textbox.val("");
-        })
+        });
     });
     /** *************************************************************** */
     $("#common1").click(function() {
 		if (!checkInput() || !setControlName())
 			return false;
-		$("input[name=type]").val("0");
+		$("input[name=type]").val("save");
 		$(this).css("background-color", "#ccc");
 		$(this).attr("disable", true);
 		$(this).val("上传中...");
@@ -141,7 +162,7 @@ $(document).ready(function() {
     $("#common2").click(function() {
 		if (!checkInput() || !setControlName())
 			return false;
-		$("input[name=type]").val("1");
+		$("input[name=type]").val("next");
 		$(this).css("background-color", "#ccc");
 		$(this).attr("disable", true);
 		$(this).val("上传中...");
@@ -182,11 +203,6 @@ $(document).ready(function() {
         if ($("input[name=location]").val() == "") {
             $("input[name=location]").css("background-color", "#f00");
             $("input[name=location]").focus();
-            return false;
-        }
-        if ($("input[name=yearlaid]").val() == "") {
-            $("input[name=yearlaid]").css("background-color", "#f00");
-            $("input[name=yearlaid]").focus();
             return false;
         }
         return true;

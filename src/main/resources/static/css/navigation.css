@@ -47,11 +47,3 @@
 .naviItem a:hover {
 	color: #0082DF;
 }
-
-#naviImg {
-	width: 36px;
-	height: 36px;
-	margin-top: 22px;
-	border-radius: 40px;
-	float: left;
-}

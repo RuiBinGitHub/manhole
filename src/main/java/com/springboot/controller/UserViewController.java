@@ -36,6 +36,8 @@ public class UserViewController {
 			SecurityUtils.getSubject().login(token);
 		} catch (IncorrectCredentialsException e) {
 			view.addObject("tips", "*登录账号或密码不正确！");
+			view.addObject("username", username);
+			view.addObject("password", password);
 			return view;
 		}
 		User user = (User) MyHelper.findMap("user");
@@ -59,6 +61,14 @@ public class UserViewController {
 		SecurityUtils.getSubject().logout();
 		MyHelper.removeMap("user");
 		return view;
+	}
+
+	/** 切换语言 */
+	@RequestMapping(value = "/change")
+	public boolean change(String lang) {
+		MyHelper.pushMap("i18n", lang);
+		System.out.println("0001");
+		return true;
 	}
 
 }

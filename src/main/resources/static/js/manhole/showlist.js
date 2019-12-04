@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // 获取当前语言
-    var language = $("#infoTop").text() == "沙井列表" ? "zh" : "en";
+    var language = $("#infoTop").text().length < 5 ? "zh" : "en";
     var tipsText1 = language == "zh" ? "确定提交该数据吗？" : "Are you sure you want to submit this data?";
     var tipsText2 = language == "zh" ? "数据提交成功！" : "Operating successfully!";
     var tipsText3 = language == "zh" ? "确定删除该数据吗？" : "Are you sure you want to delete this data?";
@@ -8,7 +8,7 @@ $(document).ready(function() {
     /********************************************************************/
     var width = $("#infoMenu span:eq(0)").css("width");
     var length = width.substring(0, width.length - 2);
-    $("#infoMenu div:eq(0)").css("width", 575 - length);
+    $("#infoMenu div:eq(0)").css("width", 570 - length);
     /********************************************************************/
     if ($("#menuText").val().trim() == "") {
     	$("#menuBtn1").css("color", "#aaa");
@@ -28,7 +28,7 @@ $(document).ready(function() {
     });
     /** 新建项目 */
     $("#append").click(function() {
-        window.open("findview");
+        window.open("editinfo");
     });
     /********************************************************************/
     /** 初始化表格 */
@@ -46,7 +46,8 @@ $(document).ready(function() {
         }
         /*********************************************/
         $(this).find("input[type=button]:eq(0)").click(function() {
-            window.open("findview?id=" + id);
+        	// 下载项目
+            //window.open("findview?id=" + id);
         });
         $(this).find("input[type=button]:eq(1)").click(function() {
         	if (!confirm(tipsText1))

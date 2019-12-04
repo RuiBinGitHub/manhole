@@ -6,7 +6,7 @@ body {
 
 #main {
 	width: 1460px;
-	height: 1980px;
+	height: 1965px;
 	margin: 10px auto;
 	padding: 0px 20px;
 	border: 1px solid #ccc;
@@ -36,27 +36,14 @@ body {
 
 .table {
 	font-size: 10px;
+	text-align: left;
 	font-family: Times New Roman;
 	border-collapse: collapse;
 	float: left;
 }
 
-.table tbody tr td input {
-	width: 100%;
-	font-size: 14px;
-	text-indent: 8px;
-	font-family: Times New Roman;
-	outline: none;
-	border: none;
-}
-
-.table tbody tr td select {
-	width: 100%;
-	font-size: 14px;
-	text-indent: 5px;
-	font-family: Times New Roman;
-	outline: none;
-	border: none;
+.icell {
+	border: 1px solid #000;
 }
 
 .ycell {
@@ -68,6 +55,7 @@ body {
 }
 
 .cella {
+	text-align: center;
 	border-top: 1px solid #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px dashed #000;
@@ -75,6 +63,7 @@ body {
 }
 
 .cellb {
+	text-align: center;
 	border-top: 1px solid #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px dashed #000;
@@ -82,6 +71,7 @@ body {
 }
 
 .cellc {
+	text-align: center;
 	border-top: 1px solid #000;
 	border-right: 1px solid #000;
 	border-bottom: 1px dashed #000;
@@ -89,6 +79,7 @@ body {
 }
 
 .celld {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px dashed #000;
@@ -96,6 +87,7 @@ body {
 }
 
 .celle {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px dashed #000;
@@ -103,6 +95,7 @@ body {
 }
 
 .cellf {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px solid #000;
 	border-bottom: 1px dashed #000;
@@ -110,6 +103,7 @@ body {
 }
 
 .cellg {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px solid #000;
@@ -117,6 +111,7 @@ body {
 }
 
 .cellh {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px dashed #000;
 	border-bottom: 1px solid #000;
@@ -124,6 +119,7 @@ body {
 }
 
 .celli {
+	text-align: center;
 	border-top: 1px dashed #000;
 	border-right: 1px solid #000;
 	border-bottom: 1px solid #000;
@@ -132,22 +128,18 @@ body {
 
 #table1 {
 	width: 100%;
-	float: left;
 }
 
 #table1 tr {
 	height: 36px;
 }
 
-#table1 tr td input {
-	height: 31px;
-}
-
 #table1 tr td div {
-	width: 12%;
+	width: 99%;
 	height: 16px;
-	text-align: right;
-	line-height: 16px;
+	text-align: left;
+	text-indent: 6px;
+	line-height: 20px;
 	float: left;
 }
 
@@ -169,7 +161,6 @@ body {
 	width: 1360px;
 	margin-top: 10px;
 	text-align: center;
-	float: left;
 }
 
 #table2 thead tr td {
@@ -185,14 +176,6 @@ body {
 	border: 1px solid #000;
 }
 
-#table2 tbody tr td input {
-	height: 25px;
-}
-
-#table2 tbody tr td select {
-	height: 27px;
-}
-
 #itab1, #itab2 {
 	width: 202px;
 	margin: 10px 60px 0px 0px;
@@ -200,12 +183,8 @@ body {
 }
 
 #itab1 tbody tr td, #itab2 tbody tr td {
-	width: 101px;
+	width: 100px;
 	border: 1px solid #000;
-}
-
-#itab1 tbody tr td input, #itab2 tbody tr td input {
-	height: 28px;
 }
 
 #table3 {
@@ -227,35 +206,20 @@ body {
 	border: 1px solid #000;
 }
 
-#table3 tbody tr td input {
-	height: 25px;
-}
-
-#table3 tbody tr td select {
-	height: 27px;
-}
-
 .ptab {
 	width: 200px;
 	margin-top: 10px;
+	margin-right: 32px;
 	text-align: center;
 }
 
 .ptab tr {
-	height: 30px;
+	height: 32px;
 }
 
 .ptab tr td {
 	width: 100px;
 	border: 1px solid #000;
-}
-
-.ptab tr td input {
-	height: 25px;
-}
-
-.ptab tr td select {
-	height: 27px;
 }
 
 #table4 {
@@ -269,21 +233,6 @@ body {
 
 #table4 tr td {
 	border: 1px solid #000;
-}
-
-#table4 tr td select {
-	height: 27px;
-}
-
-#table4 tr td textarea {
-	width: 98%;
-	height: 48px;
-	font-size: 16px;
-	text-indent: 4px;
-	font-family: Times New Roman;
-	outline: none;
-	border: none;
-	resize: none;
 }
 
 #table5 {
@@ -300,23 +249,13 @@ body {
 	border: 1px solid #000;
 }
 
-#table5 tr td input {
-	height: 30px;
+.ctype1 {
+	color: #000;
+	text-align: center;
 }
-
-#table5 tr td select {
-	height: 57px;
-}
-
-#table5 tr td textarea {
-	width: 99%;
-	height: 48px;
-	font-size: 16px;
-	text-indent: 4px;
-	font-family: Times New Roman;
-	outline: none;
-	border: none;
-	resize: none;
+.ctype2 {
+	color: #999;
+	text-align: center;
 }
 
 #table6 {
@@ -329,31 +268,7 @@ body {
 	border: 1px solid #000;
 }
 
-#picture1 {
-	width: 715px;
-	height: 466px;
-	padding: 5px;
-	align-items: center;
-	display: flex;
-	float: left;
-}
-
-#picture1 img {
-	max-width: 700px;
-	max-height: 460px;
-	margin: 0px auto;
-}
-
-#picture2 {
-	width: 715px;
-	height: 466px;
-	padding: 5px;
-	align-items: center;
-	display: flex;
-	float: left;
-}
-
-#picture2 img {
+#table6 tr td img {
 	max-width: 700px;
 	max-height: 460px;
 	margin: 0px auto;
@@ -361,6 +276,7 @@ body {
 
 #table7 {
 	width: 300px;
+	margin-right: 1000px;
 	margin-top: 10px;
 	float: left;
 }
@@ -374,9 +290,6 @@ body {
 	border: 1px solid #000;
 }
 
-#table7 tr td select {
-	height: 26px;
-}
 
 #remark {
 	width: 100%;
@@ -390,27 +303,7 @@ body {
 	float: left;
 }
 
-#common1 {
-	width: 130px;
-	height: 36px;
-	color: #ffffff;
-	font-size: 14px;
-	font-family: 宋体;
-	font-weight: 600;
-	margin-top: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	background-color: #00A1D6;
-	border: none;
-	float: left;
-}
-
-#common1:hover {
-	background-color: #02c0ff;
-	cursor: pointer;
-}
-
-#common2 {
+#common {
 	width: 150px;
 	height: 36px;
 	color: #ffffff;
@@ -418,41 +311,13 @@ body {
 	font-family: 宋体;
 	font-weight: 600;
 	margin-top: 20px;
-	margin-right: 20px;
 	margin-bottom: 20px;
-	background-color: #38A80C;
+	background-color: #f9691c;
 	border: none;
 	float: left;
 }
 
-#common2:hover {
-	background-color: #43cc0f;
+#common:hover {
+	background-color: #F97935;
 	cursor: pointer;
-}
-/** ******************************************************************* */
-#tips {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	line-height: 800px;
-	background-color: rgba(255, 255, 255, 0);
-	position: fixed;
-	display: none;
-	z-index: 9;
-}
-#tips span {
-	color: #ffffff;
-	font-size: 18px;
-	font-family: 宋体;
-	font-weight: 500;
-	text-align: center;
-	padding: 30px 20px;
-	background-color: rgba(60, 60, 60, 0.8);
-	border-radius: 6px;
-}
-input::-webkit-calendar-picker-indicator {
-	-webkit-appearance: none;
-	display: none;
 }

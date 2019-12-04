@@ -20,7 +20,8 @@
         <div class="menu2"><a href="/survey/markinfo/showlist" th:text="#{menu.div.text4}"></a></div>
         <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
         <div class="menu2"><a href="/survey/operator/showlist" th:text="#{menu.div.text6}"></a></div>
-        <div class="menu2"><a href="/survey/userinfo/center" th:text="#{menu.div.text7}"></a></div>
+        <div class="menu2"><a href="/survey/message/showlist" th:text="#{menu.div.text7}"></a></div>
+        <div class="menu2"><a href="/survey/userinfo/center" th:text="#{menu.div.text8}"></a></div>
       </div>
       
       <div id="mainInfo">
@@ -49,7 +50,7 @@
           <tbody>
             <tr th:each="manhole,status:${manholes}" th:id="${manhole.id}">
               <td th:text="${status.count+(page-1)*15}"></td>
-              <td><a th:href="@{updateview(id=${manhole.id})}" th:text="${manhole.projectno}"></a></td>
+              <td><a th:href="@{editinfo(id=${manhole.id})}" th:text="${manhole.projectno}"></a></td>
           	  <td th:text="${manhole.workorder}"></td>
           	  <td th:text="${manhole.areacode}"></td>
           	  <td th:text="${manhole.node}"></td>
