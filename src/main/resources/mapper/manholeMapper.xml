@@ -78,8 +78,7 @@
 			#{with1},
 			#{with2},
 			#{with3},
-			#{state},
-			#{user.id}
+			#{project.id}
 		)
 	</insert>
 
@@ -157,8 +156,7 @@
 			with1 = #{with1},
 			with2 = #{with2},
 			with3 = #{with3},
-			state = #{state},
-			userid = #{user.id}
+			projectid = #{project.id}
 		where id = #{id}
 	</update>
 
@@ -167,7 +165,7 @@
 	</delete>
 
 	<select id="findInfoManhole" parameterType="Map" resultMap="ManholeMap">
-		select m.*, u.name, u.companyid from manhole m left join users u on u.id = m.userid
+		select m.*, p.name p_name, u.id u_id from manhole m left join project p on p.id = m.projectid left join users u on u.id = p.userid
 		<where>
 			<if test="id != null">
 				and m.id = #{id}
@@ -182,16 +180,19 @@
 	</select>
 	
 	<select id="findListManhole" parameterType="Map" resultMap="ManholeMap">
-		select m.*, u.name, u.companyid from manhole m left join users u on u.id = m.userid
+		select m.*, p.name p_name, u.id u_id from manhole m left join project p on p.id = m.projectid left join users u on u.id = p.userid
 		<where>
-			<if test="name != null">
-				and m.projectno like #{name}
+			<if test="xy != null">
+				m.gridx !='' and m.gridy != ''
 			</if>
-			<if test="state != null">
-				and m.state = #{state}
+			<if test="name != null">
+				and p.name like #{name}
 			</if>
 			<if test="user != null">
 				and u.id = #{user.id}
+			</if>
+			<if test="project != null">
+				and m.projectid = #{project.id}
 			</if>
 			<if test="company != null">
 				and u.companyid = #{company.id}
@@ -275,11 +276,10 @@
 		<result property="with1" column="with1"/>
 		<result property="with2" column="with2"/>
 		<result property="with3" column="with3"/>
-		<result property="state" column="state"/>
-		<association property="user" javaType="User">
- 			<id property="id" column="userid"/>
- 			<result property="name" column="name"/>
- 			<result property="company.id" column="compnayid"/>
+		<association property="project" javaType="Project">
+ 			<id property="id" column="projectid"/>
+ 			<result property="name" column="p_name"/>
+ 			<result property="user.id" column="u_id"/>
 	 	</association>
 	</resultMap>
 	

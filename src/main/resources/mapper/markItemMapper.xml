@@ -4,28 +4,25 @@
 <mapper namespace="com.springboot.dao.MarkItemDao">
 	
 	<insert id="insertMarkItem" parameterType="MarkItem" keyProperty="id" useGeneratedKeys="true">
-		insert into markItem values(null, #{score}, #{remark}, #{date}, #{manhole.id}, #{user.id})
+		insert into markItem values(null, #{date}, #{project.id}, #{user.id})
 	</insert>
-	
-	<update id="updateMarkItem" parameterType="MarkItem">
-		update markItem set score = #{score}, remark = #{remark} where id = #{id}
-	</update>
 	
 	<delete id="deleteMarkItem" parameterType="MarkItem">
 		delete from markItem where id = #{id}
 	</delete>
 	
 	<select id="findInfoMarkItem" parameterType="Map" resultMap="MarkItemMap">
-		select a.*, b.*, u.name u_name, t.name t_name from markitem a
-			left join manhole b on b.id = a.manholeid
-			left join users u on u.id = a.userid
-			left join users t on t.id = b.userid
+		select m.id m_id, m.date m_date, m.userid m_userid, p.*, u.name u_name, t.name t_name, avg(i.score) as score from markitem m 
+			left join markpipe i on i.markid = m.id
+			left join project p on p.id = m.projectid
+			left join users u on u.id = m.userid	
+			left join users t on t.id = p.userid
 		<where>
 			<if test="id != null">
-				and a.id = #{id}
+				and m.id = #{id}
 			</if>
-			<if test="manhole != null">
-				and a.manholeid = #{manhole.id}
+			<if test="project != null">
+				and m.projectid = #{project.id}
 			</if>
 			<if test="company != null">
 				and u.companyid = #{company.id}
@@ -37,19 +34,21 @@
 				and t.id = #{temp.id}
 			</if>
 		</where>
+		group by m.id order by m.id desc
 	</select>
 	
 	<select id="findListMarkItem" parameterType="Map" resultMap="MarkItemMap">
-		select a.*, b.*, u.name u_name, t.name t_name from markitem a
-			left join manhole b on b.id = a.manholeid
-			left join users u on u.id = a.userid
-			left join users t on t.id = b.userid
+		select m.id m_id, m.date m_date, m.userid m_userid, p.*, u.name u_name, t.name t_name, avg(i.score) as score from markitem m 
+			left join markpipe i on i.markid = m.id
+			left join project p on p.id = m.projectid
+			left join users u on u.id = m.userid	
+			left join users t on t.id = p.userid
 		<where>
-			<if test="id != null">
-				and b.id = #{id}
-			</if>
 			<if test="name != null">
-				and b.name like #{name}
+				and p.name like #{name}
+			</if>
+			<if test="project != null">
+				and m.projectid = #{project.id}
 			</if>
 			<if test="company != null">
 				and u.companyid = #{company.id}
@@ -61,131 +60,58 @@
 				and t.id = #{temp.id}
 			</if>
 		</where>
-		order by a.id desc
+		group by m.id order by m.id desc
 	</select>
 	
 	<select id="findViewMarkItem" parameterType="Map" resultMap="MarkViewMap">
-		select b.*, c.name, count(a.id) count from markitem a
-			right join manhole b on b.id = a.manholeid and a.userid = 2
-			left join users c on c.id = a.userid
-			left join users d on d.id = b.userid
+		select b.*, c.name c_name, count(a.id) count from markitem a
+			right join project b on b.id = a.projectid and a.userid = #{user.id}
+			left join users c on c.id = b.userid
 		where b.state = '已提交'
 		<if test="name != null">
-			and b.projectno like #{name}
+			and b.name like #{name}
 		</if>
 		<if test="company != null">
-			and d.companyid = #{company.id}
+			and c.companyid = #{company.id}
 		</if>
 		group by b.id order by b.id desc
 	</select>
 	
 	<resultMap id="MarkViewMap" type="MarkItem">
-		<id property="id" column=""/>
+		<id property="id" column="id"/>
 		<result property="count" column="count"/>
-		<association property="manhole" javaType="Manhole">
+		<association property="project" javaType="Project">
 			<id property="id" column="id"/>
-			<result property="projectno" column="projectno"/>
-			<result property="workorder" column="workorder"/>
-			<result property="areacode" column="areacode"/>
-			<result property="node" column="node"/>
-			<result property="surveyname" column="surveyname"/>
-			<result property="surveydate" column="surveydate"/>
+			<result property="name" column="name"/>
+			<result property="operator" column="operator"/>
+			<result property="datetime1" column="datetime1"/>
+			<result property="datetime2" column="datetime2"/>
+			<result property="content" column="content"/>
+			<result property="state" column="state"/>
+			<result property="date" column="date"/>
 			<association property="user" javaType="User">
 				<id property="id" column="userid"/>
-				<result property="name" column="name"/>
+				<result property="name" column="c_name"/>
 			</association>
 		</association>
 	</resultMap>
 	
 	<resultMap id="MarkItemMap" type="MarkItem">
-		<id property="id" column="id"/>
+		<id property="id" column="m_id"/>
 		<result property="score" column="score"/>
-		<result property="remark" column="remark"/>
-		<result property="date" column="date"/>
-		<association property="manhole" javaType="Manhole">
-			<id property="id" column="manholeid"/>
-			<result property="node" column="node"/>
-			<result property="gridx" column="gridx"/>
-			<result property="gridy" column="gridy"/>
-			<result property="areacode" column="areacode"/>
-			<result property="surveyname" column="surveyname"/>
-			<result property="surveydate" column="surveydate"/>
-			<result property="projectno" column="projectno"/>
-			<result property="workorder" column="workorder"/>
-			<result property="manholeid" column="manholeid"/>
-			<result property="drainage" column="drainage"/>
-			<result property="location" column="location"/>
-			<result property="yearlaid" column="yearlaid"/>
-			<result property="status" column="status"/>
-			<result property="method" column="method"/>
-			<result property="nodetype" column="nodetype"/>
-			<result property="shape" column="shape"/>
-			<result property="hinge" column="hinge"/>
-			<result property="locker" column="locker"/>
-			<result property="duties" column="duties"/>
-			<result property="cover1" column="cover1"/>
-			<result property="cover2" column="cover2"/>
-			<result property="side" column="side"/>
-			<result property="course" column="course"/>
-			<result property="depths" column="depths"/>
-			<result property="shaft1" column="shaft1"/>
-			<result property="shaft2" column="shaft2"/>
-			<result property="soffit" column="soffit"/>
-			<result property="steps" column="steps"/>
-			<result property="ladder" column="ladder"/>
-			<result property="lndgs" column="lndgs"/>
-			<result property="csize1" column="csize1"/>
-			<result property="csize2" column="csize2"/>
-			<result property="toxic" column="toxic"/>
-			<result property="evidences" column="evidences"/>
-			<result property="construct" column="construct"/>
-			<result property="depthflow" column="depthflow"/>
-			<result property="depthsilt" column="depthsilt"/>
-			<result property="height" column="height"/>
-			<result property="mdepth" column="mdepth"/>
-			<result property="mcover" column="mcover"/>
-			<result property="cond" column="cond"/>
-			<result property="crit" column="crit"/>
-			<result property="cover" column="cover"/>
-			<result property="iron" column="iron"/>
-			<result property="shaft" column="shaft"/>
-			<result property="chambers" column="chambers"/>
-			<result property="benching" column="benching"/>
-			<result property="other" column="other"/>
-			<result property="photo1" column="photo1"/>
-			<result property="photo2" column="photo2"/>
-			<result property="photo3" column="photo3"/>
-			<result property="photo4" column="photo4"/>
-			<result property="photo5" column="photo5"/>
-			<result property="photo6" column="photo6"/>
-			<result property="util1" column="util1"/>
-			<result property="util2" column="util2"/>
-			<result property="util3" column="util3"/>
-			<result property="util4" column="util4"/>
-			<result property="util5" column="util5"/>
-			<result property="util6" column="util6"/>
-			<result property="photono1" column="photono1"/>
-			<result property="photono2" column="photono2"/>
-			<result property="remarks" column="remarks"/>
-			<result property="dplan" column="dplan"/>
-			<result property="rplan" column="rplan"/>
-			<result property="ctype" column="ctype"/>
-			<result property="rtype" column="rtype"/>
-			<result property="path1" column="path1"/>
-			<result property="path2" column="path2"/>
-			<result property="with1" column="with1"/>
-			<result property="with1" column="with1"/>
-			<result property="with1" column="with1"/>
-			<result property="with1" column="with1"/>
+		<result property="date" column="m_date"/>
+		<result property="user.name" column="u_name"/>
+		<association property="project" javaType="Project">
+			<id property="id" column="id"/>
+			<result property="name" column="name"/>
+			<result property="operator" column="operator"/>
+			<result property="datetime1" column="datetime1"/>
+			<result property="datetime2" column="datetime2"/>
+			<result property="content" column="content"/>
 			<result property="state" column="state"/>
-		 	<association property="user" javaType="User">
-		 		<result property="name" column="t_name"/>
-		 	</association>
+			<result property="date" column="date"/>
+		 	<result property="user.name" column="t_name"/>
 		 </association>
-		 <association property="user" javaType="User">
-			<id property="id" column="userid"/>
-			<result property="name" column="u_name"/>
-		</association>
 	</resultMap>
 	
 </mapper>

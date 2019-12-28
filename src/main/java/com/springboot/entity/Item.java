@@ -1,11 +1,19 @@
 package com.springboot.entity;
 
-public class Item {
+import java.io.Serializable;
 
+public class Item  implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private int no;
 	private String path1;
 	private String path2;
+	private String photo1;
+	private String photo2;
+	private String explain1;
+	private String explain2;
 	private String remark1;
 	private String remark2;
 	private Manhole manhole;
@@ -40,6 +48,38 @@ public class Item {
 
 	public void setPath2(String path2) {
 		this.path2 = path2;
+	}
+
+	public String getPhoto1() {
+		return photo1;
+	}
+
+	public void setPhoto1(String photo1) {
+		this.photo1 = photo1;
+	}
+
+	public String getPhoto2() {
+		return photo2;
+	}
+
+	public void setPhoto2(String photo2) {
+		this.photo2 = photo2;
+	}
+
+	public String getExplain1() {
+		return explain1;
+	}
+
+	public void setExplain1(String explain1) {
+		this.explain1 = explain1;
+	}
+
+	public String getExplain2() {
+		return explain2;
+	}
+
+	public void setExplain2(String explain2) {
+		this.explain2 = explain2;
 	}
 
 	public String getRemark1() {

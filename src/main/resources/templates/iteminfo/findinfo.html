@@ -1,16 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-  	<title>上传图片</title>
+  	<title>图片浏览</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="/survey/css/iteminfo/findinfo.css"/>
+	<script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/survey/js/iteminfo/findinfo.js"></script>
   </head>
   <body>
     <div th:replace="navigation::navigation"></div>
     <div id="main">
       <div id="mainTop">沙井图片</div>
-      <div id="mainInfo">
+      <div id=mainInfo>
+      	<div id="main1"><div>&lt;</div></div>
+      	<div id="mainCenter"></div>
+      	<div id="main2"><div>&gt;</div></div>
+      </div>
+      <div id="mainFoot">
+        <div id="page1" style="text-align:right;">1</div>
+        <div id="pageCenter" style="text-align:center;">/</div>
+        <div id="page2" th:text="${#lists.size(items)}"></div>
+      </div>
+      <div id="list" style="display:none">
         <table class="table" th:each="item:${items}">
           <tr height="80px" align="center">
             <td colspan="3"><img src="/survey/img/title.png"></td>
@@ -36,13 +48,13 @@
             </td>
             <td height="25px" class="mcell">Photograph No. :</td>
           </tr>
-          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.photono1}"></td></tr>
+          <tr><td height="50px" class="mcell" align="center" th:text="${item.photo1}"></td></tr>
           <tr><td height="25px" class="mcell">Location:</td></tr>
-          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.location}"></td></tr>
+          <tr><td height="50px" class="mcell" align="center" th:text="${item.explain1}"></td></tr>
           <tr><td height="25px" class="mcell">Description:</td></tr>
           <tr><td height="50px" class="mcell" align="center">Manhole Location</td></tr>
           <tr><td height="25px" class="mcell">Remark:</td></tr>
-          <tr><td height="50px" class="mcell" th:text="${item.remark2}"></td></tr>
+          <tr><td height="50px" class="mcell" th:text="${item.remark1}"></td></tr>
           <tr height="32px"><td colspan="5" class="mcell"></td></tr>
           <tr>
             <td rowspan="8" colspan="4" class="mcell" align="center">
@@ -50,16 +62,17 @@
             </td>
             <td height="25px" class="mcell">Photograph No. :</td>
           </tr>
-          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.photono2}"></td></tr>
+          <tr><td height="50px" class="mcell" align="center" th:text="${item.photo2}"></td></tr>
           <tr><td height="25px" class="mcell">Location:</td></tr>
-          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.location}"></td></tr>
+          <tr><td height="50px" class="mcell" align="center" th:text="${item.explain2}"></td></tr>
           <tr><td height="25px" class="mcell">Description:</td></tr>
-          <tr><td height="50px" class="mcell" align="center">Manhole Internal Photo</td></tr>
+          <tr><td height="50px" class="mcell" align="center">Manhole Location</td></tr>
           <tr><td height="25px" class="mcell">Remark:</td></tr>
           <tr><td height="50px" class="mcell" th:text="${item.remark2}"></td></tr>
         </table>
       </div>
     </div>
+    <div id="tips"><span></span></div>
     <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
       <p>香港麦斯迪埃高科技有限责任公司</p>
       <p>Copyright © 2017 All Rights Reserved</p>	

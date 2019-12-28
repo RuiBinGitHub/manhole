@@ -11,12 +11,15 @@ import org.springframework.util.StringUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.springboot.biz.ManholeBiz;
 import com.springboot.biz.MarkItemBiz;
+import com.springboot.biz.MarkPipeBiz;
 import com.springboot.biz.MessageBiz;
 import com.springboot.dao.MarkItemDao;
-import com.springboot.entity.Company;
 import com.springboot.entity.Manhole;
 import com.springboot.entity.MarkItem;
+import com.springboot.entity.MarkPipe;
+import com.springboot.entity.Project;
 import com.springboot.entity.User;
 import com.springboot.util.MyHelper;
 
@@ -27,8 +30,12 @@ public class MarkItemBizImpl implements MarkItemBiz {
 	@Resource
 	private MarkItemDao markItemDao;
 	@Resource
+	private MarkPipeBiz markPipeBiz;
+	@Resource
+	private ManholeBiz manholeBiz;
+	@Resource
 	private MessageBiz messageBiz;
-	
+
 	private Map<String, Object> map = null;
 
 	public void insertMarkItem(MarkItem markItem) {
@@ -45,11 +52,6 @@ public class MarkItemBizImpl implements MarkItemBiz {
 
 	public MarkItem findInfoMarkItem(int id, User user) {
 		map = MyHelper.getMap("id", id, "user", user);
-		return markItemDao.findInfoMarkItem(map);
-	}
-
-	public MarkItem findInfoMarkItem(int id, Company company) {
-		map = MyHelper.getMap("id", id, "company", company);
 		return markItemDao.findInfoMarkItem(map);
 	}
 
@@ -77,12 +79,20 @@ public class MarkItemBizImpl implements MarkItemBiz {
 		return info;
 	}
 
-	public int appendMarkItem(Manhole manhole, User user) {
+	public int appendMarkItem(Project project, User user) {
 		MarkItem markItem = new MarkItem();
 		markItem.setDate(MyHelper.getDate(null));
-		markItem.setManhole(manhole);
+		markItem.setProject(project);
 		markItem.setUser(user);
 		insertMarkItem(markItem);
+		List<Manhole> manholes = manholeBiz.findListManhole(project);
+		for (Manhole manhole : manholes) {
+			MarkPipe markPipe = new MarkPipe();
+			markPipe.setScore(0);
+			markPipe.setManhole(manhole);
+			markPipe.setMarkItem(markItem);
+			markPipeBiz.insertMarkPipe(markPipe);
+		}
 		messageBiz.sendMessage(markItem);
 		return markItem.getId();
 	}

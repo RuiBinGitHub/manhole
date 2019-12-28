@@ -10,7 +10,7 @@ public class MarkItem implements Serializable {
 	private double score;
 	private String remark;
 	private String date;
-	private Manhole manhole;
+	private Project project;
 	private User user;
 
 	private int count;
@@ -47,12 +47,12 @@ public class MarkItem implements Serializable {
 		this.date = date;
 	}
 
-	public Manhole getManhole() {
-		return manhole;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setManhole(Manhole manhole) {
-		this.manhole = manhole;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public User getUser() {

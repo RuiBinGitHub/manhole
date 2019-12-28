@@ -17,7 +17,7 @@
         <input type="button" value="删除" style="background-color: #FF2828;"/>
       </div>
       <div id="mainInfo">
-        <form action="commit" method="post" enctype="multipart/form-data">
+        <form action="update" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" th:value="${param.id}"/>
         <table class="table" th:each="item:${items}">
           <tr height="80px">
@@ -47,11 +47,11 @@
             </td>
             <td height="25px" class="mcell">Photograph No. :</td>
           </tr>
-          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.photono1}"></td></tr>
+          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.photo1}"/></td></tr>
           <tr><td height="25px" class="mcell">Location:</td></tr>
           <tr><td height="50px" class="mcell" align="center" th:text="${manhole.location}"></td></tr>
           <tr><td height="25px" class="mcell">Description:</td></tr>
-          <tr><td height="50px" class="mcell" align="center">Manhole Location</td></tr>
+          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.explain1}" list="list"/></td></tr>
           <tr><td height="25px" class="mcell">Remark:</td></tr>
           <tr><td height="50px" class="mcell"><input type="text" th:value="${item.remark1}"/></td></tr>
           <tr height="32px"><td colspan="5" class="mcell"></td></tr>
@@ -64,11 +64,11 @@
             </td>
             <td height="25px" class="mcell">Photograph No. :</td>
           </tr>
-          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.photono2}"></td></tr>
+          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.photo2}"/></td></tr>
           <tr><td height="25px" class="mcell">Location:</td></tr>
           <tr><td height="50px" class="mcell" align="center" th:text="${manhole.location}"></td></tr>
           <tr><td height="25px" class="mcell">Description:</td></tr>
-          <tr><td height="50px" class="mcell" align="center">Manhole Internal Photo</td></tr>
+          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.explain2}" list="list"/></td></tr>
           <tr><td height="25px" class="mcell">Remark:</td></tr>
           <tr><td height="50px" class="mcell"><input type="text" th:value="${item.remark2}"/></td></tr>
         </table>
@@ -76,7 +76,19 @@
         <div id="append"><div>+</div></div>
       </div>
     </div>
+    <!-- main结束 -->
+    <div id="tips"><span></span></div>
     
+    <datalist id="list">
+      <option>Manhole Location</option>
+      <option>Manhole Internal Photo</option>
+      <option>COVER</option>
+      <option>IRON / LADDER</option>
+      <option>SHAFT</option>
+      <option>CHAMBER</option>
+      <option>BENCHING</option>
+      <option>OTHERS</option>
+    </datalist>
     <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
       <p>香港麦斯迪埃高科技有限责任公司</p>
       <p>Copyright © 2017 All Rights Reserved</p>	

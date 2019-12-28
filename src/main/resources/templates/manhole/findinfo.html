@@ -65,7 +65,7 @@
           <td class="ycell" colspan="2" th:text="${manhole.surveydate}"></td>
         </tr>
         <tr>
-          <td width="100px" class="ncell">COVER</td>
+          <td width="100px" class="ncell"><span style="font-weight:600">COVER</span></td>
           <td width="100px" class="ncell">(15) Shape*</td>
           <td width="100px" class="ycell" th:text="${manhole.shape}"></td>
           <td width="100px" class="ncell">(16) Hinged</td>
@@ -82,7 +82,7 @@
           <td width="50px" class="ycell" th:text="${manhole.toxic}"></td>
         </tr>
         <tr>
-          <td class="ncell">SHAFT</td>
+          <td class="ncell"><span style="font-weight:600">SHAFT</span></td>
           <td class="ncell">(20) Side entry</td>
           <td class="ycell" th:text="${manhole.side}"></td>
           <td class="ncell">(21) Regular course</td>
@@ -99,7 +99,7 @@
           <td class="ycell" th:text="${manhole.evidences}"></td>
         </tr>
         <tr>
-          <td class="ncell">CHAMBER</td>
+          <td class="ncell"><span style="font-weight:600">CHAMBER</span></td>
           <td class="ncell">(24) Soffit*</td>
           <td class="ycell" th:text="${manhole.soffit}"></td>
           <td class="ncell">(25) Steps</td>
@@ -337,8 +337,11 @@
         <tr><td>(70) With Traffic Permit</td><td align="center" th:text="${manhole.with3}"></td></tr>
       </table>
       <div id="remark">Remarks:  * - Code description refers to Appendix - Quick Reference for Code in IDMS Manhole Card</div>
-      <input type="button" id="common" value="下一步" th:data-id="${param.id}"/>
     </div>
+    
+    <div id="item1" style="bottom:162px;" title="下一步">＞</div>
+    <div id="item2" style="bottom:112px;" title="返回顶部">∧</div>
+    
     <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
       <p>香港麦斯迪埃高科技有限责任公司</p>
       <p>Copyright © 2017 All Rights Reserved</p>	

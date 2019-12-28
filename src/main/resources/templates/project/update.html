@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title>编辑任务</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="/survey/css/project/update.css"/>
+    <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/survey/js/laydate/laydate.js"></script>
+    <script type="text/javascript" src="/survey/js/project/update.js"></script>
+  </head>
+  <body>
+    <div th:replace="navigation::navigation"></div>
+    <div id="main">
+      <div id="mainInfo">
+        <div id="infoTop" th:text="#{project.update.title}"></div>
+        <form id="form1" action="update" method="post">
+        <input type="hidden" name="id" th:value="${project.id}"/>
+        <table id="tab1">
+          <tr>
+            <td width="175px" align="right"><a>*</a><span th:text="#{project.update.label1}"></span></td>
+            <td width="400px"><input type="text" class="textbox" name="name" th:value="${project.name}"/></td>
+          </tr>
+          <tr>
+            <td align="right"><a>*</a><span th:text="#{project.update.label2}"></span></td>
+            <td><input type="text" class="textbox" name="operator" th:value="${project.operator}"/></td>
+          </tr>
+          <tr>
+            <td align="right"><a>*</a><span th:text="#{project.update.label3}"></span></td>
+    	    <td><input type="text" class="textbox" name="datetime1" th:value="${project.datetime1}"/></td>
+       	  </tr>
+          <tr>
+       	    <td align="right"><a>*</a><span th:text="#{project.update.label4}"></span></td>
+       	    <td><input type="text" class="textbox" name="datetime2" th:value="${project.datetime2}"/></td>
+          </tr>
+          <tr style="height:18px;"><td colspan="2"></td></tr>
+          <tr>
+    	    <td align="right" valign="top"><span th:text="#{project.update.label5}"></span></td>
+    	    <td><textarea name="content" th:text="${project.content}"></textarea> </td>
+    	  </tr>
+    	  <tr>
+    	    <td></td>
+    	    <td><input type="button" class="combtn" th:value="#{project.update.button}"/></td>
+    	  </tr>
+        </table>
+        </form>
+      </div>
+    </div>
+    <datalist id="names">
+   	  <option th:each="operator:${operators}" th:value="${operator.name}" th:text="${operator.chianame}"/>
+    </datalist>
+    <!-- main结束 -->
+    <div id="tips"><span></span></div>
+    <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
+      <p>香港麦斯迪埃高科技有限责任公司</p>
+      <p>Copyright © 2017 All Rights Reserved</p>	
+    </div>
+  </body>
+</html>

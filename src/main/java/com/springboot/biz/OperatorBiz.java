@@ -19,6 +19,6 @@ public interface OperatorBiz {
 
 	public PageInfo<Operator> findListOperator(Map<String, Object> map);
 
-	public List<String> findListName(Company company);
+	public List<Operator> findListOperator(Company company);
 
 }

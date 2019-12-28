@@ -14,12 +14,15 @@ import com.springboot.biz.OperatorBiz;
 import com.springboot.dao.OperatorDao;
 import com.springboot.entity.Company;
 import com.springboot.entity.Operator;
+import com.springboot.util.MyHelper;
 
 @Service
 public class OperatorBizImpl implements OperatorBiz {
 
 	@Resource
 	private OperatorDao operatorDao;
+
+	private Map<String, Object> map = null;
 
 	public void insertOperator(Operator operator) {
 		operatorDao.insertOperator(operator);
@@ -47,8 +50,9 @@ public class OperatorBizImpl implements OperatorBiz {
 		return info;
 	}
 
-	public List<String> findListName(Company company) {
-		return operatorDao.findListName(company);
+	public List<Operator> findListOperator(Company company) {
+		map = MyHelper.getMap("company", company);
+		return operatorDao.findListOperator(map);
 	}
 
 }

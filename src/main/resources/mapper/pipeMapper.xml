@@ -45,10 +45,13 @@
 	</delete>
 
 	<select id="findInfoPipe" parameterType="Map" resultType="Pipe">
-		select * from pipe
+		select i.* from pipe p left join manhole m on m.id = p.manholeid left join users u on u.id = m.userid
 		<where>
 			<if test="id != null">
-				and id = #{id}
+				and p.id = #{id}
+			</if>
+			<if test="user != null">
+				and u.id = #{user.id}
 			</if>
 		</where>
 	</select>

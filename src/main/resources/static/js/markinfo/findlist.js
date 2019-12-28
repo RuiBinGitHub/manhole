@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var language = $("#infoTop").text() == "评分列表" ? "zh" : "en";
+	var language = $("#infoTop").text().length < 5 ? "zh" : "en";
     var tipsText1 = language == "zh" ? "确定要移除该数据吗？" : "Are you sure you want to remove this data?";
     var tipsText2 = language == "zh" ? "数据移除成功！" : "Operating successfully!";
     /** *************************************************************** */
@@ -22,9 +22,10 @@ $(document).ready(function() {
     /** *************************************************************** */
     var name = $("#menuText").val();
     $("#tab1 tbody tr").each(function(i) {
+    	var id = $(this).attr("id");
     	var date = $(this).find("a").attr("id");
         $(this).find("a").attr("target", "_blank");
-        $(this).find("a").attr("href", "/survey/manhole/findinfo?id=" + date);
+        $(this).find("a").attr("href", "/survey/project/findinfo?id=" + date);
         /** *********************************************************** */
         if (name.trim() != "") {
         	var text = $(this).find("td:eq(1) a").text();
@@ -34,20 +35,20 @@ $(document).ready(function() {
             $(this).find("td:eq(1) a").html(cont);
         }
         /** *********************************************************** */
-        var score = $(this).find("td:eq(7)").text();
-        $(this).find("td:eq(7)").text(Number(score).toFixed(2));
+        var score = $(this).find("td:eq(6)").text();
+        $(this).find("td:eq(6)").text(Number(score).toFixed(2));
         if (score < 95)
-            $(this).find("td:eq(7)").css("color", "#FF1000");
+            $(this).find("td:eq(6)").css("color", "#FF1000");
         else
-            $(this).find("td:eq(7)").css("color", "#479911");
+            $(this).find("td:eq(6)").css("color", "#479911");
         /** *********************************************************** */
         $(this).find("input:eq(0)").click(function() {
-            window.open("findinfo?id=" + id);
+            window.open("findmark?id=" + id);
         });
         $(this).find("input:eq(1)").click(function() {
             if (!confirm(tipsText1))
             	return false;
-            $(this).css("background-color", "#CCC");
+            $(this).css("background-color", "#ccc");
             $(this).attr("disabled", true);
             if (Ajax("remove", {id: id}))
                 showTips(tipsText2);

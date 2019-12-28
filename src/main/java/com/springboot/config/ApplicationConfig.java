@@ -27,7 +27,6 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	private SecurityManager manager = null;
 	private ShiroFilterFactoryBean factoryBean = null;
 
-	
 	@Bean
 	public ShiroFilterFactoryBean getShiroFilterFactoryBean() {
 		manager = new DefaultWebSecurityManager(myRealm);
@@ -37,14 +36,17 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		Map<String, String> filterMap = new HashMap<>();
 		filterMap.put("/userview/**", "anon");
 		filterMap.put("/company/**", "roles[role1]"); // 公司操作
-		
-		filterMap.put("/manhole/**", "roles[role2]"); // 沙井操作
+		filterMap.put("/project/**", "roles[role4]"); // 项目操作
+		filterMap.put("/manhole/**", "roles[role4]"); // 沙井操作
+		filterMap.put("/pipe/**", "roles[role4]"); // 图片操作
+		filterMap.put("/item/**", "roles[role4]"); // 图片操作
 		filterMap.put("/operator/**", "roles[role2]"); // 沙井操作
 		filterMap.put("/markinfo/**", "roles[role4]"); // 评分操作
-		
+		filterMap.put("/message/**", "roles[role4]"); // 消息操作
 		filterMap.put("/userinfo/update", "roles[role2]"); // 更新人员
 		filterMap.put("/userinfo/center", "roles[role4]"); // 个人中心
-		
+		filterMap.put("/downfile", "roles[role4]"); // 下载操作
+
 		factoryBean.setFilterChainDefinitionMap(filterMap);
 		// 配置跳转的登录页面
 		factoryBean.setLoginUrl("/userview/loginview");
@@ -52,18 +54,18 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		factoryBean.setUnauthorizedUrl("/authorize");
 		return factoryBean;
 	}
-	
+
 	/** 定义识图控制器 */
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/operator/insertview").setViewName("operator/insert");
 		registry.addViewController("/userinfo/center").setViewName("userinfo/center");
-		
+
 		registry.addViewController("**/authorize").setViewName("userview/authorize");
 		registry.addViewController("**/loginview").setViewName("userview/loginview");
 		registry.addViewController("**/success").setViewName("userview/success");
 		registry.addViewController("**/failure").setViewName("userview/failure");
 	}
-	
+
 	@Bean
 	public ShiroDialect shiroDialect() {
 		ShiroDialect dialect = new ShiroDialect();

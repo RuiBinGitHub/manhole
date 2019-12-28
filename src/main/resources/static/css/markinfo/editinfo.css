@@ -31,6 +31,27 @@ body {
 	float: left;
 }
 
+#logo {
+	width: 580px;
+	height: 110px;
+	margin: 0px 420px 40px 0px;
+	float: left;
+}
+
+#idms {
+	width: 458px;
+	height: 110px;
+	font-size: 24px;
+	font-family: Times New Roman;
+	font-style: italic;
+	font-weight: 700;
+	text-align: center;
+	line-height: 110px;
+	margin: 0px 0px 40px 0px;
+	border: 1px solid #000;
+	float: left;
+}
+
 .table {
 	font-size: 10px;
 	font-family: Times New Roman;
@@ -356,8 +377,8 @@ body {
 }
 
 #value2 .table img {
-	max-width: 450px;
-	max-height: 312px;
+	max-width: 470px;
+	max-height: 315px;
 }
 /** ******************************************************************* */
 .mark1 {
@@ -448,9 +469,9 @@ body {
 .explains span {
 	width: 96%;
 	margin: 0px 2%;
-	font-size: 14px;
-	font-family: 仿宋;
-	line-height: 30px;
+	font-size: 18px;
+	font-family: 宋体;
+	line-height: 20px;
 	float: left;
 }
 

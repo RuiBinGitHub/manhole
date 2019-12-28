@@ -17,11 +17,15 @@ import com.github.pagehelper.PageInfo;
 import com.springboot.biz.ItemBiz;
 import com.springboot.biz.ManholeBiz;
 import com.springboot.biz.MarkItemBiz;
+import com.springboot.biz.MarkPipeBiz;
 import com.springboot.biz.PipeBiz;
+import com.springboot.biz.ProjectBiz;
 import com.springboot.entity.Item;
 import com.springboot.entity.Manhole;
 import com.springboot.entity.MarkItem;
+import com.springboot.entity.MarkPipe;
 import com.springboot.entity.Pipe;
+import com.springboot.entity.Project;
 import com.springboot.entity.User;
 import com.springboot.util.MyHelper;
 
@@ -34,6 +38,10 @@ public class MarkInfoController {
 
 	@Resource
 	private MarkItemBiz markItemBiz;
+	@Resource
+	private MarkPipeBiz markPipeBiz;
+	@Resource
+	private ProjectBiz projectBiz;
 	@Resource
 	private ManholeBiz manholeBiz;
 	@Resource
@@ -93,31 +101,37 @@ public class MarkInfoController {
 	@RequestMapping(value = "/marklist")
 	public List<MarkItem> markList(@RequestParam(defaultValue = "0") int id) {
 		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("id", id, "user", user);
+		map = MyHelper.getMap("id", id, "company", user.getCompany());
+		Project project = projectBiz.findInfoProject(map);
+		if (StringUtils.isEmpty(project))
+			return null;
+		map = MyHelper.getMap("project", project, "user", user);
 		info = markItemBiz.findListMarkItem(map);
 		return info.getList();
 	}
 
-	@RequestMapping(value = "/insert")
-	public ModelAndView insert(@RequestParam(defaultValue = "0") int id) {
+	/** 项目评分 */
+	@RequestMapping(value = "/markitem")
+	public ModelAndView markItem(@RequestParam(defaultValue = "0") int id) {
 		ModelAndView view = new ModelAndView("userview/failure");
 		User user = (User) MyHelper.findMap("user");
-		Manhole manhole = manholeBiz.findInfoManhole(id, user);
-		if (StringUtils.isEmpty(manhole))
+		map = MyHelper.getMap("id", id, "company", user.getCompany());
+		Project project = projectBiz.findInfoProject(map);
+		if (StringUtils.isEmpty(project))
 			return view;
-		id = markItemBiz.appendMarkItem(manhole, user);
-		view.setViewName("redirect:editinfo?id=" + id);
+		id = markItemBiz.appendMarkItem(project, user);
+		view.setViewName("redirect:editmark?id=" + id);
 		return view;
 	}
 
+	/** 编辑评分 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ModelAndView update(MarkItem markItem) {
-		ModelAndView view = new ModelAndView("redirect:/success");
+	public boolean update(MarkPipe markPipe) {
 		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("id", markItem.getId(), "user", user);
-		if (markItemBiz.findInfoMarkItem(map) != null)
-			markItemBiz.updateMarkItem(markItem);
-		return view;
+		map = MyHelper.getMap("id", markPipe.getId(), "user", user);
+		if (markPipeBiz.findInfoMarkPipe(map) != null)
+			markPipeBiz.updateMarkPipe(markPipe);
+		return true;
 	}
 
 	/** 删除数据 */
@@ -134,22 +148,52 @@ public class MarkInfoController {
 	@RequestMapping(value = "/remove")
 	public boolean remove(@RequestParam(defaultValue = "0") int id) {
 		User user = (User) MyHelper.findMap("user");
-		MarkItem markItem = markItemBiz.findInfoMarkItem(id, user.getCompany());
+		map = MyHelper.getMap("id", id, "company", user.getCompany());
+		MarkItem markItem = markItemBiz.findInfoMarkItem(map);
 		if (!StringUtils.isEmpty(markItem))
 			markItemBiz.deleteMarkItem(markItem);
 		return true;
+	}
+
+	@RequestMapping(value = "/editmark")
+	public ModelAndView editMark(@RequestParam(defaultValue = "0") int id) {
+		ModelAndView view = new ModelAndView("userview/failure");
+		User user = (User) MyHelper.findMap("user");
+		MarkItem markItem = markItemBiz.findInfoMarkItem(id, user);
+		if (StringUtils.isEmpty(markItem))
+			return view;
+		List<MarkPipe> markPipes = markPipeBiz.findListMarkPipe(markItem);
+		view.setViewName("markinfo/editmark");
+		view.addObject("markItem", markItem);
+		view.addObject("markPipes", markPipes);
+		return view;
+	}
+
+	@RequestMapping(value = "/findmark")
+	public ModelAndView findMark(@RequestParam(defaultValue = "0") int id) {
+		ModelAndView view = new ModelAndView("userview/failure");
+		MarkItem markItem = markItemBiz.findInfoMarkItem(id, null);
+		if (StringUtils.isEmpty(markItem))
+			return view;
+		List<MarkPipe> markPipes = markPipeBiz.findListMarkPipe(markItem);
+		view.setViewName("markinfo/findmark");
+		view.addObject("markItem", markItem);
+		view.addObject("markPipes", markPipes);
+		return view;
 	}
 
 	@RequestMapping(value = "/editinfo")
 	public ModelAndView editInfo(@RequestParam(defaultValue = "0") int id) {
 		ModelAndView view = new ModelAndView("userview/failure");
 		User user = (User) MyHelper.findMap("user");
-		MarkItem markItem = markItemBiz.findInfoMarkItem(id, user);
-		Manhole manhole = markItem.getManhole();
+		MarkPipe markPipe = markPipeBiz.findInfoMarkPipe(id, user);
+		if (StringUtils.isEmpty(markPipe))
+			return view;
+		Manhole manhole = markPipe.getManhole();
 		List<Pipe> pipes = pipeBiz.findListPipe(manhole);
 		List<Item> items = itemBiz.findListItem(manhole);
 		view.setViewName("markinfo/editinfo");
-		view.addObject("markItem", markItem);
+		view.addObject("markPipe", markPipe);
 		view.addObject("manhole", manhole);
 		view.addObject("pipes", pipes);
 		view.addObject("items", items);
@@ -160,13 +204,14 @@ public class MarkInfoController {
 	@RequestMapping(value = "/findinfo")
 	public ModelAndView findInfo(@RequestParam(defaultValue = "0") int id) {
 		ModelAndView view = new ModelAndView("userview/failure");
-		User user = (User) MyHelper.findMap("user");
-		MarkItem markItem = markItemBiz.findInfoMarkItem(id, user.getCompany());
-		Manhole manhole = markItem.getManhole();
+		MarkPipe markPipe = markPipeBiz.findInfoMarkPipe(id, null);
+		if (StringUtils.isEmpty(markPipe))
+			return view;
+		Manhole manhole = markPipe.getManhole();
 		List<Pipe> pipes = pipeBiz.findListPipe(manhole);
 		List<Item> items = itemBiz.findListItem(manhole);
 		view.setViewName("markinfo/findinfo");
-		view.addObject("markItem", markItem);
+		view.addObject("markPipe", markPipe);
 		view.addObject("manhole", manhole);
 		view.addObject("pipes", pipes);
 		view.addObject("items", items);

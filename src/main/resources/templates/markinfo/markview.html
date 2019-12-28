@@ -15,8 +15,8 @@
     <div id="main">
       <div id="mainMenu">
         <div id="menuTitle" th:text="#{menu.title.text}"></div>
-        <div class="menu2"><a href="/survey/manhole/showlist" th:text="#{menu.div.text1}"></a></div>
-        <div class="menu2"><a href="/survey/manhole/findlist" th:text="#{menu.div.text2}"></a></div>
+        <div class="menu2"><a href="/survey/project/showlist" th:text="#{menu.div.text1}"></a></div>
+        <div class="menu2"><a href="/survey/project/findlist" th:text="#{menu.div.text2}"></a></div>
         <div class="menu1"><a href="/survey/markinfo/markview" th:text="#{menu.div.text3}"></a></div>
         <div class="menu2"><a href="/survey/markinfo/showlist" th:text="#{menu.div.text4}"></a></div>
         <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
@@ -37,25 +37,23 @@
           <thead>
             <tr height="40px" style="background-color:#51596b;">
               <th width="4%">NO</th>           
-			  <th width="14%" th:text="#{markinfo.markview.table.title1}"></th>   
+			  <th width="18%" th:text="#{markinfo.markview.table.title1}"></th>   
 			  <th width="14%" th:text="#{markinfo.markview.table.title2}"></th> 
 			  <th width="14%" th:text="#{markinfo.markview.table.title3}"></th>   
 			  <th width="14%" th:text="#{markinfo.markview.table.title4}"></th>   
-			  <th width="10%" th:text="#{markinfo.markview.table.title5}"></th> 
+			  <th width="12%" th:text="#{markinfo.markview.table.title5}"></th> 
 			  <th width="10%" th:text="#{markinfo.markview.table.title6}"></th>
-			  <th width="10%" th:text="#{markinfo.markview.table.title7}"></th>     
-			  <th width="10%" th:text="#{markinfo.markview.table.title8}"></th>     
+			  <th width="12%" th:text="#{markinfo.markview.table.title7}"></th>     
 			</tr>       
           </thead>
           <tbody>
-            <tr th:each="markitem,status:${markItems}" th:id="${markitem.manhole.id}">
+            <tr th:each="markitem,status:${markItems}" th:id="${markitem.project.id}">
               <td th:text="${status.count+(page-1)*15}"></td>
-              <td><a th:text="${markitem.manhole.projectno}"></a></td>
-          	  <td th:text="${markitem.manhole.workorder}"></td>
-          	  <td th:text="${markitem.manhole.areacode}"></td>
-          	  <td th:text="${markitem.manhole.node}"></td>
-          	  <td th:text="${markitem.manhole.surveyname}"></td>
-          	  <td th:text="${markitem.manhole.surveydate}"></td>
+              <td><a th:text="${markitem.project.name}"></a></td>
+          	  <td th:text="${markitem.project.operator}"></td>
+          	  <td th:text="${markitem.project.datetime1}"></td>
+          	  <td th:text="${markitem.project.datetime2}"></td>
+          	  <td th:text="${markitem.project.user.name}"></td>
           	  <td th:text="${markitem.count}"></td>
 		      <td>
 		        <input type="button" th:value="#{markinfo.markview.table.button1}" style="background-color:#3CB44B;">
@@ -78,6 +76,7 @@
       <table>
         <thead>
           <tr style="background-color:#f0f0f0;">
+            <th width="30px">No</th>
             <th width="60px" th:text="#{markinfo.markview.show.table.text1}"></th>
             <th width="98px" th:text="#{markinfo.markview.show.table.text2}"></th>
             <th width="60px" th:text="#{markinfo.markview.show.table.text3}"></th>

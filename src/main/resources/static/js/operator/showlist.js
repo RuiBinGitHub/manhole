@@ -5,7 +5,7 @@ $(document).ready(function() {
     /** *************************************************************** */
     var width = $("#infoMenu span:eq(0)").css("width");
     var length = width.substring(0, width.length - 2);
-    $("#infoMenu div:eq(0)").css("width", 595 - length);
+    $("#infoMenu div:eq(0)").css("width", 588 - length);
     /** *************************************************************** */
     if ($("#menuText").val().trim() == "") {
         $("#menuBtn1").attr("disabled", true);

@@ -60,7 +60,7 @@ public class MessageBizImpl implements MessageBiz {
 		message.setState("未读");
 		message.setDate(data);
 		message.setMarkItem(markItem);
-		message.setManhole(markItem.getManhole());
+		message.setProject(markItem.getProject());
 		message.setUser(markItem.getUser());
 		insertMessage(message);
 	}

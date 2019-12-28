@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title>评分浏览</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="/survey/css/markinfo/findmark.css"/>
+	<script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/survey/js/markinfo/findmark.js"></script>
+  </head>
+  <body>
+    <div th:replace="navigation::navigation"></div>
+    <div id="main">
+      <div id="mainInfo">
+        <div id="mainTop" th:text="#{markinfo.findmark.title}"></div>
+        <div class="infoTop">
+	  	  <div th:text="#{markinfo.findmark.title1}"></div>
+	  	</div>
+	    <table id="table1">
+	      <tr>
+	  		<td width="100px" th:text="#{markinfo.findmark.label1}"></td>
+	    	<td width="240px" class="cell" th:text="${markItem.project.name}"></td>
+	    	<td width="80px"></td>
+	    	<td width="100px" th:text="#{markinfo.findmark.label2}"></td>
+	    	<td width="240px" class="cell" th:text="${markItem.project.operator}"></td>
+	   	  </tr>
+	      <tr>
+	    	<td th:text="#{markinfo.findmark.label3}"></td>
+	    	<td class="cell" th:text="${markItem.project.datetime1}"></td>
+	    	<td></td>
+	    	<td th:text="#{markinfo.findmark.label4}"></td>
+	    	<td class="cell" th:text="${markItem.project.datetime2}"></td>
+	      </tr>
+	      <tr style="height:6px;"><td colspan="4"></td></tr>
+	      <tr>
+	    	<td valign="top" th:text="#{markinfo.findmark.label5}"></td>
+	    	<td colspan="4"><textarea th:text="${markItem.project.content}"></textarea></td>
+	      </tr>
+	    </table>
+	    
+	  	<div class="infoTop">
+	  	  <div th:text="#{markinfo.findmark.title2}"></div>
+	  	</div>
+	  	<div id="listTitle">
+	  	  <div style="width:40px;">No</div>
+	  	  <div style="width:123px;" th:text="#{markinfo.findmark.list.span1}"></div>
+	  	  <div style="width:123px;" th:text="#{markinfo.findmark.list.span2}"></div>
+	  	  <div style="width:123px;" th:text="#{markinfo.findmark.list.span3}"></div>
+	  	  <div style="width:123px;" th:text="#{markinfo.findmark.list.span4}"></div>
+	  	  <div style="width:123px;" th:text="#{markinfo.findmark.list.span5}"></div>
+	  	  <div style="width:112px;" th:text="#{markinfo.findmark.list.span6}"></div>
+	  	</div>
+	  	<div id="mainlist" style="overflow-y:scroll;">
+	  	<table id="table2">
+       	  <tr th:each="markPipe,status:${markPipes}" th:id="${markPipe.id}">
+            <td width="5%" th:text="${status.count}"></td>
+            <td width="16%" th:text="${markPipe.manhole.node}"></td>
+            <td width="16%" th:text="${markPipe.manhole.workorder}"></td>
+            <td width="16%" th:text="${markPipe.manhole.areacode}"></td>
+            <td width="16%" th:text="${markPipe.manhole.surveyname}"></td>
+            <td width="16%" th:text="${markPipe.score}"></td>
+            <td width="15%"><input type="button" th:value="#{markinfo.findmark.list.button}"></td>
+          </tr>
+	    </table>
+	  	</div>
+	  	<div id="null" th:if="${#lists.isEmpty(markPipes)}">暂无沙井信息！</div>
+      </div>
+    </div>
+    <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
+      <p>香港麦斯迪埃高科技有限责任公司</p>
+      <p>Copyright © 2017 All Rights Reserved</p>	
+    </div>
+  </body>
+</html>

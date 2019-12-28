@@ -29,13 +29,13 @@ body {
 }
 
 #menuTitle {
-	width: 92%;
+	width: 180px;
 	height: 60px;
 	color: #009343;
-	font-size: 24px;
+	font-size: 25px;
 	font-weight: 600;
 	line-height: 60px;
-	margin: 0px 4% 10px 4%;
+	margin: 0px 10px 10px 10px;
 	border-bottom: 2px solid #00953E;
 	float: left;
 }
@@ -90,10 +90,10 @@ body {
 }
 
 #infoMenu span {
-	margin-left: 5px;
 	font-size: 20px;
 	font-family: 宋体;
 	font-weight: 600;
+	margin-left: 5px;
 	float: left;
 }
 
@@ -118,7 +118,6 @@ body {
 	margin-top: 5px;
 	color: #ffffff;
 	font-size: 12px;
-	font-weight: 600;
 	background-color: #3A3F4A;
 	border-radius: 0px 30px 30px 0px;
 	outline: none;
@@ -197,7 +196,7 @@ body {
 }
 
 .pagebtn {
-	width: 72px;
+	width: 75px;
 	height: 28px;
 	font-size: 15px;
 	font-family: 宋体;

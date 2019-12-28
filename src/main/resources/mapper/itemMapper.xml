@@ -4,13 +4,17 @@
 <mapper namespace="com.springboot.dao.ItemDao">
 
 	<insert id="insertItem" parameterType="Item" useGeneratedKeys="true" keyProperty="id">
-		insert into item values(null, #{no}, #{path1}, #{path2}, #{remark1}, #{remark2}, #{manhole.id})
+		insert into item values(null, #{no}, #{path1}, #{path2}, #{photo1}, #{photo2}, #{explain1}, #{explain2}, #{remark1}, #{remark2}, #{manhole.id})
 	</insert>
 
 	<update id="updateItem" parameterType="Item">
 		update item set no = #{no},
 			path1 = #{path1},
 			path2 = #{path2},
+			photo1 = #{photo1},
+			photo2 = #{photo2},
+			explain1 = #{explain1},
+			explain2 = #{explain2},
 			remark1 = #{remark1},
 			remark2 = #{remark2},
 			manholeid = #{manhole.id}
@@ -34,13 +38,7 @@
 	</select>
 	
 	<select id="findListItem" parameterType="Map" resultType="Item">
-		select * from item
-		<where>
-			<if test="manhole != null">
-				manholeid = #{manhole.id}
-			</if>
-		</where>
-		order by no
+		select * from item where manholeid = #{manhole.id} order by no
 	</select>
 	
 </mapper>

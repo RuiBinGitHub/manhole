@@ -57,7 +57,7 @@
         <tr>
           <td class="ncell"></td>
           <td class="ncell">(11) Year laid<br>YYYY</td>
-          <td class="ycell"><input type="text" name="yearlaid" th:value="${manhole?.yearlaid}"/></td>
+          <td class="ycell"><input type="text" name="yearlaid" th:value="${manhole?.yearlaid}" list="years"/></td>
           <td class="ncell">(12) Status*</td>
           <td class="ycell"><input type="text" name="status" th:value="${manhole?.status}" list="list1"/></td>
           <td class="ncell">(13)Function*</td>
@@ -81,9 +81,9 @@
           <td width="100px" class="ncell">(18) Duty*</td>
           <td width="100px" class="ycell"><input type="text" name="duties" th:value="${manhole?.duties}" list="list5"/></td>
           <td width="100px" class="ncell">(19) Cover size</td>
-          <td width="120px" class="cella"><input type="text" name="cover1" th:value="${manhole?.cover1}" class="num1"/></td>
+          <td width="120px" class="cella"><input type="text" name="cover1" th:value="${manhole?.cover1}"/></td>
           <td width="50px" class="cellb" align="center">*</td>
-          <td width="120px" class="cellc"><input type="text" name="cover2" th:value="${manhole?.cover2}" class="num1"/></td>
+          <td width="120px" class="cellc"><input type="text" name="cover2" th:value="${manhole?.cover2}"/></td>
           <td width="120px" class="ncell">(29) Toxic atmosphere</td>
           <td width="50px" class="ycell"><input type="text" name="toxic" th:value="${manhole?.toxic}"/></td>
         </tr>
@@ -98,14 +98,14 @@
           <td class="ncell"></td>
           <td class="ncell"></td>
           <td class="ncell">(23) Shaft size</td>
-          <td class="celld"><input type="text" name="shaft1" th:value="${manhole?.shaft1}" class="num1"/></td>
+          <td class="celld"><input type="text" name="shaft1" th:value="${manhole?.shaft1}"/></td>
           <td class="celle" align="center">*</td>
-          <td class="cellf"><input type="text" name="shaft2" th:value="${manhole?.shaft2}" class="num1"/></td>
+          <td class="cellf"><input type="text" name="shaft2" th:value="${manhole?.shaft2}"/></td>
           <td class="ncell">(30) Evidence of vermin</td>
           <td class="ycell"><input type="text" name="evidences" th:value="${manhole?.evidences}"/></td>
         </tr>
         <tr>
-          <td class="ncell">CHAMBER</td>
+          <td class="ncell"><span style="font-weight:600">CHAMBER</span></td>
           <td class="ncell">(24) Soffit*</td>
           <td class="ycell"><input type="text" name="soffit" th:value="${manhole?.soffit}" list="list6"/></td>
           <td class="ncell">(25) Steps</td>
@@ -115,9 +115,9 @@
           <td class="ncell">(27) LNDGS</td>
           <td class="ycell"><input type="text" name="lndgs" th:value="${manhole?.lndgs}"/></td>
           <td class="ncell">(28) Chamber size</td>
-          <td class="cellg"><input type="text" name="csize1" th:value="${manhole?.csize1}" class="num1"/></td>
+          <td class="cellg"><input type="text" name="csize1" th:value="${manhole?.csize1}"/></td>
           <td class="cellh" align="center">*</td>
-          <td class="celli"><input type="text" name="csize2" th:value="${manhole?.csize2}" class="num1"/></td>
+          <td class="celli"><input type="text" name="csize2" th:value="${manhole?.csize2}"/></td>
           <td class="ncell">(31) Construct code *</td>
           <td class="ycell"><input type="text" name="construct" th:value="${manhole?.construct}" list="list7"/></td>
         </tr>
@@ -404,16 +404,22 @@
         <tr><td>(69) With Permit to Work</td><td><select name="with2" th:value="${manhole?.with2}"></select></td></tr>
         <tr><td>(70) With Traffic Permit</td><td><select name="with3" th:value="${manhole?.with3}"></select></td></tr>
       </table>
+      <input type="hidden" name="project.id" th:value="${manhole?.project.id}"/>
       </form>
       <div id="remark">Remarks:  * - Code description refers to Appendix - Quick Reference for Code in IDMS Manhole Card</div>
-      <input type="button" id="common1" value="保存"/>
-      <input type="button" id="common2" value="保存/下一步"/>
     </div>
+    <div id="item1" style="bottom:212px;" title="保存">√</div>
+    <div id="item2" style="bottom:162px;" title="下一步">＞</div>
+    <div id="item3" style="bottom:112px;" title="返回顶部">∧</div>
+    
     <!-- main结束 -->
     <div id="tips"><span></span></div>
     
     <datalist id="names">
-    	<option th:each="name:${names}" th:text="${name}"/>
+      <option th:each="operator:${operators}" th:value="${operator.name}" th:text="${operator.chianame}"/>
+    </datalist>
+    <datalist id="years">
+    	<option value="Unknown">Unknown</option>
     </datalist>
     <datalist id="list1">
       <option value="PU">Public</option>

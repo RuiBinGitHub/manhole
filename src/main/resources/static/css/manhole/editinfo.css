@@ -6,7 +6,7 @@ body {
 
 #main {
 	width: 1460px;
-	height: 1965px;
+	height: 1900px;
 	margin: 10px auto;
 	padding: 0px 20px;
 	border: 1px solid #ccc;
@@ -200,6 +200,8 @@ body {
 
 #itab1 tbody tr td input, #itab2 tbody tr td input {
 	height: 28px;
+	text-align: center;
+	text-indent: 0px;
 }
 
 #table3 {
@@ -247,6 +249,9 @@ body {
 
 .ptab tr td input {
 	height: 25px;
+	text-align: center;
+	text-indent: 0px;
+	
 }
 
 .ptab tr td select {
@@ -379,45 +384,25 @@ body {
 	float: left;
 }
 
-#common1 {
-	width: 130px;
-	height: 36px;
+#item1, #item2, #item3 {
+	right: 7%;
+	width: 40px;
+	height: 40px;
 	color: #ffffff;
-	font-size: 14px;
-	font-family: 宋体;
+	font-size: 20px;
 	font-weight: 600;
-	margin-top: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	background-color: #00A1D6;
-	border: none;
-	float: left;
+	text-align: center;
+	line-height: 40px;
+	background-color: #8b94ab;
+	border-radius: 4px;
+	position: fixed;
 }
 
-#common1:hover {
-	background-color: #02c0ff;
+#item1:hover, #item2:hover, #item3:hover {
+	background-color: #ff4444;
 	cursor: pointer;
 }
 
-#common2 {
-	width: 150px;
-	height: 36px;
-	color: #ffffff;
-	font-size: 14px;
-	font-family: 宋体;
-	font-weight: 600;
-	margin-top: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	background-color: #38A80C;
-	border: none;
-	float: left;
-}
-
-#common2:hover {
-	background-color: #43cc0f;
-	cursor: pointer;
-}
 /** ******************************************************************* */
 #tips {
 	top: 0;

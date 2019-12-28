@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
 body {
-	background-color: #5ac9fe;
+	background-color: #98DDFE;
 }
 
 #main {
-	width: 920px;
+	width: 900px;
 	height: 470px;
-	margin: 220px auto;
+	margin: 215px auto;
 	background-color: #32435D;
 	border-radius: 6px;
 }
@@ -21,10 +21,10 @@ body {
 }
 
 #title img {
-	width: 104px;
+	width: 106px;
 	height: 50px;
 	margin-top: 20px;
-	margin-left: 83px;
+	margin-left: 82px;
 	float: left;
 }
 
@@ -90,7 +90,7 @@ body {
 	font-family: 宋体;
 	text-indent: 5px;
 	background-color: #32435D;
-	border-bottom: 1px solid #00D3F8;
+	border-bottom: 2px solid #00D3F8;
 	outline: none;
 }
 
@@ -121,14 +121,13 @@ body {
 	background-color: rgba(255, 255, 255, 0);
 	position: fixed;
 	display: none;
-	z-index: 9;
+	z-index: 10;
 }
 
 #tips span {
 	color: #ffffff;
 	font-size: 18px;
 	font-family: 宋体;
-	font-weight: 500;
 	text-align: center;
 	padding: 30px 20px;
 	background-color: rgba(60, 60, 60, 0.8);

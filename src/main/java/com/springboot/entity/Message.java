@@ -11,7 +11,7 @@ public class Message implements Serializable {
 	private String state;
 	private String date;
 	private MarkItem markItem;
-	private Manhole manhole;
+	private Project project;
 	private User user;
 
 	public int getId() {
@@ -54,12 +54,12 @@ public class Message implements Serializable {
 		this.markItem = markItem;
 	}
 
-	public Manhole getManhole() {
-		return manhole;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setManhole(Manhole manhole) {
-		this.manhole = manhole;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public User getUser() {

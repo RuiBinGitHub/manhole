@@ -10,11 +10,13 @@ body {
 	margin: 15px 10px 10px 10px;
 	float: left;
 }
+
 #title1 span {
-	font-size:18px;
-	font-weight:600;
-	font-family:仿宋;
+	font-size: 18px;
+	font-family: 仿宋;
+	font-weight: 600;
 }
+
 #title1 span:hover {
 	border-bottom: 2px solid #000000;
 	cursor: pointer;
@@ -92,8 +94,8 @@ body {
 #webform {
 	top: 50%;
 	left: 50%;
-	width: 640px;
-	height: 480px;
+	width: 644px;
+	height: 445px;
 	position: absolute;
 	margin: -240px -320px;
 	background-color: #FFF;
@@ -150,7 +152,7 @@ body {
 
 #info2 {
 	width: 590px;
-	height: 240px;
+	height: 220px;
 	font-size: 18px;
 	font-family: 宋体;
 	word-break: break-all;
@@ -162,7 +164,7 @@ body {
 
 #info2 p {
 	width: 540px;
-	height: 40px;
+	height: 35px;
 	margin: 0px 15px;
 	line-height: 40px;
 	float: left;

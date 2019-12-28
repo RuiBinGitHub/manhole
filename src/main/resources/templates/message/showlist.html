@@ -11,12 +11,11 @@
   </head>
   <body>
     <div th:replace="navigation::navigation"></div>
-    <div id="Tip"></div>
     <div id="main">
       <div id="mainMenu">
         <div id="menuTitle" th:text="#{menu.title.text}"></div>
-        <div class="menu2"><a href="/survey/manhole/showlist" th:text="#{menu.div.text1}"></a></div>
-        <div class="menu2"><a href="/survey/manhole/findlist" th:text="#{menu.div.text2}"></a></div>
+        <div class="menu2"><a href="/survey/project/showlist" th:text="#{menu.div.text1}"></a></div>
+        <div class="menu2"><a href="/survey/project/findlist" th:text="#{menu.div.text2}"></a></div>
         <div class="menu2"><a href="/survey/markinfo/markview" th:text="#{menu.div.text3}"></a></div>
         <div class="menu2"><a href="/survey/markinfo/showlist" th:text="#{menu.div.text4}"></a></div>
         <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
@@ -84,7 +83,8 @@
 	    </div>
 	  </div>
 	</div>
-	
+	<!-- main结束 -->
+    <div id="tips"><span></span></div>
     <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
       <p>香港麦斯迪埃高科技有限责任公司</p>
       <p>Copyright © 2017 All Rights Reserved</p>	

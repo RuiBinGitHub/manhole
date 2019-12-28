@@ -11,6 +11,6 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("input[name=score]").attr("readonly", true);
+	$(".markinfo input").attr("readonly", true);
 	$("textarea").attr("readonly", true);
 });

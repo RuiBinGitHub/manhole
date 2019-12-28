@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var language = $("#infoTop").text() == "评分列表" ? "zh" : "en";
+	var language = $("#infoTop").text().length < 5 ? "zh" : "en";
     var tipsText1 = language == "zh" ? "确定删除该数据吗？" : "Are you sure you want to delete this data?";
     var tipsText2 = language == "zh" ? "数据刪除成功！" : "Operating successfully!";
     /********************************************************************/
@@ -23,9 +23,9 @@ $(document).ready(function() {
     var name = $("#menuText").val();
     $("#tab1 tbody tr").each(function(i) {
         /*************************************************/
-        var date = $(this).find("a").attr("id");
+        var p = $(this).find("a").attr("id");
         $(this).find("a").attr("target", "_blank");
-        $(this).find("a").attr("href", "/survey/manhole/findinfo?id=" + date);
+        $(this).find("a").attr("href", "/survey/project/findinfo?id=" + p);
         /*************************************************/
         if (name.trim() != "") {
         	var text = $(this).find("td:eq(1) a").text();
@@ -35,29 +35,29 @@ $(document).ready(function() {
             $(this).find("td:eq(1) a").html(cont);
         }
         /*************************************************/
-        var score = $(this).find("td:eq(7)").text();
-        $(this).find("td:eq(7)").text(Number(score).toFixed(2));
+        var score = $(this).find("td:eq(6)").text();
+        $(this).find("td:eq(6)").text(Number(score).toFixed(2));
         if (score < 90)
-            $(this).find("td:eq(7)").css("color", "#FF1000");
+            $(this).find("td:eq(6)").css("color", "#FF1000");
         else
-            $(this).find("td:eq(7)").css("color", "#479911");
+            $(this).find("td:eq(6)").css("color", "#479911");
         /*************************************************/
         var id = $(this).attr("id");
         $(this).find("input:eq(0)").click(function() {
-            window.open("editinfo?id=" + id);
+            window.open("editmark?id=" + id);
         });
         $(this).find("input:eq(1)").click(function() {
             if (!confirm(tipsText1))
                 return false;
-            $(this).css("background-color", "#CCC");
+            $(this).css("background-color", "#ccc");
             $(this).attr("disabled", true);
             if (Ajax("delete", {id: id}))
                 showTips(tipsText2);
             setTimeout("location.reload()", 2000);
         });
         $(this).click(function() {
-            $("#tab1 tbody tr:even").find("td:eq(0)").css("background-color", "#FFFFFF");
-            $("#tab1 tbody tr:odd").find("td:eq(0)").css("background-color", "#FAFAFA");
+            $("#tab1 tbody tr:even").find("td:eq(0)").css("background-color", "#FAFAFA");
+            $("#tab1 tbody tr:odd").find("td:eq(0)").css("background-color", "#EEEEEE");
             $(this).find("td:eq(0)").css("background-color", "#FFD58D");
         });
     });

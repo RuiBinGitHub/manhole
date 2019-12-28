@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.springboot.biz.ManholeBiz;
 import com.springboot.biz.PipeBiz;
 import com.springboot.dao.ManholeDao;
 import com.springboot.entity.Manhole;
 import com.springboot.entity.Pipe;
+import com.springboot.entity.Project;
 import com.springboot.entity.User;
 import com.springboot.util.MyHelper;
 
@@ -46,23 +46,34 @@ public class ManholeBizImpl implements ManholeBiz {
 		manholeDao.deleteManhole(manhole);
 	}
 
-	public Manhole findInfoManhole(Map<String, Object> map) {
-		return manholeDao.findInfoManhole(map);
-	}
-
-	public PageInfo<Manhole> findListManhole(Map<String, Object> map) {
-		if (!StringUtils.isEmpty(map.get("page")))
-			PageHelper.startPage((int) map.get("page"), 15);
-		if (!StringUtils.isEmpty(map.get("name")))
-			map.put("name", "%" + map.get("name") + "%");
+	public Manhole findLastManhole(Project project) {
+		PageHelper.startPage(1, 1);
+		map = MyHelper.getMap("project", project);
 		List<Manhole> manholes = manholeDao.findListManhole(map);
-		PageInfo<Manhole> info = new PageInfo<Manhole>(manholes);
-		return info;
+		if (manholes != null && manholes.size() != 0)
+			return manholes.get(0);
+		else
+			return null;
 	}
 
 	public Manhole findInfoManhole(int id, User user) {
 		map = MyHelper.getMap("id", id, "user", user);
 		return manholeDao.findInfoManhole(map);
+	}
+
+	public Manhole findInfoManhole(Map<String, Object> map) {
+		return manholeDao.findInfoManhole(map);
+	}
+
+	public List<Manhole> findListManhole(Project project) {
+		map = MyHelper.getMap("project", project);
+		return manholeDao.findListManhole(map);
+	}
+
+	public List<Manhole> findListManhole(Map<String, Object> map) {
+		if (!StringUtils.isEmpty(map.get("page")))
+			PageHelper.startPage((int) map.get("page"), 15);
+		return manholeDao.findListManhole(map);
 	}
 
 	public int replacManhole(Manhole manhole, User user) {
@@ -80,8 +91,6 @@ public class ManholeBizImpl implements ManholeBiz {
 			manhole.setPath2(name);
 		}
 		int no = 0;
-		manhole.setState("未提交");
-		manhole.setUser(user);
 		if (manhole.getId() == 0) {
 			this.insertManhole(manhole);
 			for (Pipe pipe : manhole.getPipes()) {

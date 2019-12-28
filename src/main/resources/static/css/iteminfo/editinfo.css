@@ -78,19 +78,22 @@ body {
 }
 
 .table img {
-	max-width: 450px;
-	max-height: 312px;
+	max-width: 470px;
+	max-height: 315px;
 	cursor: pointer;
 }
 
 .table input {
 	width: 100%;
-	height: 50px;
-	text-indent: 5px;
+	height: 48px;
+	font-size: 14px;
+	font-family: Times New Roman;
+	text-indent: 4px;
 	outline: none;
 	border: none;
 	float: left;
 }
+
 
 #append {
 	width: 588px;
@@ -117,4 +120,28 @@ body {
 #append div:hover {
 	cursor: pointer;
 	color: #ccc;
+}
+/** ******************************************************************* */
+#tips {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 800px;
+	background-color: rgba(255, 255, 255, 0);
+	position: fixed;
+	display: none;
+	z-index: 9;
+}
+
+#tips span {
+	color: #ffffff;
+	font-size: 18px;
+	font-family: 宋体;
+	font-weight: 500;
+	text-align: center;
+	padding: 30px 20px;
+	background-color: rgba(60, 60, 60, 0.8);
+	border-radius: 6px;
 }

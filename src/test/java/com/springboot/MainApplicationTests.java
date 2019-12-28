@@ -1,19 +1,21 @@
 package com.springboot;
 
-import java.util.List;
 import javax.annotation.Resource;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.springboot.biz.ManholeBiz;
 import com.springboot.biz.MarkItemBiz;
 import com.springboot.biz.PipeBiz;
 import com.springboot.entity.Manhole;
-import com.springboot.entity.Pipe;
+import com.springboot.entity.Project;
 
 @SpringBootTest
 public class MainApplicationTests {
 
+	@Resource
+	private ManholeBiz manholeBiz;
 	@Resource
 	private MarkItemBiz markItemBiz;
 	@Resource
@@ -21,10 +23,10 @@ public class MainApplicationTests {
 
 	@Test
 	void contextLoads() {
-		Manhole manhole = null;
-		List<Pipe> pipes = pipeBiz.findListPipe(manhole);
-		System.out.println(pipes);
-		System.out.println("--");
+		Project project = new Project();
+		project.setId(6);
+		Manhole manhole = manholeBiz.findLastManhole(project);
+		System.out.println(manhole.getId());
 	}
 
 }

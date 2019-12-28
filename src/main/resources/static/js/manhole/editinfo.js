@@ -11,7 +11,7 @@ $(document).ready(function() {
     
     /** 输入框获取焦点事件 */
     $("input[type=text]").focus(function() {
-        $(this).select();
+        // $(this).select();
     });
     
     /** 下拉列表获取焦点事件 */
@@ -80,8 +80,7 @@ $(document).ready(function() {
     /** survey date日期选择框 */
     laydate.render({
         elem: "input[name=surveydate]",
-        format: "dd/MM/yyyy",
-        value: "01/01/2019"
+        format: "dd/MM/yyyy"
     });
     $("[name=rplan]").attr("placeholder", "(Y of attention required)");
     $("[name=rtype]").attr("placeholder", "Other(                  )");
@@ -129,28 +128,26 @@ $(document).ready(function() {
                 $(this).find("input[type=text]:eq(8)").val((level - value).toFixed(2));
         });
     });
-    $("#table2 tbody tr").each(function() {
-        var textbox = $(this).find("input[type=text]:eq(8)");
+    $("#table2 tbody tr, #table3 tbody tr").each(function() {
+    	var textbox1 = $(this).find("input[type=text]:eq(7)");
+        var textbox2 = $(this).find("input[type=text]:eq(8)");
         $(this).find("input[type=text]:eq(7)").on("input", function() {
             var level = $("input[name=mcover]").val();
             if ($(this).val() != "" && level != "")
-                textbox.val((level - $(this).val()).toFixed(2));
+            	textbox2.val((level - $(this).val()).toFixed(2));
             if ($(this).val() == "" || isNaN($(this).val()))
-                textbox.val("");
+            	textbox2.val("");
         });
-    });
-    $("#table3 tbody tr").each(function() {
-        var textbox = $(this).find("input[type=text]:eq(8)");
-        $(this).find("input[type=text]:eq(7)").on("input", function() {
+        $(this).find("input[type=text]:eq(8)").on("input", function() {
             var level = $("input[name=mcover]").val();
             if ($(this).val() != "" && level != "")
-                textbox.val((level - $(this).val()).toFixed(2));
+            	textbox1.val((level - $(this).val()).toFixed(2));
             if ($(this).val() == "" || isNaN($(this).val()))
-                textbox.val("");
+            	textbox1.val("");
         });
     });
     /** *************************************************************** */
-    $("#common1").click(function() {
+    $("#item1").click(function() {
 		if (!checkInput() || !setControlName())
 			return false;
 		$("input[name=type]").val("save");
@@ -159,7 +156,7 @@ $(document).ready(function() {
 		$(this).val("上传中...");
 		$("#form1").submit();
 	});
-    $("#common2").click(function() {
+    $("#item2").click(function() {
 		if (!checkInput() || !setControlName())
 			return false;
 		$("input[name=type]").val("next");
@@ -168,6 +165,9 @@ $(document).ready(function() {
 		$(this).val("上传中...");
 		$("#form1").submit();
 	});
+    $("#item3").click(function() {
+    	$("body,html").animate({scrollTop: 0}, 100);
+    });
 	/** *************************************************************** */
 	function checkInput() {
 		if ($("input[name=node]").val() == "") {

@@ -10,13 +10,13 @@
 	<update id="updateOperator" parameterType="Operator">
 		update operator set	title = #{title}, 
 			name = #{name}, 
-			firstname = #{firstname}, 
-			lastname = #{lastname},	
-			chianame = #{chianame}, 
-			nickname = #{nickname}, 
-			grades = #{grades}, 
-			number = #{number},	
-			companyid = #{company.id} 
+			firstname = #{firstname},
+			lastname = #{lastname},
+			chianame = #{chianame},
+			nickname = #{nickname},
+			grades = #{grades},
+			number = #{number},
+			companyid = #{company.id}
 		where id=#{id}
 	</update>
 
@@ -50,10 +50,6 @@
 			</if>
 		</where>
 		order by id desc
-	</select>
-	
-	<select id="findListName" parameterType="Company" resultType="String">
-		select name from operator where companyid = #{id}
 	</select>
 	
 	<resultMap id="OperatorMap" type="Operator">

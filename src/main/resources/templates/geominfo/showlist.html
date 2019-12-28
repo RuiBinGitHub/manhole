@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<title>地图展示</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/survey/js/cesium/Widgets/widgets.css"/>
+    <link rel="stylesheet" type="text/css" href="/survey/css/geominfo/showlist.css"/>
+    <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/survey/js/cesium/Cesium.js"></script>
+    <script type="text/javascript" src="/survey/js/common/proj4.js"></script>
+    <script type="text/javascript" src="/survey/js/common/ol.js"></script> 
+    <script type="text/javascript" src="/survey/js/geominfo/showlist.js"></script> 
+  </head>
+  <body>
+    <div id="main">
+      <input type="text" id="textbox" value=""/>
+  	  <input type="button" id="btn1" value="+"/>
+      <div id="showdata"></div>
+      <a id="shownate">坐标：--，--</a>
+    </div>
+    
+    <!-- 输出项目数据 -->
+    <div id="list1" style="display:none;">
+  	  <div th:each="manhole:${manholes}">
+        <img th:id="${manhole.id}" alt="" src="/survey/img/定位.png"/>
+        <span th:data-x="${manhole.gridx}" th:data-y="${manhole.gridy}" th:text="${manhole.projectno}"></span>
+        <a th:text="${manhole.projectno + '--' + manhole.workorder}"></a>
+      </div>
+  	</div>
+  	
+  </body>
+</html>

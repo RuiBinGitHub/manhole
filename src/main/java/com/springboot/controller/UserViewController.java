@@ -49,7 +49,7 @@ public class UserViewController {
 		} else if ("role1".equals(user.getRole()))
 			view.setViewName("redirect:/company/showlist");
 		else
-			view.setViewName("redirect:/manhole/showlist");
+			view.setViewName("redirect:/project/showlist");
 		return view;
 	}
 

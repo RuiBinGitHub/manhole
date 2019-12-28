@@ -3,7 +3,7 @@
 #show {
 	top: 20px;
 	left: 20px;
-	width: 218px;
+	width: 248px;
 	background-color: #fff;
 	border: 2px solid #aaa;
 	position: absolute;
@@ -11,7 +11,6 @@
 }
 
 #show table {
-	width: 100%;
 	font-size: 14px;
 	background-color: #EAEAEA;
 	float: left;

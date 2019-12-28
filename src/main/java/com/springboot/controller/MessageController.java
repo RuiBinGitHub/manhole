@@ -31,10 +31,17 @@ public class MessageController {
 		User user = (User) MyHelper.findMap("user");
 		map = MyHelper.getMap("state", state, "user", user);
 		PageInfo<Message> info = messageBiz.findListMessage(map);
+		int count1 = 0, count2 = 0;
+		for (Message message : info.getList()) {
+			if ("已读".equals(message.getState()))
+				count1++;
+			if ("未读".equals(message.getState()))
+				count2++;
+		}
 		view.addObject("messages", info.getList());
-		view.addObject("count1", getCount("已读"));
-		view.addObject("count2", getCount("未读"));
 		view.addObject("cont", info.getPages());
+		view.addObject("count1", count1);
+		view.addObject("count2", count2);
 		view.addObject("page", page);
 		return view;
 	}

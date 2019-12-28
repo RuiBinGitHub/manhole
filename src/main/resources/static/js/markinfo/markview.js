@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var language = $("#infoTop").length < 4 ? "zh" : "en";
+    var language = $("#infoTop").length < 5 ? "zh" : "en";
     var btnText = language == "zh" ? "编辑" : "Edit";
     /********************************************************************/
     if ($("#menuText").val() == "") {
@@ -23,7 +23,7 @@ $(document).ready(function() {
     $("#tab1 tbody tr").each(function(i) {
     	var id = $(this).attr("id");
         $(this).find("a").attr("target", "_blank");
-        $(this).find("a").attr("href", "/survey/manhole/findinfo?id=" + id);
+        $(this).find("a").attr("href", "/survey/project/findinfo?id=" + id);
         /*************************************************/
         if (name.trim() != "") {
         	var text = $(this).find("td:eq(1) a").text();
@@ -33,7 +33,8 @@ $(document).ready(function() {
             $(this).find("td:eq(1) a").html(cont);
         }
         /*************************************************/
-        $(this).find("td:eq(7)").mouseenter(function(e) {
+        $(this).find("td:eq(6)").css("cursor", "pointer");
+        $(this).find("td:eq(6)").mouseenter(function(e) {
             $(this).css("background-color", "#FFE793");
             if ($(this).text() == 0)
                 return false;
@@ -41,6 +42,7 @@ $(document).ready(function() {
             var data = Ajax("marklist", {id: id});
             for (var i = 0; i < data.length; i++) {
                 context += "<tr>";
+                context += "  <td>" + (i + 1) + "</td>";
                 context += "  <td>" + data[i].score + "</td>";
                 context += "  <td>" + data[i].date + "</td>";
                 context += "  <td><input type='button' name='" + data[i].id + "'/></td>";
@@ -52,7 +54,7 @@ $(document).ready(function() {
             $("#show table tbody input").attr("value", btnText);
             $("#show").show();
         });
-        $(this).find("td:eq(7)").mouseleave(function(e) {
+        $(this).find("td:eq(6)").mouseleave(function(e) {
             if (i % 2 == 0)
                 $(this).css("background-color", "#FAFAFA");
             else
@@ -61,11 +63,10 @@ $(document).ready(function() {
         });
         /*************************************************/
         $(this).find("input:eq(0)").click(function() {
-            // 下载项目
-        	// window.open("/cctv/downfile?id=" + id);
+        	window.open("/survey/downfile?id=" + id);
         });
         $(this).find("input:eq(1)").click(function() {
-            window.open("insert?id=" + id);
+            window.open("markitem?id=" + id);
         });
         $(this).click(function() {
             $("#tab1 tbody tr:even").find("td:eq(0)").css("background-color", "#FAFAFA");
@@ -74,7 +75,7 @@ $(document).ready(function() {
         });
     });
     $("#show table tbody").on("click", "input", function() {
-    	window.open("editinfo?id=" + $(this).attr("name"));
+    	window.open("editmark?id=" + $(this).attr("name"));
     })
     $("#show").mouseenter(function(e) {
         $(this).show();

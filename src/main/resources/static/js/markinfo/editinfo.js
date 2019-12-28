@@ -32,7 +32,33 @@ $(document).ready(function() {
 		}
 		$(this).css("background-color", "#ccc");
 		$(this).attr("disable", true);
-		$(this).val("上传中...");
-		$("#form1").submit();
+		$(this).css("background-color", "#ccc");
+        $(this).attr("disabled", true);
+        $(this).val("上传中...");
+        if (Ajax("update", $("#form1").serialize()))
+            showTips("操作成功！");
+        setTimeout("location.reload()", 2000);
 	});
+	
+	/********************************************************************/
+    function showTips(text) {
+        $("#tips").show().delay(1800).hide(200);
+        $("#tips span").text(text);
+    }
+    /** 执行AJAX操作 */
+    function Ajax(url, data) {
+        var result = null;
+        $.ajax({
+            url: url,
+            data: data,
+            type: "post",
+            async: false,
+            datatype: "json",
+            success: function(data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+	
 });

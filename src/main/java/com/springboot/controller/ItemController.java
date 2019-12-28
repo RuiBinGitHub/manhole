@@ -67,8 +67,8 @@ public class ItemController {
 		return view;
 	}
 
-	@RequestMapping(value = "/commit", method = RequestMethod.POST)
-	public ModelAndView commit(Manhole manhole, MultipartFile[] files) {
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ModelAndView update(Manhole manhole, MultipartFile[] files) {
 		ModelAndView view = new ModelAndView("redirect:/success");
 		itemBiz.replacItem(manhole, files);
 		return view;
