@@ -28,10 +28,9 @@ public class MyRealm extends AuthorizingRealm {
 	@Resource
 	private UserBiz userBiz;
 	private Map<String, Object> map = null;
-
-	private SimpleAuthorizationInfo info1 = null;
-	private SimpleAuthenticationInfo info2 = null;
-	private AuthenticationException exception = null;
+	private SimpleAuthorizationInfo info1 = null; // 授权逻辑信息
+	private SimpleAuthenticationInfo info2 = null; // 认证逻辑信息
+	private AuthenticationException exception = null; // 认证异常
 
 	/** 执行授权逻辑 */
 	public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection collection) {
