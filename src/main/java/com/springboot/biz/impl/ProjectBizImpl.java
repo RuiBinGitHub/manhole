@@ -12,6 +12,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.springboot.biz.ProjectBiz;
 import com.springboot.dao.ProjectDao;
+import com.springboot.entity.Company;
 import com.springboot.entity.Project;
 import com.springboot.entity.User;
 import com.springboot.util.MyHelper;
@@ -53,6 +54,11 @@ public class ProjectBizImpl implements ProjectBiz {
 		List<Project> projects = projectDao.findListProject(map);
 		PageInfo<Project> info = new PageInfo<Project>(projects);
 		return info;
+	}
+
+	public List<Project> mapListProject(Company company) {
+		map = MyHelper.getMap("company", company);
+		return projectDao.mapListProject(map);
 	}
 
 	public int appendProject(Project project, User user) {

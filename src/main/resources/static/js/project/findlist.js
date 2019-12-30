@@ -26,9 +26,9 @@ $(document).ready(function() {
         if (name.trim() != "")
             window.location.href = "findlist?name=" + name;
     });
-    /** 新建项目 */
-    $("#append").click(function() {
-        // window.open("insertview");
+    /** 地图展示 */
+    $("#showmap").click(function() {
+        window.open("/survey/geominfo/showlist");
     });
     /********************************************************************/
     /** 初始化表格 */
@@ -46,7 +46,7 @@ $(document).ready(function() {
         }
         /*********************************************/
         $(this).find("input[type=button]:eq(0)").click(function() {
-            window.open("updateview?id=" + id);
+            window.open("/survey/dowmfile?id=" + id);
         });
         $(this).find("input[type=button]:eq(1)").click(function() {
         	if (!confirm(tipsText1))

@@ -55,8 +55,21 @@
 		order by p.id desc
 	</select>
 	
+	<select id="mapListProject" parameterType="Map" resultMap="ProjectMap">
+		select p.*, u.name u_name, avg(m.gridx) x, avg(m.gridy) y from project p
+			left join manhole m on m.projectid = p.id
+			left join users u on u.id = p.userid
+			where m.gridx > 0 and m.gridy > 0
+		<if test="company != null">
+			and u.companyid = #{company.id}
+		</if>
+		group by p.id, u.name
+	</select>
+	
 	<resultMap id="ProjectMap" type="Project">
 		<id property="id" column="id"/>
+		<result property="x" column="x"/>
+		<result property="y" column="y"/>
 		<result property="name" column="name"/>
 		<result property="operator" column="operator"/>
 		<result property="datetime1" column="datetime1"/>

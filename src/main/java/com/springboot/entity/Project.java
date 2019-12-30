@@ -16,6 +16,9 @@ public class Project implements Serializable {
 	private String date;
 	private User user;
 
+	private double x;
+	private double y;
+
 	public int getId() {
 		return id;
 	}
@@ -86,6 +89,22 @@ public class Project implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
 	}
 
 }

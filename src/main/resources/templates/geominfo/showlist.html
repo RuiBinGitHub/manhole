@@ -22,12 +22,14 @@
     
     <!-- 输出项目数据 -->
     <div id="list1" style="display:none;">
-  	  <div th:each="manhole:${manholes}">
-        <img th:id="${manhole.id}" alt="" src="/survey/img/定位.png"/>
-        <span th:data-x="${manhole.gridx}" th:data-y="${manhole.gridy}" th:text="${manhole.projectno}"></span>
-        <a th:text="${manhole.projectno + '--' + manhole.workorder}"></a>
+  	  <div th:each="project:${projects}">
+        <img th:id="${project.id}" src="/survey/img/定位.png"/>
+        <span th:data-x="${project.x}" th:data-y="${project.y}" th:text="${project.name}"></span>
+        <a th:text="${project.user.name}"></a>
       </div>
   	</div>
-  	
+  	<div id="list2" style="display:none">
+  	  <a th:each="manhole:${manholes}" th:data-id="${manhole.id}" th:data-x="${manhole.gridx}" th:data-y="${manhole.gridy}"></a>
+  	</div>
   </body>
 </html>

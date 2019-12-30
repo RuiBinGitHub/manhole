@@ -8,8 +8,7 @@ $(document).ready(function() {
     $("textarea").attr("readonly", true);
     var p = $("#index").val();
     $(".infoTop:eq(0) input").click(function() {
-        // window.open("/survey/manhole/editinfo?p=" + p);
-    	// 下载项目
+    	window.open("/survey/dowmfile?id=" + id);
     });
     $(".infoTop:eq(1) input").click(function() {
         window.open("/survey/manhole/insert?id=" + p);

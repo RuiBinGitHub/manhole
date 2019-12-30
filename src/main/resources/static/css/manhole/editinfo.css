@@ -385,16 +385,14 @@ body {
 }
 
 #item1, #item2, #item3 {
-	right: 7%;
-	width: 40px;
+	right: 6%;
+	width: 80px;
 	height: 40px;
 	color: #ffffff;
-	font-size: 20px;
-	font-weight: 600;
+	font-size: 14px;
 	text-align: center;
 	line-height: 40px;
-	background-color: #8b94ab;
-	border-radius: 4px;
+	background-color: #41495d;
 	position: fixed;
 }
 

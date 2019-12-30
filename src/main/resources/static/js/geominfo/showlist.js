@@ -95,10 +95,10 @@ $(document).ready(function() {
     var globe = scene.globe;
     globe.depthTestAgainstTerrain = true;
     // 获取管道数据绘画管道
-    $("#list1 div").each(function(i) {
-        var id = $(this).find("img").attr("id");
-        var x = $(this).find("span").data("x");
-    	var y = $(this).find("span").data("y");
+    $("#list2 a").each(function(i) {
+        var id = $(this).data("id");
+        var x = $(this).data("x");
+    	var y = $(this).data("y");
         var center = ol.proj.transform([x, y], "EPSG:2326", "EPSG:4326");
         drawManhole(id, "", center[0], center[1], -0.5);
     });

@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.springboot.biz.ItemBiz;
 import com.springboot.biz.ManholeBiz;
 import com.springboot.biz.PipeBiz;
+import com.springboot.biz.ProjectBiz;
 import com.springboot.entity.Manhole;
+import com.springboot.entity.Project;
 import com.springboot.entity.User;
 import com.springboot.util.MyHelper;
 
@@ -25,6 +27,8 @@ public class GeomInfoController {
 	@Value("${mypath}")
 	private String mypath;
 
+	@Resource
+	private ProjectBiz projectBiz;
 	@Resource
 	private ManholeBiz manholeBiz;
 	@Resource
@@ -39,7 +43,9 @@ public class GeomInfoController {
 		ModelAndView view = new ModelAndView("geominfo/showlist");
 		User user = (User) MyHelper.findMap("user");
 		map = MyHelper.getMap("xy", "", "company", user.getCompany());
+		List<Project> projects = projectBiz.mapListProject(user.getCompany());
 		List<Manhole> manholes = manholeBiz.findListManhole(map);
+		view.addObject("projects", projects);
 		view.addObject("manholes", manholes);
 		view.addObject("path", mypath);
 		return view;

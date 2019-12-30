@@ -16,5 +16,7 @@ public interface ProjectDao {
 	public Project findInfoProject(Map<String, Object> map);
 
 	public List<Project> findListProject(Map<String, Object> map);
+	
+	public List<Project> mapListProject(Map<String, Object> map);
 
 }
