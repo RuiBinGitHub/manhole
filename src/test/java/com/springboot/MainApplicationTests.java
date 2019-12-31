@@ -2,7 +2,7 @@ package com.springboot;
 
 import javax.annotation.Resource;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.springboot.biz.ManholeBiz;
