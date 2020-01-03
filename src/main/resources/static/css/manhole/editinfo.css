@@ -271,19 +271,12 @@ body {
 	border: 1px solid #000;
 }
 
-#table4 tr td select {
-	height: 27px;
+#table4 tr td input {
+	height: 50px;
 }
 
-#table4 tr td textarea {
-	width: 98%;
-	height: 48px;
-	font-size: 16px;
-	text-indent: 4px;
-	font-family: Times New Roman;
-	outline: none;
-	border: none;
-	resize: none;
+#table4 tr td select {
+	height: 27px;
 }
 
 #table5 {
@@ -386,7 +379,7 @@ body {
 
 #item1, #item2, #item3 {
 	right: 6%;
-	width: 80px;
+	width: 76px;
 	height: 40px;
 	color: #ffffff;
 	font-size: 14px;

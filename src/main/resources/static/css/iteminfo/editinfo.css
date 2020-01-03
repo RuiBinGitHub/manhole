@@ -24,21 +24,6 @@ body {
 	float: left;
 }
 
-#mainTop input {
-	width: 80px;
-	height: 30px;
-	color: #fff;
-	margin: 9px 6px;
-	outline: none;
-	border: none;
-	float: left;
-}
-
-#mainTop input:hover {
-	cursor: pointer;
-	color: #F4EA2A;
-}
-
 #mainInfo {
 	width: 100%;
 	background-color: #fff;
@@ -120,6 +105,23 @@ body {
 #append div:hover {
 	cursor: pointer;
 	color: #ccc;
+}
+
+#item1, #item2, #item3, #item4 {
+	right: 13%;
+	width: 76px;
+	height: 40px;
+	color: #ffffff;
+	font-size: 14px;
+	text-align: center;
+	line-height: 40px;
+	background-color: #41495d;
+	position: fixed;
+}
+
+#item1:hover, #item2:hover, #item3:hover, #item4:hover {
+	background-color: #ff4444;
+	cursor: pointer;
 }
 /** ******************************************************************* */
 #tips {

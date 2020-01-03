@@ -9,6 +9,7 @@ $(document).ready(function() {
 	$("input[type=text]:eq(3)").attr("readonly", true);
 	/** *************************************************************** */
 	$("input[name=operator]").attr("list", "names");
+	$("input[name*=date]").css("cursor", "pointer");
 	laydate.render({
 		elem : "input[name=datetime1]",
 		format : "dd/MM/yyyy"

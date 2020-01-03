@@ -190,10 +190,13 @@ body {
 
 #tab2 {
 	width: 980px;
+	font-size: 18px;
+	font-family: 宋体;
 	margin: 15px 10px 0px 10px;
 	border-top: 1px solid #ccc;
 	float: left;
 }
+
 
 .pagebtn {
 	width: 75px;

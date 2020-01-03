@@ -65,4 +65,14 @@ public class UserInfoController {
 		view.addObject("temp", temp);
 		return view;
 	}
+
+	@RequestMapping(value = "/resetpass")
+	public boolean resetPass(String name, String pass) {
+		User user = (User) MyHelper.findMap("user");
+		if (!user.getPassword().equals(name))
+			return false;
+		user.setPassword(pass);
+		userBiz.updateUser(user);
+		return true;
+	}
 }

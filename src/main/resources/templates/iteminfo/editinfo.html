@@ -11,11 +11,7 @@
   <body>
     <div th:replace="navigation::navigation"></div>
     <div id="main">
-      <div id="mainTop">
-        <span style="margin-right:930px;float:left;">上传图片</span>
-        <input type="button" value="确定" style="background-color: #3CB44B;"/>
-        <input type="button" value="删除" style="background-color: #FF2828;"/>
-      </div>
+      <div id="mainTop">上传图片</div>
       <div id="mainInfo">
         <form action="update" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" th:value="${param.id}"/>
@@ -78,6 +74,11 @@
     </div>
     <!-- main结束 -->
     <div id="tips"><span></span></div>
+    
+    <div id="item1" style="bottom:252px;" th:text="#{iteminfo.editinfo.button1}"></div>
+    <div id="item2" style="bottom:202px;" th:text="#{iteminfo.editinfo.button2}"></div>
+    <div id="item3" style="bottom:152px;" th:text="#{iteminfo.editinfo.button3}"></div>
+    <div id="item4" style="bottom:102px;" th:text="#{iteminfo.editinfo.button4}"></div>
     
     <datalist id="list">
       <option>Manhole Location</option>

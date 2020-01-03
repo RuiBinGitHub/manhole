@@ -4,6 +4,13 @@ $(document).ready(function() {
 	$(".textbox:eq(0)").attr("placeholder", "请输入登录账号");
 	$(".textbox:eq(1)").attr("placeholder", "请输入登录密码");
 	/** *************************************************************** */
+	var text = $("#tips").text();
+	if (text != null && text != "")
+		showTips(text);
+	$("input").keydown(function() {
+		if (event.keyCode == 13)
+			$(".commit").click();
+	});
 	$(".commit").click(function() {
 		var name = $(".textbox:eq(0)").val();
 		var pass = $(".textbox:eq(1)").val();

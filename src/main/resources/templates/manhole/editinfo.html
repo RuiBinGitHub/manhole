@@ -317,21 +317,21 @@
           <td width="100px">(53) UTR</td>
           <td width="100px"><select name="util1" th:value="${manhole?.util1}"></select></td>
           <td width="130px" rowspan="2">(59) Location photo no.</td>
-          <td width="202px" rowspan="2"><textarea name="photono1" th:text="${manhole?.photono1}"></textarea></td>
+          <td width="202px" rowspan="2"><input name="photono1" th:value="${manhole?.photono1}"/></td>
         </tr>
         <tr><td>(54) UTL</td><td><select name="util2" th:value="${manhole?.util2}"></select></td></tr>
         <tr>
           <td>(55) UTGA</td>
           <td><select name="util3" th:value="${manhole?.util3}"></select></td>
           <td rowspan="2">(60) Internal photo no.</td>
-          <td rowspan="2"><textarea name="photono2" th:text="${manhole?.photono2}"></textarea></td>
+          <td rowspan="2"><input name="photono2" th:value="${manhole?.photono2}"/></td>
         </tr>
         <tr><td>(56) UTS</td><td><select name="util4" th:value="${manhole?.util4}"></select></td></tr>
         <tr>
           <td>(57) JETTING</td>
           <td><select name="util5" th:value="${manhole?.util5}"></select></td>
           <td rowspan="2">Slope No. </td>
-          <td rowspan="2"><textarea name="slopeno" th:text="${manhole?.slopeno}"></textarea></td>
+          <td rowspan="2"><input name="slopeno" th:value="${manhole?.slopeno}"/></td>
         </tr>
         <tr><td>(58) ON-SLOPE</td><td><select name="util6" th:value="${manhole?.util6}"></select></td></tr>
       </table>
@@ -409,7 +409,7 @@
       <div id="remark">Remarks:  * - Code description refers to Appendix - Quick Reference for Code in IDMS Manhole Card</div>
     </div>
     <div id="item1" style="bottom:212px;">保存数据</div>
-    <div id="item2" style="bottom:162px;">下一步>></div>
+    <div id="item2" style="bottom:162px;">下一页>></div>
     <div id="item3" style="bottom:112px;">返回顶部</div>
     
     <!-- main结束 -->

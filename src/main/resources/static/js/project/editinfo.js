@@ -8,7 +8,7 @@ $(document).ready(function() {
     $("textarea").attr("readonly", true);
     var p = $("#index").val();
     $(".infoTop:eq(0) input").click(function() {
-    	window.open("/survey/dowmfile?id=" + id);
+    	window.open("/survey/downfile?id=" + p);
     });
     $(".infoTop:eq(1) input").click(function() {
         window.open("/survey/manhole/insert?id=" + p);

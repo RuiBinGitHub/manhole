@@ -63,7 +63,7 @@ $(document).ready(function() {
         });
         /*************************************************/
         $(this).find("input:eq(0)").click(function() {
-        	window.open("/survey/dowmfile?id=" + id);
+        	window.open("/survey/downfile?id=" + id);
         });
         $(this).find("input:eq(1)").click(function() {
             window.open("markitem?id=" + id);

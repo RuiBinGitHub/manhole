@@ -1,7 +1,21 @@
 $(document).ready(function() {
 	
+	/** *************************************************************** */
+	/** 删除一个表格 */
+	$("#item1").click(function() {
+		if ($(".table").length == 1)
+			return false;
+		var id = $(".table:last input[type=hidden]:eq(0)").val();
+		if (id != 0 && confirm("确定删除该图片框吗?")) {
+			Ajax("delete", {id: id});
+			$(".table:last").remove();
+		}
+		if (id == 0 || id == "")
+			$(".table:last").remove();
+	});
+	
 	/** 提交数据 */
-	$("#mainTop input:eq(0)").click(function() {
+	$("#item2").click(function() {
 		if (!checkInput())
 			return false;
 		setControlName();
@@ -9,6 +23,14 @@ $(document).ready(function() {
 		$(this).attr("disable", true);
 		$(this).val("上传中...");
 		$("form").submit();
+	});
+	
+	$("#item3").click(function() {
+		var id = $("input[name=id]").val();
+		location.href="/survey/manhole/editinfo?id=" + id;
+	});
+	$("#item4").click(function() {
+		$("body,html").animate({scrollTop: 0}, 100);
 	});
 	
 	function checkInput() {
@@ -56,19 +78,6 @@ $(document).ready(function() {
 		table.find("input[type=hidden]:eq(2)").val("");
 		table.find("input[type=text]").val("");
 		$("form").append(table);
-	});
-	
-	/** 删除一个表格 */
-	$("#mainTop input:eq(1)").click(function() {
-		if ($(".table").length == 1)
-			return false;
-		var id = $(".table:last input[type=hidden]:eq(0)").val();
-		if (id != 0 && confirm("确定删除该图片框吗?")) {
-			Ajax("delete", {id: id});
-			$(".table:last").remove();
-		}
-		if (id == 0 || id == "")
-			$(".table:last").remove();
 	});
 	
 	/** 表格内图片点击事件 */

@@ -15,7 +15,9 @@
 	</delete>
 	
 	<select id="findInfoMarkPipe" parameterType="Map" resultMap="MarkPipeMap">
-		select a.*, b.* from markpipe a left join manhole b on b.id = a.manholeid left join markitem c on c.id = a.markid
+		select a.id a_id, a.score a_score, a.remark a_remark, b.* from markpipe a
+			left join manhole b on b.id = a.manholeid 
+			left join markitem c on c.id = a.markid
 		<where>
 			<if test="id != null">
 				and a.id = #{id}
@@ -30,7 +32,9 @@
 	</select>
 	
 	<select id="findListMarkPipe" parameterType="Map" resultMap="MarkPipeMap">
-		select a.*, b.* from markpipe a left join manhole b on b.id = a.manholeid left join markitem c on c.id = a.markid
+		select a.id a_id, a.score a_score, a.remark a_remark, b.* from markpipe a
+			left join manhole b on b.id = a.manholeid 
+			left join markitem c on c.id = a.markid
 		<where>
 			<if test="markItem != null">
 				and c.id = #{markItem.id}
@@ -43,11 +47,11 @@
 	</select>
 	
 	<resultMap id="MarkPipeMap" type="MarkPipe">
-		<id property="id" column="id"/>
-		<result property="score" column="score"/>
-		<result property="remark" column="remark"/>
+		<id property="id" column="a_id"/>
+		<result property="score" column="a_score"/>
+		<result property="remark" column="a_remark"/>
 		<association property="manhole" javaType="Manhole">
-			<id property="id" column="manholeid"/>
+			<id property="id" column="id"/>
 			<result property="node" column="node"/>
 			<result property="gridx" column="gridx"/>
 			<result property="gridy" column="gridy"/>
@@ -121,9 +125,6 @@
 			<result property="with1" column="with1"/>
 			<result property="with2" column="with2"/>
 			<result property="with3" column="with3"/>
-		</association>
-		<association property="markItem" javaType="MarkItem">
-			<id property="id" column="markid"/>
 		</association>
 	</resultMap>
 </mapper>

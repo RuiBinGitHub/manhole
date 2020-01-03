@@ -56,11 +56,11 @@ $(document).ready(function() {
     /** node输入框内容修改事件 */
     $("input[name=node]").on("input", function() {
         if ($(this).val() != "") {
-            $("textarea[name=photono1]").val($(this).val() + "-P01");
-            $("textarea[name=photono2]").val($(this).val() + "-P02");
+            $("input[name=photono1]").val($(this).val() + "-P01");
+            $("input[name=photono2]").val($(this).val() + "-P02");
         } else {
-            $("textarea[name=photono1]").val("");
-            $("textarea[name=photono2]").val("");
+            $("input[name=photono1]").val("");
+            $("input[name=photono2]").val("");
         }
     });
 

@@ -39,7 +39,6 @@ $(document).ready(function() {
             showTips("操作成功！");
         setTimeout("location.reload()", 2000);
 	});
-	
 	/********************************************************************/
     function showTips(text) {
         $("#tips").show().delay(1800).hide(200);
