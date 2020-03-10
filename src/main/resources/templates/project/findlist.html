@@ -48,7 +48,7 @@
 			</tr>       
           </thead>
           <tbody>
-            <tr th:each="project,status:${proejcts}" th:id="${project.id}">
+            <tr th:each="project,status:${projects}" th:id="${project.id}">
               <td th:text="${status.count+(page-1)*15}"></td>
               <td><a th:href="@{findinfo(id=${project.id})}" th:text="${project.name}"></a></td>
           	  <td th:text="${project.operator}"></td>
@@ -64,7 +64,7 @@
           	</tr>
           </tbody>
         </table>
-        <img th:if="${#lists.isEmpty(proejcts)}" src="/survey/img/null.png" style="margin:145px 400px;float:left;">
+        <img th:if="${#lists.isEmpty(projects)}" src="/survey/img/null.png" style="margin:145px 400px;float:left;">
         <table id="tab2" th:if="${!#lists.isEmpty(projects)}">
           <tr height="65px">
             <td width="45%" align="right"><input type="button" th:value="#{showlit.page.button1}" class="pagebtn"/></td>

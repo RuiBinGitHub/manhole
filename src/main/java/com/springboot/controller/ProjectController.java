@@ -46,7 +46,7 @@ public class ProjectController {
 		if (!StringUtils.isEmpty(name))
 			map.put("name", name);
 		PageInfo<Project> info = projectBiz.findListProject(map);
-		view.addObject("proejcts", info.getList());
+		view.addObject("projects", info.getList());
 		view.addObject("cont", info.getPages());
 		view.addObject("page", page);
 		return view;
@@ -61,7 +61,7 @@ public class ProjectController {
 		if (!StringUtils.isEmpty(name))
 			map.put("name", name);
 		PageInfo<Project> info = projectBiz.findListProject(map);
-		view.addObject("proejcts", info.getList());
+		view.addObject("projects", info.getList());
 		view.addObject("cont", info.getPages());
 		view.addObject("page", page);
 		return view;
