@@ -362,20 +362,11 @@
           <td width="195px"><textarea name="rtype" th:text="${manhole?.rtype}"></textarea></td>
         </tr>
       </table>
-      <div th:if="${manhole != null}" style="display:none">
-      	<input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,0,1)}"/>
-      	<input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,2,3)}"/>
-      	<input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,4,5)}"/>
-      	<input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,6,7)}"/>
-      	<input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,8,9)}"/>
-      </div>
-      <div th:if="${manhole == null}" style="display:none">
-      	<input type="hidden" name="ctype" value="N"/>
-      	<input type="hidden" name="ctype" value="N"/>
-      	<input type="hidden" name="ctype" value="N"/>
-      	<input type="hidden" name="ctype" value="N"/>
-      	<input type="hidden" name="ctype" value="N"/>
-      </div>
+      <input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,0,1)}"/>
+      <input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,2,3)}"/>
+      <input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,4,5)}"/>
+      <input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,6,7)}"/>
+      <input type="hidden" name="ctype" th:value="${#strings.substring(manhole.ctype,8,9)}"/>
       
       <!-- 表格6 -->
       <input type="hidden" id="path1" name="path1" th:value="${manhole?.path1}"/>

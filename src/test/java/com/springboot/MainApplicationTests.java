@@ -1,32 +1,28 @@
 package com.springboot;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.springboot.biz.ManholeBiz;
-import com.springboot.biz.MarkItemBiz;
 import com.springboot.biz.PipeBiz;
-import com.springboot.entity.Manhole;
-import com.springboot.entity.Project;
+import com.springboot.biz.UserBiz;
+import com.springboot.util.MyHelper;
 
 @SpringBootTest
 public class MainApplicationTests {
 
 	@Resource
-	private ManholeBiz manholeBiz;
-	@Resource
-	private MarkItemBiz markItemBiz;
-	@Resource
 	private PipeBiz pipeBiz;
-
+	@Resource
+	private UserBiz userBiz;
+	
 	@Test
-	void contextLoads() {
-		Project project = new Project();
-		project.setId(6);
-		Manhole manhole = manholeBiz.findLastManhole(project);
-		System.out.println(manhole.getId());
+	public void contextLoads() {
+		Map<String, Object> map = MyHelper.getMap("id", "2");
+		System.out.println(pipeBiz.findInfoPipe(map));
 	}
 
 }

@@ -10,7 +10,12 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -59,11 +64,38 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/operator/insertview").setViewName("operator/insert");
 		registry.addViewController("/userinfo/center").setViewName("userinfo/center");
-
 		registry.addViewController("**/authorize").setViewName("userview/authorize");
 		registry.addViewController("**/loginview").setViewName("userview/loginview");
 		registry.addViewController("**/success").setViewName("userview/success");
 		registry.addViewController("**/failure").setViewName("userview/failure");
+		registry.addViewController("**/testview").setViewName("testview/test");
+	}
+
+	public void addInterceptors(InterceptorRegistry registry) {
+		JwtInterceptor interceptor = new JwtInterceptor();
+		InterceptorRegistration registration = registry.addInterceptor(interceptor);
+		// 配置不拦截请求路径
+		registration.excludePathPatterns("/app/userview/**");
+		// 配置拦截请求路径
+		registration.addPathPatterns("/app/**");
+	}
+
+	@Bean
+	public CorsFilter addCorsFilter() {
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.addAllowedOrigin("*"); // 1允许任何域名使用
+		configuration.addAllowedHeader("*"); // 2允许任何请求头
+		configuration.addAllowedMethod("*"); // 3允许任何方法
+		source.registerCorsConfiguration("/**", configuration);
+		CorsFilter corsFilter = new CorsFilter(source);
+		return corsFilter;
+	}
+
+	@Bean
+	public LocaleResolver localeResolver() {
+		LocaleResolver resolver = new MyLocaleResolver();
+		return resolver;
 	}
 
 	@Bean
@@ -72,9 +104,4 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		return dialect;
 	}
 
-	@Bean
-	public LocaleResolver localeResolver() {
-		LocaleResolver resolver = new MyLocaleResolver();
-		return resolver;
-	}
 }

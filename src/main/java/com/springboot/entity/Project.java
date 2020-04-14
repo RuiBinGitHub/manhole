@@ -1,6 +1,7 @@
 package com.springboot.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Project implements Serializable {
 
@@ -16,6 +17,7 @@ public class Project implements Serializable {
 	private String date;
 	private User user;
 
+	private List<Manhole> manholes;
 	private double x;
 	private double y;
 
@@ -89,6 +91,14 @@ public class Project implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Manhole> getManholes() {
+		return manholes;
+	}
+
+	public void setManholes(List<Manhole> manholes) {
+		this.manholes = manholes;
 	}
 
 	public double getX() {

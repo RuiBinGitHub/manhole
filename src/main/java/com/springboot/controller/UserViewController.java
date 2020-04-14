@@ -70,5 +70,5 @@ public class UserViewController {
 		System.out.println("0001");
 		return true;
 	}
-
+	
 }

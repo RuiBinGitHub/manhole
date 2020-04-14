@@ -106,6 +106,7 @@ public class ManholeController {
 		}
 		manhole.setCond("N");
 		manhole.setCrit("N");
+		manhole.setCtype("N,N,N,N,N");
 		manhole.setProject(project);
 		view.setViewName("manhole/editinfo");
 		view.addObject("manhole", manhole);
