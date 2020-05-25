@@ -232,7 +232,7 @@
 		<result property="soffit" column="soffit"/>
 		<result property="steps" column="steps"/>
 		<result property="ladder" column="ladder"/>
-		<result property="lndgs" column="nlndgsame"/>
+		<result property="lndgs" column="lndgs"/>
 		<result property="csize1" column="csize1"/>
 		<result property="csize2" column="csize2"/>
 		<result property="toxic" column="toxic"/>

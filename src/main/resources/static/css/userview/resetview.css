@@ -52,33 +52,22 @@ body {
 	float: left;
 }
 
-#info {
+#tab1 {
 	width: 300px;
-	margin-top: 80px;
+	margin-top: 35px;
 	margin-left: 120px;
 	float: left;
 }
 
-#info tr {
+#tab1 tr {
 	height: 56px;
 }
 
-#info tr td span {
+#tab1 tr td span {
 	color: #fff;
 	font-size: 24px;
 	font-family: 宋体;
 	font-weight: 600;
-}
-
-#info tr td a {
-	color: #fff;
-	font-size: 18px;
-	font-family: 宋体;
-	text-decoration: none;
-}
-
-#info tr td a:hover {
-	text-decoration: underline;
 }
 
 .textbox {
@@ -92,6 +81,40 @@ body {
 	background-color: #32435D;
 	border-bottom: 2px solid #00D3F8;
 	outline: none;
+	float: left;
+}
+
+.code {
+	width: 135px;
+	height: 32px;
+	color: #fff;
+	border: none;
+	font-size: 18px;
+	font-family: 宋体;
+	text-indent: 5px;
+	background-color: #32435D;
+	border-bottom: 2px solid #00D3F8;
+	outline: none;
+	float: left;
+}
+
+.btn1 {
+	width: 135px;
+	height: 36px;
+	color: #fff;
+	font-size: 14px;
+	font-family: 宋体;
+	margin-left: 10px;
+	background-color: #32435D;
+	border: 2px solid #00D3F8;
+	border-radius: 5px;
+	cursor: pointer;
+	outline: none;
+}
+
+.near:hover {
+	color: #00D3F8;
+	background-color: #fff;
 }
 
 .commit {
@@ -111,25 +134,24 @@ body {
 	cursor: pointer;
 }
 /** ******************************************************************** */
-#tips {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	line-height: 800px;
-	background-color: rgba(255, 255, 255, 0);
-	position: fixed;
+// 删除输入框小三角
+input::-webkit-calendar-picker-indicator {
+	-webkit-appearance: none;
 	display: none;
-	z-index: 10;
 }
 
-#tips span {
+#tips {
+	top: 40%;
+	left: 45%;
+	padding: 10px 20px;
+	position: fixed;
 	color: #ffffff;
 	font-size: 18px;
-	font-family: 宋体;
+	font-family: simsun;
 	text-align: center;
-	padding: 30px 20px;
+	line-height: 80px;
 	background-color: rgba(60, 60, 60, 0.8);
 	border-radius: 6px;
+	display: none;
+	z-index: 9;
 }
