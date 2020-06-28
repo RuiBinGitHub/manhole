@@ -1,11 +1,12 @@
 $(document).ready(function() {
 
-	if ($("[name=id]").val() == "")
-    	$("[name=id]").val(0);
-    var option = "<option>N</option><option>Y</option>";
+	if ($("input[name=id]").val() == "")
+    	$("input[name=id]").val(0);
+    var option = "<option value='N'>N</option><option value='Y'>Y</option>";
     /** 设置select的值 */
     $("select").html(option);
     $("select").each(function() {
+    	console.log($(this).attr("value"));
         $(this).val($(this).attr("value"));
     });
     
@@ -86,9 +87,8 @@ $(document).ready(function() {
     $("[name=rtype]").attr("placeholder", "Other(                  )");
     /** *************************************************************** */
     $(".ptab").each(function(i) {
+    	var select = $(this).find("select");
         var textbox = $(this).find("input");
-        var select = $(this).find("select");
-        $(this).find("select").html(option);
         if (textbox.val() == "" && select.val() == "N")
         	textbox.val("N");
         $(this).find("select").change(function() {

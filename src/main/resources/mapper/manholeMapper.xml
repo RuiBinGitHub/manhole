@@ -198,7 +198,7 @@
 				and u.companyid = #{company.id}
 			</if>
 		</where>
-		order by id desc
+		order by m.id
 	</select>
 	
 	<resultMap id="ManholeMap" type="Manhole">

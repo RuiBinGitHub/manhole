@@ -59,11 +59,13 @@ $(document).ready(function() {
 			$(this).find("input[type=hidden]:eq(1)").attr("name", "items[" + i + "].path1");
 			$(this).find("input[type=hidden]:eq(2)").attr("name", "items[" + i + "].path2");
 			$(this).find("input[type=text]:eq(0)").attr("name", "items[" + i + "].photo1");
-			$(this).find("input[type=text]:eq(1)").attr("name", "items[" + i + "].explain1");
-			$(this).find("input[type=text]:eq(2)").attr("name", "items[" + i + "].remark1");
-			$(this).find("input[type=text]:eq(3)").attr("name", "items[" + i + "].photo2");
-			$(this).find("input[type=text]:eq(4)").attr("name", "items[" + i + "].explain2");
-			$(this).find("input[type=text]:eq(5)").attr("name", "items[" + i + "].remark2");
+			$(this).find("input[type=text]:eq(1)").attr("name", "items[" + i + "].location1");
+			$(this).find("input[type=text]:eq(2)").attr("name", "items[" + i + "].explain1");
+			$(this).find("input[type=text]:eq(3)").attr("name", "items[" + i + "].remark1");
+			$(this).find("input[type=text]:eq(4)").attr("name", "items[" + i + "].photo2");
+			$(this).find("input[type=text]:eq(5)").attr("name", "items[" + i + "].location2");
+			$(this).find("input[type=text]:eq(6)").attr("name", "items[" + i + "].explain2");
+			$(this).find("input[type=text]:eq(7)").attr("name", "items[" + i + "].remark2");
 		});
 	}
 	
@@ -100,7 +102,7 @@ $(document).ready(function() {
 	});
 	
 	/** 表格文件框改变事件 */
-	$("#mainInfo").on("change", "input[type=file]", function() {
+	$("#mainInfo").on("change", "input[type=file]", function(i) {
 		if (this.files.length == 0)
             return false;
 		var url = getURL(this.files[0]);

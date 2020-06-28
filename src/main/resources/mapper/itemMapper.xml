@@ -4,7 +4,7 @@
 <mapper namespace="com.springboot.dao.ItemDao">
 
 	<insert id="insertItem" parameterType="Item" useGeneratedKeys="true" keyProperty="id">
-		insert into item values(null, #{no}, #{path1}, #{path2}, #{photo1}, #{photo2}, #{explain1}, #{explain2}, #{remark1}, #{remark2}, #{manhole.id})
+		insert into item values(null, #{no}, #{path1}, #{path2}, #{photo1}, #{photo2}, #{location1}, #{location2}, #{explain1}, #{explain2}, #{remark1}, #{remark2}, #{manhole.id})
 	</insert>
 
 	<update id="updateItem" parameterType="Item">
@@ -13,6 +13,8 @@
 			path2 = #{path2},
 			photo1 = #{photo1},
 			photo2 = #{photo2},
+			location1 = #{location1},
+			location2 = #{location2},
 			explain1 = #{explain1},
 			explain2 = #{explain2},
 			remark1 = #{remark1},

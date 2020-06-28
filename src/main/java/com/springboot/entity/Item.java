@@ -2,16 +2,18 @@ package com.springboot.entity;
 
 import java.io.Serializable;
 
-public class Item  implements Serializable{
+public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private int id;
 	private int no;
 	private String path1;
 	private String path2;
 	private String photo1;
 	private String photo2;
+	private String location1;
+	private String location2;
 	private String explain1;
 	private String explain2;
 	private String remark1;
@@ -64,6 +66,22 @@ public class Item  implements Serializable{
 
 	public void setPhoto2(String photo2) {
 		this.photo2 = photo2;
+	}
+
+	public String getLocation1() {
+		return location1;
+	}
+
+	public void setLocation1(String location1) {
+		this.location1 = location1;
+	}
+
+	public String getLocation2() {
+		return location2;
+	}
+
+	public void setLocation2(String location2) {
+		this.location2 = location2;
 	}
 
 	public String getExplain1() {

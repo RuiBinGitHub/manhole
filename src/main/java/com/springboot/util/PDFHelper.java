@@ -152,7 +152,7 @@ public class PDFHelper extends PdfPageEventHelper {
 			table1.addCell(writeValue(manhole.getDuties(), font2, 1, 1, 0, 1, border2));
 			table1.addCell(writeValue("(19) Cover size", font1, 1, 1, 0, 0, border1));
 			table1.addCell(writeValue(manhole.getCover1(), font2, 1, 1, 0, 1, bordera));
-			table1.addCell(writeValue("X", font1, 1, 1, 0, 1, borderb));
+			table1.addCell(writeValue("x", font2, 1, 1, 0, 1, borderb));
 			table1.addCell(writeValue(manhole.getCover2(), font2, 1, 1, 0, 1, borderc));
 			table1.addCell(writeValue("(29) Toxic atmosphere", font1, 1, 1, 0, 0, border1));
 			table1.addCell(writeValue(manhole.getToxic(), font2, 1, 1, 0, 1, border2));
@@ -167,7 +167,7 @@ public class PDFHelper extends PdfPageEventHelper {
 			table1.addCell(writeValue("", null, 1, 2, 0, 0, border1));
 			table1.addCell(writeValue("(23) Shaft size", font1, 1, 1, 0, 0, border1));
 			table1.addCell(writeValue(manhole.getShaft1(), font2, 1, 1, 0, 1, borderd));
-			table1.addCell(writeValue("X", font1, 1, 1, 0, 1, bordere));
+			table1.addCell(writeValue("x", font2, 1, 1, 0, 1, bordere));
 			table1.addCell(writeValue(manhole.getShaft2(), font2, 1, 1, 0, 1, borderf));
 			table1.addCell(writeValue("(30) Evidence of vermi", font1, 1, 1, 0, 0, border1));
 			table1.addCell(writeValue(manhole.getEvidences(), font2, 1, 1, 0, 1, border2));
@@ -183,7 +183,7 @@ public class PDFHelper extends PdfPageEventHelper {
 			table1.addCell(writeValue(manhole.getLndgs(), font2, 1, 1, 0, 1, border2));
 			table1.addCell(writeValue("(28) Chamber size", font1, 1, 1, 0, 0, border1));
 			table1.addCell(writeValue(manhole.getCsize1(), font2, 1, 1, 0, 1, borderi));
-			table1.addCell(writeValue("X", font2, 1, 1, 0, 1, borderj));
+			table1.addCell(writeValue("x", font2, 1, 1, 0, 1, borderj));
 			table1.addCell(writeValue(manhole.getCsize2(), font2, 1, 1, 0, 1, borderk));
 			table1.addCell(writeValue("(31) Construct code *", font1, 1, 1, 0, 0, borderf));
 			table1.addCell(writeValue(manhole.getConstruct(), font2, 1, 1, 0, 1, border2));
@@ -230,19 +230,19 @@ public class PDFHelper extends PdfPageEventHelper {
 			for (int i = 0; i < 8; i++) {
 				Pipe pipe = pips.get(i);
 				table2.addCell(writeValue((char) (65 + i) + "", ifont, 1, 1, height2, 1, border1));
-				table2.addCell(writeValue(pipe.getUpstream(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getShape(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getSize1(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue("x", font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getSize2(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getBackdrop(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getMaterial(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getLining(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getDepth(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getLevel(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getPhoto(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getOffice1(), font2, 1, 1, height2, 1, border2));
-				table2.addCell(writeValue(pipe.getOffice2(), font2, 1, 1, height2, 1, border2));
+				table2.addCell(writeValue(pipe.getUpstream(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getShape(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getSize1(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue("x", font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getSize2(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getBackdrop(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getMaterial(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getLining(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getDepth(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getLevel(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getPhoto(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getOffice1(), font2, 1, 1, 0, 1, border2));
+				table2.addCell(writeValue(pipe.getOffice2(), font2, 1, 1, 0, 1, border2));
 			}
 			// 添加空行
 			table2.addCell(writeValue("", font1, 1, widths2.length, 4, 0, border1));
@@ -396,6 +396,7 @@ public class PDFHelper extends PdfPageEventHelper {
 				table6.addCell(writeValue("With decoration cover", font1, 2, 1, 0, 1, border2));
 			else
 				table6.addCell(writeValue("With decoration cover", font2, 2, 1, 0, 1, border2));
+
 			table6.addCell(writeValue(manhole.getRtype(), font1, 2, 1, 0, 0, border2));
 			table6.addCell(writeValue("(56) UTS", font1, 1, 1, height6, 0, border2));
 			table6.addCell(writeValue(manhole.getUtil6(), font1, 1, 1, 0, 1, border2));
@@ -482,30 +483,30 @@ public class PDFHelper extends PdfPageEventHelper {
 				int iheight2 = 15, iheight3 = 60;
 				// 第一行
 				if (StringUtils.isEmpty(item.getPath1()))
-					ptable2.addCell(writeValue("No Photo", ifont1, 8, 1, 0, 1, border2));
+					ptable2.addCell(writeValue("", ifont1, 8, 1, 0, 1, border2));
 				else
 					ptable2.addCell(iwriteImage(myfile + "ItemImage/", item.getPath1(), 390, 290, 8, 1, border2));
 				ptable2.addCell(writeValue("Photograph No.:", ifont2, 1, 1, iheight2, 0, ibodera));
-				ptable2.addCell(writeValue(manhole.getPhotono1(), ifont2, 1, 1, iheight3, 1, iboderb));
+				ptable2.addCell(writeValue(item.getPhoto1(), ifont2, 1, 1, iheight3, 1, iboderb));
 				ptable2.addCell(writeValue("Location :", ifont2, 1, 1, iheight2, 0, ibodera));
-				ptable2.addCell(writeValue(manhole.getLocation(), ifont2, 1, 1, iheight3, 1, iboderb));
+				ptable2.addCell(writeValue(item.getLocation1(), ifont2, 1, 1, iheight3, 1, iboderb));
 				ptable2.addCell(writeValue("Description:", ifont2, 1, 1, iheight2, 0, ibodera));
-				ptable2.addCell(writeValue("Manhole Location", ifont2, 1, 1, iheight3, 1, iboderb));
+				ptable2.addCell(writeValue(item.getExplain1(), ifont2, 1, 1, iheight3, 1, iboderb));
 				ptable2.addCell(writeValue("Remark:", ifont2, 1, 1, iheight2, 0, ibodera));
 				ptable2.addCell(writeValue(item.getRemark1(), ifont2, 1, 1, iheight3, 1, iboderb));
 				// 插入空行
 				ptable2.addCell(writeValue("", null, 1, 2, 28, 1, border2));
 				// 第二行
 				if (StringUtils.isEmpty(item.getPath2()))
-					ptable2.addCell(writeValue("No Photo", ifont1, 8, 1, 0, 1, border2));
+					ptable2.addCell(writeValue("", ifont1, 8, 1, 0, 1, border2));
 				else
 					ptable2.addCell(iwriteImage(myfile + "ItemImage/", item.getPath2(), 390, 290, 8, 1, border2));
 				ptable2.addCell(writeValue("Photograph No.:", ifont2, 1, 1, iheight2, 0, ibodera));
-				ptable2.addCell(writeValue(manhole.getPhotono1(), ifont2, 1, 1, iheight3, 1, iboderb));
+				ptable2.addCell(writeValue(item.getPhoto2(), ifont2, 1, 1, iheight3, 1, iboderb));
 				ptable2.addCell(writeValue("Location :", ifont2, 1, 1, iheight2, 0, ibodera));
-				ptable2.addCell(writeValue(manhole.getLocation(), ifont2, 1, 1, iheight3, 1, iboderb));
+				ptable2.addCell(writeValue(item.getLocation2(), ifont2, 1, 1, iheight3, 1, iboderb));
 				ptable2.addCell(writeValue("Description:", ifont2, 1, 1, iheight2, 0, ibodera));
-				ptable2.addCell(writeValue("Manhole Location", ifont2, 1, 1, iheight3, 1, iboderb));
+				ptable2.addCell(writeValue(item.getExplain2(), ifont2, 1, 1, iheight3, 1, iboderb));
 				ptable2.addCell(writeValue("Remark:", ifont2, 1, 1, iheight2, 0, ibodera));
 				ptable2.addCell(writeValue(item.getRemark2(), ifont2, 1, 1, iheight3, 1, iboderb));
 				// 输入数据完成

@@ -107,6 +107,9 @@ public class ManholeController {
 		manhole.setCond("N");
 		manhole.setCrit("N");
 		manhole.setCtype("N,N,N,N,N");
+		manhole.setWith1("Y");
+		manhole.setWith2("Y");
+		manhole.setWith3("Y");
 		manhole.setProject(project);
 		view.setViewName("manhole/editinfo");
 		view.addObject("manhole", manhole);
@@ -121,6 +124,7 @@ public class ManholeController {
 		ModelAndView view = new ModelAndView("userview/failure");
 		User user = (User) MyHelper.findMap("user");
 		int id = manholeBiz.replacManhole(manhole, user);
+		System.out.println("**" + manhole.getIron());
 		if ("next".equals(type))
 			view.setViewName("redirect:/item/editinfo?id=" + id);
 		else

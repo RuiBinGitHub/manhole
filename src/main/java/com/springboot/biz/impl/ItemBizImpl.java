@@ -66,6 +66,8 @@ public class ItemBizImpl implements ItemBiz {
 		item.setNo(0);
 		item.setPhoto1(manhole.getPhotono1());
 		item.setPhoto2(manhole.getPhotono2());
+		item.setLocation1(manhole.getLocation());
+		item.setLocation2(manhole.getLocation());
 		item.setExplain1("Manhole Location");
 		item.setExplain2("Manhole Internal Photo");
 		item.setManhole(manhole);

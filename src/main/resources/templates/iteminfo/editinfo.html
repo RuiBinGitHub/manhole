@@ -10,6 +10,8 @@
   </head>
   <body>
     <div th:replace="navigation::navigation"></div>
+    <span id="node" th:text="${manhole.node}" style="display:none"></span>
+    <span id="localtion" th:text="${manhole.location}" style="display:none"></span>
     <div id="main">
       <div id="mainTop">上传图片</div>
       <div id="mainInfo">
@@ -45,7 +47,7 @@
           </tr>
           <tr><td height="50px" class="mcell"><input type="text" th:value="${item.photo1}"/></td></tr>
           <tr><td height="25px" class="mcell">Location:</td></tr>
-          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.location}"></td></tr>
+          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.location1}"/></td></tr>
           <tr><td height="25px" class="mcell">Description:</td></tr>
           <tr><td height="50px" class="mcell"><input type="text" th:value="${item.explain1}" list="list"/></td></tr>
           <tr><td height="25px" class="mcell">Remark:</td></tr>
@@ -62,7 +64,7 @@
           </tr>
           <tr><td height="50px" class="mcell"><input type="text" th:value="${item.photo2}"/></td></tr>
           <tr><td height="25px" class="mcell">Location:</td></tr>
-          <tr><td height="50px" class="mcell" align="center" th:text="${manhole.location}"></td></tr>
+          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.location2}"/></td></tr>
           <tr><td height="25px" class="mcell">Description:</td></tr>
           <tr><td height="50px" class="mcell"><input type="text" th:value="${item.explain2}" list="list"/></td></tr>
           <tr><td height="25px" class="mcell">Remark:</td></tr>
@@ -81,6 +83,7 @@
     <div id="item4" style="bottom:102px;" th:text="#{iteminfo.editinfo.button4}"></div>
     
     <datalist id="list">
+      <option>Manhole Condition</option>
       <option>Manhole Location</option>
       <option>Manhole Internal Photo</option>
       <option>COVER</option>
