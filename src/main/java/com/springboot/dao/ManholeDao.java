@@ -7,14 +7,14 @@ import com.springboot.entity.Manhole;
 
 public interface ManholeDao {
 
-	public void insertManhole(Manhole manhole);
+	void insertManhole(Manhole manhole);
 
-	public void updateManhole(Manhole manhole);
+	void updateManhole(Manhole manhole);
 
-	public void deleteManhole(Manhole manhole);
+	void deleteManhole(Manhole manhole);
 
-	public Manhole findInfoManhole(Map<String, Object> map);
+	Manhole findInfoManhole(Map<String, Object> map);
 
-	public List<Manhole> findListManhole(Map<String, Object> map);
+	List<Manhole> findListManhole(Map<String, Object> map);
 
 }

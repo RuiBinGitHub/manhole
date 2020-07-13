@@ -7,15 +7,15 @@ import com.springboot.entity.MarkItem;
 
 public interface MarkItemDao {
 
-	public void insertMarkItem(MarkItem markItem);
+	void insertMarkItem(MarkItem markItem);
 
-	public void updateMarkItem(MarkItem markItem);
+	void updateMarkItem(MarkItem markItem);
 	
-	public void deleteMarkItem(MarkItem markItem);
+	void deleteMarkItem(MarkItem markItem);
 
-	public MarkItem findInfoMarkItem(Map<String, Object> map);
+	MarkItem findInfoMarkItem(Map<String, Object> map);
 
-	public List<MarkItem> findListMarkItem(Map<String, Object> map);
+	List<MarkItem> findListMarkItem(Map<String, Object> map);
 
-	public List<MarkItem> findViewMarkItem(Map<String, Object> map);
+	List<MarkItem> findViewMarkItem(Map<String, Object> map);
 }

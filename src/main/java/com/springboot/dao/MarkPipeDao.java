@@ -10,14 +10,14 @@ import com.springboot.entity.MarkPipe;
 @Mapper
 public interface MarkPipeDao {
 
-	public void insertMarkPipe(MarkPipe markPipe);
+	void insertMarkPipe(MarkPipe markPipe);
 
-	public void updateMarkPipe(MarkPipe markPipe);
+	void updateMarkPipe(MarkPipe markPipe);
 
-	public void deleteMarkPipe(MarkPipe markPipe);
+	void deleteMarkPipe(MarkPipe markPipe);
 
-	public MarkPipe findInfoMarkPipe(Map<String, Object> map);
+	MarkPipe findInfoMarkPipe(Map<String, Object> map);
 
-	public List<MarkPipe> findListMarkPipe(Map<String, Object> map);
+	List<MarkPipe> findListMarkPipe(Map<String, Object> map);
 
 }

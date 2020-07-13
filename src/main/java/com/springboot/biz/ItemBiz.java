@@ -10,17 +10,17 @@ import com.springboot.entity.User;
 
 public interface ItemBiz {
 
-	public void insertItem(Item item);
+	void insertItem(Item item);
 
-	public void updateItem(Item item);
+	void updateItem(Item item);
 
-	public void deleteItem(Item item);
+	void deleteItem(Item item);
 
-	public Item findInfoItem(int id, User user);
+	Item findInfoItem(int id, User user);
 
-	public List<Item> findListItem(Manhole manhole);
+	List<Item> findListItem(Manhole manhole);
 	
-	public List<Item> appendItem(Manhole manhole);
+	List<Item> appendItem(Manhole manhole);
 	
-	public void replacItem(Manhole manhole, MultipartFile[] files);
+	void replacItem(Manhole manhole, MultipartFile[] files);
 }

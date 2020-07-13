@@ -4,6 +4,10 @@ body {
 	background-color: #98DDFE;
 }
 
+input {
+	padding: 0px;
+}
+
 #main {
 	width: 900px;
 	height: 480px;
@@ -83,7 +87,7 @@ body {
 
 .textbox {
 	width: 280px;
-	height: 32px;
+	height: 30px;
 	color: #fff;
 	border: none;
 	font-size: 18px;

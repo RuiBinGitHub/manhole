@@ -77,7 +77,6 @@ public class ManholeBizImpl implements ManholeBiz {
 	}
 
 	public int replacManhole(Manhole manhole, User user) {
-		System.out.println("impl");
 		String path = myfile + "/ItemImage/";
 		String path1 = manhole.getPath1();
 		String path2 = manhole.getPath2();

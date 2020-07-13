@@ -34,8 +34,8 @@
           <td class="ncell" colspan="3"></td>
           <td class="ncell">(2) Grid ref.</td>
           <td class="ycell" colspan="2">
-            <div>X:</div><input type="text" name="gridx" th:value="${manhole?.gridx}" style="width:88%;height:14px;float:left;"/>
-            <div>Y:</div><input type="text" name="gridy" th:value="${manhole?.gridy}" style="width:88%;height:14px;float:left;"/>
+            <div>X:</div><input type="text" name="gridx" th:value="${manhole?.gridx}" style="width:88%;height:16px;float:left;"/>
+            <div>Y:</div><input type="text" name="gridy" th:value="${manhole?.gridy}" style="width:88%;height:16px;float:left;"/>
           </td>
         </tr>               
         <tr>                
@@ -399,13 +399,12 @@
       </form>
       <div id="remark">Remarks:  * - Code description refers to Appendix - Quick Reference for Code in IDMS Manhole Card</div>
     </div>
-    <div id="item1" style="bottom:212px;">保存数据</div>
-    <div id="item2" style="bottom:162px;">下一页>></div>
-    <div id="item3" style="bottom:112px;">返回顶部</div>
+    <div id="item1" style="bottom:212px;" th:text="#{manhole.editinfo.button1}">保存数据</div>
+    <div id="item2" style="bottom:162px;" th:text="#{manhole.editinfo.button2}">下一页>></div>
+    <div id="item3" style="bottom:112px;" th:text="#{manhole.editinfo.button3}">返回顶部</div>
     
     <!-- main结束 -->
-    <div id="tips"><span></span></div>
-    
+    <div id="tips"></div>
     <datalist id="names">
       <option th:each="operator:${operators}" th:value="${operator.name}" th:text="${operator.chianame}"/>
     </datalist>

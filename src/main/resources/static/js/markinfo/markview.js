@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var language = $("#infoTop").length < 5 ? "zh" : "en";
+    var language = $("#infoTop").text().length == 4 ? "zh" : "en";
     var btnText = language == "zh" ? "编辑" : "Edit";
     /********************************************************************/
     if ($("#menuText").val() == "") {

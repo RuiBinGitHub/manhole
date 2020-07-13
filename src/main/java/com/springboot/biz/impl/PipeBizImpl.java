@@ -20,7 +20,6 @@ public class PipeBizImpl implements PipeBiz {
 	private PipeDao pipeDao;
 	private Map<String, Object> map = null;
 	
-	
 	public void insertPipe(Pipe pipe) {
 		pipeDao.insertPipe(pipe);
 	}

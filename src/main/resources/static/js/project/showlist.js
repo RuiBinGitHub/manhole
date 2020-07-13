@@ -6,9 +6,8 @@ $(document).ready(function() {
     var tipsText3 = language == "zh" ? "确定删除该数据吗？" : "Are you sure you want to delete this data?";
     var tipsText4 = language == "zh" ? "数据删除成功！" : "Operating successfully!";
     /********************************************************************/
-    var width = $("#infoMenu span:eq(0)").css("width");
-    var length = width.substring(0, width.length - 2);
-    $("#infoMenu div:eq(0)").css("width", 570 - length);
+    var width = $("#infoMenu span:eq(0)").width();
+    $("#infoMenu div:eq(0)").css("width", 570 - width);
     /********************************************************************/
     if ($("#menuText").val().trim() == "") {
         $("#menuBtn1").css("color", "#AAAAAA");
@@ -99,7 +98,7 @@ $(document).ready(function() {
     /********************************************************************/
     function showTips(text) {
         $("#tips").show().delay(1800).hide(200);
-        $("#tips span").text(text);
+        $("#tips").text(text);
     }
     function Ajax(url, data) {
         var result = null;

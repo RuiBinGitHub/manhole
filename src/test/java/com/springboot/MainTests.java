@@ -1,27 +1,28 @@
 package com.springboot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainTests {
 
 	public static void main(String[] args) {
 
-//		Builder create = JWT.create();
-//		create.withClaim("name", "abcde");
-//		create.withClaim("id", 6);
-//		create.withClaim("uuid", "abcdef123456");
-//		Algorithm algorithm = Algorithm.HMAC256("591f4efa-afaf-4abf-8f8c-c752986be386");
-//		
-//		String token = create.sign(algorithm);
-//		System.out.println(token);
-//		
-//		
-//		DecodedJWT jwt = JWT.decode(token);
-//		System.out.println(jwt.getClaim("id").asInt());
-//		System.out.println(jwt.getClaim("name").asString());
-//		System.out.println(UUID.randomUUID());
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("001", "张三");
+		map.put("002", "张三");
+		map.put("100", "张三");
+		map.put("200", "张三");
+
+//		map.forEach(new BiConsumer<String, String>() {
+//			public void accept(String t, String u) {
+//				System.out.println(k + v);
+//			}
+//		});
+
+		map.forEach((String k, String v) -> {
+			System.out.println(k + v);
+		});
+		
 	}
-	
-//	public static boolean verify(String token) {
-//		
-//		Algorithm algorithm = Algorithm.HMAC256("591f4efa-afaf-4abf-8f8c-c752986be386");
-//	}
+
 }

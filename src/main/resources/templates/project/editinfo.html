@@ -21,11 +21,11 @@
 	  	</div>
 	    <table id="table1">
 	      <tr>
-	  		<td width="100px" th:text="#{project.editinfo.label1}"></td>
-	    	<td width="240px" class="cell" th:text="${project.name}"></td>
+	  		<td width="130px" th:text="#{project.editinfo.label1}"></td>
+	    	<td width="215px" class="cell" th:text="${project.name}"></td>
 	    	<td width="80px"></td>
-	    	<td width="100px" th:text="#{project.editinfo.label2}"></td>
-	    	<td width="240px" class="cell" th:text="${project.operator}"></td>
+	    	<td width="130px" th:text="#{project.editinfo.label2}"></td>
+	    	<td width="215px" class="cell" th:text="${project.operator}"></td>
 	   	  </tr>
 	      <tr>
 	    	<td th:text="#{project.editinfo.label3}"></td>
@@ -74,6 +74,8 @@
 	  	<div id="null" th:if="${#lists.isEmpty(manholes)}">暂无沙井信息！</div>
       </div>
     </div>
+    <div id="tips"></div>
+    
     <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
       <p>香港麦斯迪埃高科技有限责任公司</p>
       <p>Copyright © 2017 All Rights Reserved</p>	

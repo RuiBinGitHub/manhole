@@ -10,22 +10,22 @@ import com.springboot.entity.User;
 
 public interface ProjectBiz {
 
-	public void insertProject(Project project);
+	void insertProject(Project project);
 
-	public void updateProject(Project project);
+	void updateProject(Project project);
 
-	public void deleteProject(Project project);
+	void deleteProject(Project project);
 
-	public Project findInfoProject(int id, User user);
+	Project findInfoProject(int id, User user);
 	
-	public Project findInfoProject(Map<String, Object> map);
+	Project findInfoProject(Map<String, Object> map);
 
-	public PageInfo<Project> findListProject(Map<String, Object> map);
+	PageInfo<Project> findListProject(Map<String, Object> map);
 
-	public List<Project> mapListProject(Company company);
+	List<Project> mapListProject(Company company);
 	
-	public int appendProject(Project project, User user);
+	int appendProject(Project project, User user);
 	
-	public int replacProject(Project project, User user);
+	int replacProject(Project project, User user);
 
 }

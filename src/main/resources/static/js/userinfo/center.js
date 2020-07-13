@@ -14,6 +14,13 @@ $(document).ready(function() {
 		}
 	});
 	
+	$(".line:eq(1) img").click(function() {
+		showTips("系统维护中...");
+	});
+	$(".line:eq(2) img").click(function() {
+		showTips("系统维护中...");
+	});
+	
 	$("#reset1 input[type=button]").click(function() {
 		var pass1 = $("#reset1 input:eq(0)").val();
 		var pass2 = $("#reset1 input:eq(1)").val();
@@ -62,7 +69,7 @@ $(document).ready(function() {
 	/** *************************************************************** */
 	function showTips(text) {
         $("#tips").show().delay(1800).hide(200);
-        $("#tips span").text(text);
+        $("#tips   ").text(text);
     }
     function Ajax(url, data) {
         var result = null;

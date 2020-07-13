@@ -86,7 +86,7 @@ $(document).ready(function() {
     /********************************************************************/
     function showTips(text) {
         $("#tips").show().delay(1800).hide(200);
-        $("#tips span").text(text);
+        $("#tips").text(text);
     }
     function Ajax(url, data) {
         var result = null;

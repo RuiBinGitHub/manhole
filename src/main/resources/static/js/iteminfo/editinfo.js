@@ -6,12 +6,11 @@ $(document).ready(function() {
 		if ($(".table").length == 1)
 			return false;
 		var id = $(".table:last input[type=hidden]:eq(0)").val();
-		if (id != 0 && confirm("确定删除该图片框吗?")) {
+		if (!confirm("确定删除该图片框吗?"))
+			return false;
+		if (id != "" && id != 0)
 			Ajax("delete", {id: id});
-			$(".table:last").remove();
-		}
-		if (id == 0 || id == "")
-			$(".table:last").remove();
+		$(".table:last").remove();
 	});
 	
 	/** 提交数据 */
@@ -39,12 +38,12 @@ $(document).ready(function() {
 			var control1 = $(this).find("input[type=text]:eq(0)");
 			var control2 = $(this).find("input[type=text]:eq(1)");
 			if (control1.val() == null || control1.val() == "") {
-				control1.css("background-color", "#FDDD66");
+				control1.css("background-color", "#ff4400");
 				showTips("请输入完整数据！");
 				result = false;
 			}
 			if (control2.val() == null || control2.val() == "") {
-				control2.css("background-color", "#FDDD66");
+				control2.css("background-color", "#ff4400");
 				showTips("请输入完整数据！");
 				result = false;
 			}
@@ -124,7 +123,7 @@ $(document).ready(function() {
     /** *************************************************************** */
     function showTips(text) {
         $("#tips").show().delay(1800).hide(200);
-        $("#tips span").text(text);
+        $("#tips").text(text);
     }
     
     function Ajax(url, data) {

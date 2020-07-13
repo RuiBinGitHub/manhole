@@ -116,7 +116,6 @@ public class UserViewController {
 	@RequestMapping(value = "/change")
 	public boolean change(String lang) {
 		MyHelper.pushMap("i18n", lang);
-		System.out.println("0001");
 		return true;
 	}
 	

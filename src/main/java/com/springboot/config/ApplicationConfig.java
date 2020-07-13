@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -41,7 +40,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		filterMap.put("/company/**", "roles[role1]"); // 公司操作
 		filterMap.put("/project/**", "roles[role4]"); // 项目操作
 		filterMap.put("/manhole/**", "roles[role4]"); // 沙井操作
-		filterMap.put("/pipe/**", "roles[role4]"); // 图片操作
+		filterMap.put("/pipe/**", "roles[role4]"); // 管道操作
 		filterMap.put("/item/**", "roles[role4]"); // 图片操作
 		filterMap.put("/operator/**", "roles[role2]"); // 沙井操作
 		filterMap.put("/markinfo/**", "roles[role4]"); // 评分操作
@@ -80,12 +79,6 @@ public class ApplicationConfig implements WebMvcConfigurer {
 		source.registerCorsConfiguration("/**", configuration);
 		CorsFilter corsFilter = new CorsFilter(source);
 		return corsFilter;
-	}
-
-	@Bean
-	public LocaleResolver localeResolver() {
-		LocaleResolver resolver = new MyLocaleResolver();
-		return resolver;
 	}
 
 	@Bean

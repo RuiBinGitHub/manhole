@@ -4,7 +4,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -27,10 +26,10 @@ public class MyRealm extends AuthorizingRealm {
 
 	@Resource
 	private UserBiz userBiz;
+
 	private Map<String, Object> map = null;
 	private SimpleAuthorizationInfo info1 = null; // 授权逻辑信息
 	private SimpleAuthenticationInfo info2 = null; // 认证逻辑信息
-	private AuthenticationException exception = null; // 认证异常
 
 	/** 执行授权逻辑 */
 	public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection collection) {
@@ -59,10 +58,8 @@ public class MyRealm extends AuthorizingRealm {
 		String password = new String((char[]) tempToken.getCredentials());
 		map = MyHelper.getMap("username", username, "password", password);
 		User user = userBiz.findInfoUser(map);
-		if (StringUtils.isEmpty(user)) { // 账号密码错误
-			exception = new IncorrectCredentialsException();
-			throw exception;
-		}
+		if (StringUtils.isEmpty(user)) // 账号密码错误
+			throw new IncorrectCredentialsException();
 		MyHelper.pushMap("user", user);
 		info2 = new SimpleAuthenticationInfo(user, password, "");
 		return info2;

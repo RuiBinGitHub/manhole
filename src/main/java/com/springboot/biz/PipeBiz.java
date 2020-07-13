@@ -8,15 +8,15 @@ import com.springboot.entity.Pipe;
 
 public interface PipeBiz {
 
-	public void insertPipe(Pipe pipe);
+	void insertPipe(Pipe pipe);
 
-	public void updatePipe(Pipe pipe);
+	void updatePipe(Pipe pipe);
 
-	public void deletePipe(Pipe pipe);
+	void deletePipe(Pipe pipe);
 
-	public Pipe findInfoPipe(Map<String, Object> map);
+	Pipe findInfoPipe(Map<String, Object> map);
 
-	public List<Pipe> findListPipe(Map<String, Object> map);
+	List<Pipe> findListPipe(Map<String, Object> map);
 
-	public List<Pipe> findListPipe(Manhole manhole);
+	List<Pipe> findListPipe(Manhole manhole);
 }

@@ -9,22 +9,22 @@ import com.springboot.entity.User;
 
 public interface ManholeBiz {
 
-	public void insertManhole(Manhole manhole);
+	void insertManhole(Manhole manhole);
 
-	public void updateManhole(Manhole manhole);
+	void updateManhole(Manhole manhole);
 
-	public void deleteManhole(Manhole manhole);
+	void deleteManhole(Manhole manhole);
 
-	public Manhole findLastManhole(Project project);
+	Manhole findLastManhole(Project project);
 	
-	public Manhole findInfoManhole(int id, User user);
+	Manhole findInfoManhole(int id, User user);
 
-	public Manhole findInfoManhole(Map<String, Object> map);
+	Manhole findInfoManhole(Map<String, Object> map);
 
-	public List<Manhole> findListManhole(Project project);
+	List<Manhole> findListManhole(Project project);
 
-	public List<Manhole> findListManhole(Map<String, Object> map);
+	List<Manhole> findListManhole(Map<String, Object> map);
 
-	public int replacManhole(Manhole manhole, User user);
+	int replacManhole(Manhole manhole, User user);
 
 }

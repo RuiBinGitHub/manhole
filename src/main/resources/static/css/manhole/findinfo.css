@@ -4,6 +4,10 @@ body {
 	background-color: #f1f1f1;
 }
 
+input {
+	padding: 0px;
+}
+
 #main {
 	width: 1460px;
 	height: 1900px;
@@ -308,7 +312,8 @@ body {
 	width: 76px;
 	height: 40px;
 	color: #ffffff;
-	font-size: 14px;
+	font-size: 16px;
+	font-family: fangsong;
 	text-align: center;
 	line-height: 40px;
 	background-color: #41495d;

@@ -53,7 +53,7 @@
               <td><a th:href="@{findinfo(id=${project.id})}" th:text="${project.name}"></a></td>
           	  <td th:text="${project.operator}"></td>
           	  <td th:text="${project.datetime1}"></td>
-          	  <td th:text="${project.datetime1}"></td>
+          	  <td th:text="${project.datetime2}"></td>
           	  <td th:text="${project.date}"></td>
           	  <td th:text="${project.user.name}"></td>
 		      <td>
@@ -75,7 +75,8 @@
       </div>
     </div>
     <!-- main结束 -->
-    <div id="tips"><span></span></div>
+    <div id="tips"></div>
+    
     <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
       <p>香港麦斯迪埃高科技有限责任公司</p>
       <p>Copyright © 2017 All Rights Reserved</p>	

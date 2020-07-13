@@ -33,4 +33,5 @@ public class MailBean {
 			e.printStackTrace();
 		}
 	}
+	
 }

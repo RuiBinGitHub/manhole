@@ -60,20 +60,21 @@ public class MarkItemBizImpl implements MarkItemBiz {
 	}
 
 	public PageInfo<MarkItem> findViewMarkItem(Map<String, Object> map) {
-		if (!StringUtils.isEmpty(map.get("page")))
-			PageHelper.startPage((int) map.get("page"), 15);
 		if (!StringUtils.isEmpty(map.get("name")))
 			map.put("name", "%" + map.get("name") + "%");
+		if (!StringUtils.isEmpty(map.get("page")))
+			PageHelper.startPage((int) map.get("page"), 15);
+
 		List<MarkItem> markItems = markItemDao.findViewMarkItem(map);
 		PageInfo<MarkItem> info = new PageInfo<MarkItem>(markItems);
 		return info;
 	}
 
 	public PageInfo<MarkItem> findListMarkItem(Map<String, Object> map) {
-		if (!StringUtils.isEmpty(map.get("page")))
-			PageHelper.startPage((int) map.get("page"), 15);
 		if (!StringUtils.isEmpty(map.get("name")))
 			map.put("name", "%" + map.get("name") + "%");
+		if (!StringUtils.isEmpty(map.get("page")))
+			PageHelper.startPage((int) map.get("page"), 15);
 		List<MarkItem> markItems = markItemDao.findListMarkItem(map);
 		PageInfo<MarkItem> info = new PageInfo<MarkItem>(markItems);
 		return info;

@@ -28,7 +28,10 @@
 	</delete>
 
 	<select id="findInfoItem" parameterType="Map" resultType="Item">
-		select i.* from item i left join manhole m on m.id = i.manholeid left join users u on u.id = m.userid
+		select i.* from item i 
+			left join manhole m on m.id = i.manholeid 
+			left join project p on p.id = m.projectid
+			left join users u on u.id = p.userid
 		<where>
 			<if test="id != null">
 				and i.id = #{id}

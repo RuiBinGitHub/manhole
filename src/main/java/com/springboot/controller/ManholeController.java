@@ -124,7 +124,6 @@ public class ManholeController {
 		ModelAndView view = new ModelAndView("userview/failure");
 		User user = (User) MyHelper.findMap("user");
 		int id = manholeBiz.replacManhole(manhole, user);
-		System.out.println("**" + manhole.getIron());
 		if ("next".equals(type))
 			view.setViewName("redirect:/item/editinfo?id=" + id);
 		else

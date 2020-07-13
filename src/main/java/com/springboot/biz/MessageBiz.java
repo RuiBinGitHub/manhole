@@ -9,17 +9,17 @@ import com.springboot.entity.User;
 
 public interface MessageBiz {
 
-	public void insertMessage(Message message);
+	void insertMessage(Message message);
 
-	public void updateMessage(Message message);
+	void updateMessage(Message message);
 
-	public void deleteMessage(Message message);
+	void deleteMessage(Message message);
 
-	public Message findInfoMessage(int id, User user);
+	Message findInfoMessage(int id, User user);
 
-	public PageInfo<Message> findListMessage(Map<String, Object> map);
+	PageInfo<Message> findListMessage(Map<String, Object> map);
 
-	public void sendMessage(MarkItem markItem);
+	void sendMessage(MarkItem markItem);
 
-	public int getCount(Map<String, Object> map);
+	int getCount(Map<String, Object> map);
 }
