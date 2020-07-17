@@ -111,7 +111,7 @@ input {
 	color: #ccc;
 }
 
-#item1, #item2, #item3, #item4 {
+#item0, #item1, #item2, #item3, #item4 {
 	right: 13%;
 	width: 76px;
 	height: 40px;
@@ -124,7 +124,7 @@ input {
 	position: fixed;
 }
 
-#item1:hover, #item2:hover, #item3:hover, #item4:hover {
+#item0:hover, #item1:hover, #item2:hover, #item3:hover, #item4:hover {
 	background-color: #ff4444;
 	cursor: pointer;
 }

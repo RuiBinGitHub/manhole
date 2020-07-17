@@ -18,6 +18,7 @@ import com.springboot.biz.ManholeBiz;
 import com.springboot.entity.Item;
 import com.springboot.entity.Manhole;
 import com.springboot.entity.User;
+import com.springboot.util.ItemHelper;
 import com.springboot.util.MyHelper;
 
 @RestController
@@ -29,6 +30,8 @@ public class ItemController {
 	@Value(value = "${mypath}")
 	private String mypath;
 
+	@Resource
+	private ItemHelper itemHelper;
 	@Resource
 	private ManholeBiz manholeBiz;
 	@Resource
@@ -80,6 +83,16 @@ public class ItemController {
 		Item item = itemBiz.findInfoItem(id, user);
 		if (!StringUtils.isEmpty(item))
 			itemBiz.deleteItem(item);
+		return true;
+	}
+
+	@RequestMapping(value = "/imports", method = RequestMethod.POST)
+	public boolean imports(int id, MultipartFile[] files) {
+		User user = (User) MyHelper.findMap("user");
+		Manhole manhole = manholeBiz.findInfoManhole(id, user);
+		if (StringUtils.isEmpty(manhole))
+			return true;
+		itemHelper.ItemMode(manhole, files);
 		return true;
 	}
 

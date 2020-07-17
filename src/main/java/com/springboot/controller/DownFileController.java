@@ -36,8 +36,8 @@ public class DownFileController {
 	@Resource
 	private PDFHelper pdfHelper;
 
-	@RequestMapping(value = "/downfile")
-	public void findUserList(@RequestParam(defaultValue = "0") int id) {
+	@RequestMapping(value = "/project/downfile")
+	public void downProject(@RequestParam(defaultValue = "0") int id) {
 		Project project = projectBiz.findInfoProject(id, null);
 		if (StringUtils.isEmpty(project))
 			return; // 查询项目为空
@@ -69,5 +69,42 @@ public class DownFileController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		for (File file : srcFile.listFiles())
+			file.delete();
+		srcFile.delete();
+		zipFile.delete();
+	}
+
+	@RequestMapping(value = "/manhole/downfile")
+	public void downManhole(@RequestParam(defaultValue = "0") int id) {
+		Manhole manhole = manholeBiz.findInfoManhole(id, null);
+		if (StringUtils.isEmpty(manhole))
+			return; // 查询项目为空
+		String name = MyHelper.UUIDCode();
+		String srcPath = myfile + "/report/";
+		File srcFile = new File(srcPath + name + "/");
+		srcFile.mkdirs();
+
+		pdfHelper.initPDF(manhole, srcFile.getPath(), manhole.getNode());
+		HttpServletResponse response = MyHelper.getResponse();
+		File zipFile = new File(srcFile.getPath() + "/" + manhole.getNode() + ".pdf");
+		response.setHeader("Content-disposition", "attachment;filename=" + manhole.getNode() + ".pdf");
+		response.setContentType("application/octet-stream");
+		try {
+			int len = -1;
+			byte[] buffer = new byte[1024];
+			InputStream fstream = new FileInputStream(zipFile.getPath());
+			InputStream bstream = new BufferedInputStream(fstream);
+			OutputStream outputStream = response.getOutputStream();
+			while ((len = bstream.read(buffer)) > 0) {
+				outputStream.write(buffer, 0, len);
+				outputStream.flush();
+			}
+			bstream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		zipFile.delete();
+		srcFile.delete();
 	}
 }

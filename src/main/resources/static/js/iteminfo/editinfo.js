@@ -1,6 +1,26 @@
 $(document).ready(function() {
 	
 	/** *************************************************************** */
+	$("input[name=files]").attr("webkitdirectory", true);
+	$("#item0").click(function() {
+		$("input[name=files]").click();
+	});
+	$("input[name=files]").change(function() {
+		if (this.files.length == 0)
+            return false;
+        for (var i = 0; i < this.files.length; i++) {
+            var name = this.files[i].name;
+            var loca = name.lastIndexOf(".");
+            var type = name.substr(loca).toLowerCase();
+            if (type == null || type != ".xlsx")
+            	continue;
+            $("#form1").submit();
+            return true;
+        }
+        showTips("请选择正确的文件夹！");
+	});
+	
+	
 	/** 删除一个表格 */
 	$("#item1").click(function() {
 		if ($(".table").length == 1)

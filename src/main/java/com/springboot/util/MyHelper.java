@@ -3,6 +3,7 @@ package com.springboot.util;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -131,6 +133,16 @@ public class MyHelper {
 		}
 	}
 
+	public static XSSFWorkbook getWorkbook(MultipartFile file) {
+		try {
+			InputStream stream = file.getInputStream();
+			XSSFWorkbook workbook = new XSSFWorkbook(stream);
+			return workbook;
+		} catch (IOException e) {
+			return null;
+		}
+	}
+	
 	public static void moveFile(MultipartFile file, File dest) {
 		try {
 			file.transferTo(dest);

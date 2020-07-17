@@ -77,10 +77,16 @@
     <!-- main结束 -->
     <div id="tips"><span></span></div>
     
+    <div id="item0" style="bottom:302px;">导入图片</div>
     <div id="item1" style="bottom:252px;" th:text="#{iteminfo.editinfo.button1}"></div>
     <div id="item2" style="bottom:202px;" th:text="#{iteminfo.editinfo.button2}"></div>
     <div id="item3" style="bottom:152px;" th:text="#{iteminfo.editinfo.button3}"></div>
     <div id="item4" style="bottom:102px;" th:text="#{iteminfo.editinfo.button4}"></div>
+    
+    <form id="form1" action="imports" enctype="multipart/form-data" method="post">
+      <input type="hidden" name="id" th:value="${param.id}"/>
+      <input type="file" name="files" style="display:none;"/>
+    </form>
     
     <datalist id="list">
       <option>Manhole Condition</option>

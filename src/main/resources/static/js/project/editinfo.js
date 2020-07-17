@@ -6,18 +6,19 @@ $(document).ready(function() {
     var tipsText2 = language == "zh" ? "数据删除成功！" : "Operating successfully!";
     /** ***************************************************************** */
     $("textarea").attr("readonly", true);
-    var p = $("#index").val();
+    var id = $("#index").val();
     $(".infoTop:eq(0) input").click(function() {
-    	window.open("/survey/downfile?id=" + p);
+    	window.open("/survey/project/downfile?id=" + id);
     });
     $(".infoTop:eq(1) input").click(function() {
-        window.open("/survey/manhole/insert?id=" + p);
+        window.open("/survey/manhole/insert?id=" + id);
     });
     /** ***************************************************************** */
     $("#table2 tr").each(function(i) {
         var id = $(this).attr("id");
+        $(this).find("a").attr("target", "_blank");
         $(this).find("input:eq(0)").click(function() {
-            window.open("/survey/manhole/editinfo?id=" + id);
+            window.open("/survey/manhole/downfile?id=" + id);
         });
         $(this).find("input:eq(1)").click(function() {
             if (!confirm(tipsText1))
