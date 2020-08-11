@@ -15,19 +15,22 @@
     <div id="main">
       <div id="mainTop">上传图片</div>
       <div id="mainInfo">
-        <form action="update" method="post" enctype="multipart/form-data">
+        <form id="form1" action="update" enctype="multipart/form-data" method="post">
         <input type="hidden" name="id" th:value="${param.id}"/>
         <table class="table" th:each="item:${items}">
           <tr height="80px">
-            <td colspan="3"><img src="/survey/img/title.png"></td>
+            <td colspan="3">
+              <img th:if="${manhole.project.path==null || manhole.project.path==''}" id="logo" src="/survey/img/title.png"/>
+      		  <img th:if="${manhole.project.path!=null && manhole.project.path!=''}" id="logo" th:src="${path+manhole.project.path+'.png'}"/>
+            </td>
             <td colspan="2"><div class="title">Manhole Survey Photographs</div></td>
           </tr>
           <tr height="25px">
-            <td width="118px" style="text-indent:5px;">Project No.:</td>
-            <td width="118px" class="icell" th:text="${manhole.projectno}"></td>
-            <td width="118px"></td>
-            <td width="118px">Manhole Reference: </td>
-            <td width="118px" class="icell" th:text="${manhole.node}"></td>
+            <td style="text-indent:5px;">Project No.:</td>
+            <td class="icell" th:text="${manhole.projectno}"></td>
+            <td></td>
+            <td>Manhole Reference: </td>
+            <td class="icell" th:text="${manhole.node}"></td>
           </tr>
           <tr height="25px">
             <td style="text-indent:5px;">WO No.: </td>
@@ -83,7 +86,7 @@
     <div id="item3" style="bottom:152px;" th:text="#{iteminfo.editinfo.button3}"></div>
     <div id="item4" style="bottom:102px;" th:text="#{iteminfo.editinfo.button4}"></div>
     
-    <form id="form1" action="imports" enctype="multipart/form-data" method="post">
+    <form id="form2" action="imports" enctype="multipart/form-data" method="post">
       <input type="hidden" name="id" th:value="${param.id}"/>
       <input type="file" name="files" style="display:none;"/>
     </form>

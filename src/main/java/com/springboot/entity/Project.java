@@ -15,6 +15,7 @@ public class Project implements Serializable {
 	private String content;
 	private String state;
 	private String date;
+	private String path;
 	private User user;
 
 	private List<Manhole> manholes;
@@ -83,6 +84,14 @@ public class Project implements Serializable {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public User getUser() {

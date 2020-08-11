@@ -102,6 +102,11 @@ input {
 	table-layout: fixed;
 }
 
+#logo {
+	width: 350px;
+	height: 56px;
+}
+
 .title {
 	width: 220px;
 	height: 40px;
@@ -125,7 +130,7 @@ input {
 }
 
 .table img {
-	max-width: 470px;
+	max-width: 464px;
 	max-height: 315px;
 	cursor: pointer;
 }

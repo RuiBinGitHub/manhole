@@ -18,10 +18,23 @@ input {
 }
 
 #logo {
-	width: 580px;
-	height: 110px;
-	margin: 20px 420px 40px 0px;
+	width: 700px;
+	height: 112px;
+	margin: 20px 0px 40px 0px;
+	cursor: pointer;
 	float: left;
+}
+
+#edit {
+	width: 30px;
+	height: 30px;
+	margin: 60px 20px 82px 20px;
+	float: left;
+}
+
+#edit img {
+	cursor: pointer;
+	display: none;
 }
 
 #idms {
@@ -33,7 +46,7 @@ input {
 	font-weight: 700;
 	text-align: center;
 	line-height: 110px;
-	margin: 20px 0px 40px 0px;
+	margin: 20px 0px 40px 230px;
 	border: 1px solid #000;
 	float: left;
 }

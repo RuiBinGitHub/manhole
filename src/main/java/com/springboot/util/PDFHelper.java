@@ -86,9 +86,12 @@ public class PDFHelper extends PdfPageEventHelper {
 			Font tFont = getFont(10, 1, null);
 			tFont.setStyle("italic");
 
-			int[] widths = { 600, 400, 460 };
+			int[] widths = { 700, 300, 460 };
 			PdfPTable title = getTable(widths.length, 540f, widths);
-			title.addCell(writeImage("classpath:picture/", "info", 220, 40, 1, 1, 0));
+			if (StringUtils.isEmpty(manhole.getProject().getPath()))
+				title.addCell(writeImage("classpath:picture/", "mlogo", 250, 40, 1, 1, 0));
+			else
+				title.addCell(writeImage(myfile + "/ItemImage/", manhole.getProject().getPath(), 250, 40, 1, 1, 0));
 			title.addCell(writeValue("", null, 1, 1, 0, 0, border1)); // 添加空行
 			title.addCell(writeValue("IDMS Manhole Record Card", tFont, 1, 1, 0, 1, border2));
 			title.addCell(writeValue("", null, 1, widths.length, 10, 0, border1)); // 添加空行
@@ -418,7 +421,7 @@ public class PDFHelper extends PdfPageEventHelper {
 			nestTable(table7, itab1, new int[] { 2, 2, 2, 2 }, border2, 1);
 
 			PdfPTable itab2 = getTable(ImageTable.length, 268f, ImageTable);
-			itab2.addCell(iwriteImage(myfile + "ItemImage/", manhole.getPath2(), 230, 160, 1, 1, border1)); // 输出图片1
+			itab2.addCell(iwriteImage(myfile + "ItemImage/", manhole.getPath2(), 230, 160, 1, 1, border1)); // 输出图片2
 			itab2.addCell(writeImage("classpath:picture/", "tion", 28, 28, 1, 1, 4, border1));
 			nestTable(table7, itab2, new int[] { 2, 2, 2, 2 }, border2, 1);
 			// 添加空行
@@ -457,10 +460,10 @@ public class PDFHelper extends PdfPageEventHelper {
 				int[] width2 = { 4, 1 };
 				PdfPTable ptable2 = getTable(width2.length, 500f, width2);
 				// 创建表格1
-				int[] iwidth1 = { 340, 240 };
-				PdfPTable itable1 = getTable(2, 490f, iwidth1);
-				itable1.addCell(writeImage("classpath:picture/", "BUDA", 256, 40, 2, 1, 0));
-				itable1.addCell(writeValue("Manhole Survey Photographs", tFont, 1, 1, 25, 1, border2));
+				int[] iwidth1 = { 360, 240 };
+				PdfPTable itable1 = getTable(2, 480f, iwidth1);
+				itable1.addCell(writeImage("classpath:picture/", "title", 250, 40, 2, 1, 0));
+				itable1.addCell(writeValue("Manhole Survey Photographs", tFont, 1, 1, 30, 1, border2));
 				itable1.addCell(writeValue("", tFont, 1, 1, 20, 0, border1));
 				// 表格1完成
 				nestTable(ptable2, itable1, new int[] { 5, 5, 25, 5 }, new int[] { 1, 1, 0, 1 }, 2);
@@ -468,11 +471,11 @@ public class PDFHelper extends PdfPageEventHelper {
 				// 创建表格2
 				int iheight1 = 15;
 				int[] iwidth2 = { 1, 1, 1, 1, 1 };
-				PdfPTable itable2 = getTable(iwidth2.length, 490f, iwidth2);
+				PdfPTable itable2 = getTable(iwidth2.length, 480f, iwidth2);
 				itable2.addCell(writeValue("Project No.: ", ifont1, 1, 1, iheight1, 0, border1));
 				itable2.addCell(writeValue(manhole.getProjectno(), ifont1, 1, 1, 0, 1, iboder1));
 				itable2.addCell(writeValue("", null, 1, 1, 0, 0, border1));
-				itable2.addCell(writeValue("Manhole Referenc: ", ifont1, 1, 1, 0, 2, border1));
+				itable2.addCell(writeValue("Manhole Referenc: ", ifont1, 1, 1, 0, 1, border1));
 				itable2.addCell(writeValue(manhole.getNode(), ifont1, 1, 1, 0, 1, iboder1));
 				itable2.addCell(writeValue("WO  No.: ", ifont1, 1, 1, iheight1, 0, border1));
 				itable2.addCell(writeValue(manhole.getWorkorder(), ifont1, 1, 1, 0, 1, iboder1));
@@ -676,13 +679,15 @@ public class PDFHelper extends PdfPageEventHelper {
 			float propor2 = image.getWidth() / image.getHeight();
 			if (propor1 < propor2 && image.getWidth() > width)
 				image.scaleAbsolute(width, width / propor2);
-			if (propor1 > propor2 && image.getHeight() > height)
+			else if (propor1 > propor2 && image.getHeight() > height)
 				image.scaleAbsolute(height * propor2, height);
-			PdfPCell cell = new PdfPCell(image);
+			else if (propor1 == propor2 && image.getWidth() > width)
+				image.scaleAbsolute(width, width / propor2);
+			PdfPCell cell = new PdfPCell(image, true);
 			cell.setFixedHeight(height + 10);
+			cell.setUseAscender(true);
 			cell.setHorizontalAlignment(1);
 			cell.setVerticalAlignment(5);
-			cell.setBorderWidth(1);
 			cell.setBorderWidthTop(border[0]);
 			cell.setBorderWidthRight(border[1]);
 			cell.setBorderWidthBottom(border[2]);

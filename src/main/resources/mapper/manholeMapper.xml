@@ -165,7 +165,8 @@
 	</delete>
 
 	<select id="findInfoManhole" parameterType="Map" resultMap="ManholeMap">
-		select m.*, p.name p_name, u.id u_id from manhole m left join project p on p.id = m.projectid left join users u on u.id = p.userid
+		select m.*, p.name p_name, p.path p_path, u.id u_id from manhole m
+			left join project p on p.id = m.projectid left join users u on u.id = p.userid
 		<where>
 			<if test="id != null">
 				and m.id = #{id}
@@ -180,7 +181,8 @@
 	</select>
 	
 	<select id="findListManhole" parameterType="Map" resultMap="ManholeMap">
-		select m.*, p.name p_name, u.id u_id from manhole m left join project p on p.id = m.projectid left join users u on u.id = p.userid
+		select m.*, p.name p_name, p.path p_path, u.id u_id from manhole m
+			left join project p on p.id = m.projectid left join users u on u.id = p.userid
 		<where>
 			<if test="xy != null">
 				m.gridx !='' and m.gridy != ''
@@ -279,6 +281,7 @@
 		<association property="project" javaType="Project">
  			<id property="id" column="projectid"/>
  			<result property="name" column="p_name"/>
+ 			<result property="path" column="p_path"/>
  			<result property="user.id" column="u_id"/>
 	 	</association>
 	</resultMap>

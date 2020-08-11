@@ -12,11 +12,20 @@
   <body>
     <div th:replace="navigation::navigation"></div>
     <div id="main">
-      <img id="logo" src="/survey/img/mlogo.png">
+      <img th:if="${manhole.project.path==null || manhole.project.path==''}" id="logo" src="/survey/img/mlogo.png"/>
+      <img th:if="${manhole.project.path!=null && manhole.project.path!=''}" id="logo" th:src="${path+manhole.project.path+'.png'}"/>
+      <div id="edit"><img src="/survey/img/修改.png" title="确定"/></div>
       <div id="idms">IDMS Manhole Record Card</div>
+      <!-- 项目图片表单 -->
+      <form id="iform" enctype="multipart/form-data" method="post">
+      	<input type="hidden" name="path" value=""/>
+      	<input type="hidden" name="id" th:value="${manhole.project.id}"/>
+        <input type="file" name="file" accept="image/*" style="display:none;"/>
+      </form>
       
       <form id="form1" action="commit" method="post">
-      <input type="hidden" name="id" th:value="${manhole?.id}"/>
+      <input type="hidden" name="id" th:value="${manhole.id}"/>
+      
       <input type="hidden" name="type" value="next"/>
       <!-- 表格1开始 -->
       <table id="table1" class="table">

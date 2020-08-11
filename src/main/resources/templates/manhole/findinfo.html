@@ -11,7 +11,8 @@
   <body>
     <div th:replace="navigation::navigation"></div>
     <div id="main">
-      <img id="logo" src="/survey/img/mlogo.png"/>
+      <img th:if="${manhole.project.path==null || manhole.project.path==''}" id="logo" src="/survey/img/mlogo.png"/>
+      <img th:if="${manhole.project.path!=null && manhole.project.path!=''}" id="logo" th:src="${path+manhole.project.path+'.png'}"/>
       <div id="idms">IDMS Manhole Record Card</div>
       <input type="hidden" name="id" th:value="${param.id}"/>
       <!-- 表格1开始 -->

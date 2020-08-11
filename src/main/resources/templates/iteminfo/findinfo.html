@@ -25,7 +25,10 @@
       <div id="list" style="display:none">
         <table class="table" th:each="item:${items}">
           <tr height="80px" align="center">
-            <td colspan="3"><img src="/survey/img/title.png"></td>
+            <td colspan="3">
+              <img th:if="${manhole.project.path==null || manhole.project.path==''}" id="logo" src="/survey/img/title.png"/>
+      		  <img th:if="${manhole.project.path!=null && manhole.project.path!=''}" id="logo" th:src="${path+manhole.project.path+'.png'}"/>
+            </td>
             <td colspan="2"><div class="title">Manhole Survey Photographs</div></td>
           </tr>
           <tr height="25px">

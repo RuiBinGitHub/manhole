@@ -4,7 +4,7 @@
 <mapper namespace="com.springboot.dao.ProjectDao">
 
 	<insert id="insertProject" parameterType="Project" useGeneratedKeys="true" keyProperty="id">
-		insert into project values(null, #{name}, #{operator}, #{datetime1}, #{datetime2}, #{content}, #{state}, #{date}, #{user.id});		
+		insert into project values(null, #{name}, #{operator}, #{datetime1}, #{datetime2}, #{content}, #{state}, #{path}, #{date}, #{user.id});		
 	</insert>
 
 	<update id="updateProject" parameterType="Project">
@@ -13,7 +13,8 @@
 			datetime1 = #{datetime1},
 			datetime2 = #{datetime2},
 			content = #{content},
-			state = #{state}
+			state = #{state},
+			path = #{path}
 		where id = #{id}
 	</update>
 
@@ -76,6 +77,7 @@
 		<result property="datetime2" column="datetime2"/>
 		<result property="content" column="content"/>
 		<result property="state" column="state"/>
+		<result property="path" column="path"/>
 		<result property="date" column="date"/>
 		<association property="user" javaType="User">
  			<id property="id" column="userid"/>

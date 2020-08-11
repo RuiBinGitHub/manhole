@@ -1,36 +1,50 @@
 $(document).ready(function() {
 	
+	var index = -1;
 	/** *************************************************************** */
-	$("input[name=files]").attr("webkitdirectory", true);
-	$("#item0").click(function() {
-		$("input[name=files]").click();
-	});
-	$("input[name=files]").change(function() {
-		if (this.files.length == 0)
-            return false;
-        for (var i = 0; i < this.files.length; i++) {
-            var name = this.files[i].name;
-            var loca = name.lastIndexOf(".");
-            var type = name.substr(loca).toLowerCase();
-            if (type == null || type != ".xlsx")
-            	continue;
-            $("#form1").submit();
-            return true;
-        }
-        showTips("请选择正确的文件夹！");
+	$("#form1").on("click focus", ".table", function() {
+		$(".table").css("border-color", "#000000");
+		$(this).css("border-color", "#FF910C");
+		index = $(this).index() - 1;
 	});
 	
+	$("#form2 input[name=files]").attr("webkitdirectory", true);
+	$("#item0").click(function() {
+		$("#form2 input[name=files]").click();
+	});
+	$("#form2 input[name=files]").change(function() {
+		if (this.files.length == 0)
+            return false;
+//        for (var i = 0; i < this.files.length; i++) {
+//            var name = this.files[i].name;
+//            var loca = name.lastIndexOf(".");
+//            var type = name.substr(loca).toLowerCase();
+//            if (type == null || type != ".xlsx")
+//            	continue;
+//            console.log("000" + i + name);
+//            $("#form2").submit();
+//            return true;
+//        }
+//        showTips("请选择正确的文件夹！");
+		$("#form2").submit();
+	});
 	
 	/** 删除一个表格 */
 	$("#item1").click(function() {
-		if ($(".table").length == 1)
+		if (index != null && index == -1) {
+			showTips("请选择需要删除的表格！");
 			return false;
-		var id = $(".table:last input[type=hidden]:eq(0)").val();
-		if (!confirm("确定删除该图片框吗?"))
+		}
+		if ($(".table").length == 1) {
+			showTips("最后一个表格无法删除！");
+			return false;
+		}
+		var id = $(".table").eq(index).find("input[type=hidden]:eq(0)").val();
+		if (!confirm("确定删除该表格吗?"))
 			return false;
 		if (id != "" && id != 0)
 			Ajax("delete", {id: id});
-		$(".table:last").remove();
+		$(".table").eq(index).remove();
 	});
 	
 	/** 提交数据 */
@@ -41,7 +55,7 @@ $(document).ready(function() {
 		$(this).css("background-color", "#ccc");
 		$(this).attr("disable", true);
 		$(this).val("上传中...");
-		$("form").submit();
+		$("#form1").submit();
 	});
 	
 	$("#item3").click(function() {
@@ -98,11 +112,11 @@ $(document).ready(function() {
 		table.find("input[type=hidden]:eq(1)").val("");
 		table.find("input[type=hidden]:eq(2)").val("");
 		table.find("input[type=text]").val("");
-		$("form").append(table);
+		$("#form1").append(table);
 	});
 	
 	/** 表格内图片点击事件 */
-	$("#mainInfo").on("click", "table img", function() {
+	$("#mainInfo").on("dblclick", "table img", function() {
 		$(this).next("input").click();
 	});
 	

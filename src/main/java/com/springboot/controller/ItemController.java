@@ -87,13 +87,14 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "/imports", method = RequestMethod.POST)
-	public boolean imports(int id, MultipartFile[] files) {
+	public ModelAndView imports(int id, MultipartFile[] files) {
+		ModelAndView view = new ModelAndView();
 		User user = (User) MyHelper.findMap("user");
 		Manhole manhole = manholeBiz.findInfoManhole(id, user);
-		if (StringUtils.isEmpty(manhole))
-			return true;
-		itemHelper.ItemMode(manhole, files);
-		return true;
+		if (!StringUtils.isEmpty(manhole))
+			itemHelper.ItemMode(manhole, files);
+		view.setViewName("redirect:/item/editinfo?id=" + id);
+		return view;
 	}
 
 }

@@ -1,15 +1,18 @@
 package com.springboot.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
@@ -25,6 +28,9 @@ import com.springboot.util.MyHelper;
 @RestController
 @RequestMapping(value = "/project")
 public class ProjectController {
+
+	@Value(value = "${myfile}")
+	private String myfile;
 
 	@Resource
 	private ProjectBiz projectBiz;
@@ -181,6 +187,23 @@ public class ProjectController {
 		view.setViewName("project/findinfo");
 		view.addObject("project", project);
 		view.addObject("manholes", manholes);
+		return view;
+	}
+
+	/** 修改项目logo */
+	@RequestMapping(value = "/editlogo", method = RequestMethod.POST)
+	public ModelAndView editLogo(int id, String path, MultipartFile file) {
+		ModelAndView view = new ModelAndView("userview/failure");
+		User user = (User) MyHelper.findMap("user");
+		Project project = projectBiz.findInfoProject(id, user);
+		if (StringUtils.isEmpty(project))
+			return view;
+		String name = MyHelper.UUIDCode();
+		File dest = new File(myfile + "/ItemImage/" + name + ".png");
+		project.setPath(name);
+		MyHelper.moveFile(file, dest);
+		projectBiz.updateProject(project);
+		view.setViewName("redirect:" + path);
 		return view;
 	}
 

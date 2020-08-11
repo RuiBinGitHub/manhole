@@ -151,5 +151,5 @@ public class ManholeController {
 			manholeBiz.deleteManhole(manhole);
 		return true;
 	}
-
+	
 }

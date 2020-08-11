@@ -1,12 +1,34 @@
 $(document).ready(function() {
-
+	
+	$("#logo").attr("title", "编辑logo，Size：700px * 112px");
+	/** ***************************************************** */
+	$("#logo").dblclick(function() {
+		$("input[name=file]").click();
+	});
+	$("input[name=file]").change(function() {
+		if (this.files.length == 0)
+            return false;
+		var url = getURL(this.files[0]);
+		$("#logo").attr("src", url);
+		$("#edit img").show();
+	});
+	$("#edit img").click(function() {
+		console.log($("input[name=file]").length);
+		if ($("input[name=file]").length == 0) 
+			return false;
+		var path = window.location.href;
+		$("#iform").attr("action", "/survey/project/editlogo");
+		$("#iform input[name=path]").val(path);
+		$("#iform").submit();
+	});
+	
+	/** ***************************************************** */
 	if ($("input[name=id]").val() == "")
     	$("input[name=id]").val(0);
     var option = "<option value='N'>N</option><option value='Y'>Y</option>";
     /** 设置select的值 */
     $("select").html(option);
     $("select").each(function() {
-    	console.log($(this).attr("value"));
         $(this).val($(this).attr("value"));
     });
     
@@ -297,4 +319,16 @@ $(document).ready(function() {
         };
         reader.readAsDataURL(file);
     };
+    
+    /** 根據文件獲取路徑 */
+    function getURL(file) {
+        var url = null;
+        if (window.createObjectURL != undefined)
+            url = window.createObjectURL(file);
+        else if (window.URL != undefined)
+            url = window.URL.createObjectURL(file);
+        else if (window.webkitURL != undefined)
+            url = window.webkitURL.createObjectURL(file);
+        return url;
+    }
 });

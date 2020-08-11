@@ -18,9 +18,10 @@ input {
 }
 
 #logo {
-	width: 580px;
-	height: 110px;
-	margin: 20px 420px 40px 0px;
+	width: 700px;
+	height: 112px;
+	margin: 20px 300px 40px 0px;
+	cursor: pointer;
 	float: left;
 }
 
