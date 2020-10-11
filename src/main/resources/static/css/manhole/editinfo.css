@@ -354,6 +354,7 @@ input {
 	height: 466px;
 	padding: 5px;
 	align-items: center;
+	outline: none;
 	display: flex;
 	float: left;
 }

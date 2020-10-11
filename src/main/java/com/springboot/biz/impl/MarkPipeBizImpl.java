@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.springboot.biz.ItemBiz;
 import com.springboot.biz.MarkPipeBiz;
 import com.springboot.dao.MarkPipeDao;
 import com.springboot.entity.MarkItem;
@@ -20,8 +19,6 @@ public class MarkPipeBizImpl implements MarkPipeBiz {
 
 	@Resource
 	private MarkPipeDao markPipeDao;
-	@Resource
-	private ItemBiz itemBiz;
 
 	private Map<String, Object> map = null;
 

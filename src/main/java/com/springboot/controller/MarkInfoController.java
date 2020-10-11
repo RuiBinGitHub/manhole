@@ -57,7 +57,7 @@ public class MarkInfoController {
 	public ModelAndView markView(String name, @RequestParam(defaultValue = "1") int page) {
 		ModelAndView view = new ModelAndView("markinfo/markview");
 		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("user", user, "company", user.getCompany());
+		map = MyHelper.getMap("page", page, "company", user.getCompany());
 		if (!StringUtils.isEmpty(name))
 			map.put("name", name);
 		info = markItemBiz.findViewMarkItem(map);
@@ -72,7 +72,7 @@ public class MarkInfoController {
 	public ModelAndView showList(String name, @RequestParam(defaultValue = "1") int page) {
 		ModelAndView view = new ModelAndView("markinfo/showlist");
 		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("user", user, "page", page);
+		map = MyHelper.getMap("page", page, "user", user);
 		if (!StringUtils.isEmpty(name))
 			map.put("name", name);
 		info = markItemBiz.findListMarkItem(map);
@@ -87,7 +87,7 @@ public class MarkInfoController {
 	public ModelAndView findList(String name, @RequestParam(defaultValue = "1") int page) {
 		ModelAndView view = new ModelAndView("markinfo/findlist");
 		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("company", user.getCompany(), "page", page);
+		map = MyHelper.getMap("page", page, "company", user.getCompany());
 		if (!StringUtils.isEmpty(name))
 			map.put("name", name);
 		info = markItemBiz.findListMarkItem(map);

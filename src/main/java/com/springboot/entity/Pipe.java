@@ -16,7 +16,6 @@ public class Pipe {
 	private String photo;
 	private String office1;
 	private String office2;
-	
 	private Manhole manhole;
 	
 	public int getId() {

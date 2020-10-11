@@ -12,7 +12,7 @@ $(document).ready(function() {
             $("#menuBtn2").click();
     });
     $("#menuBtn1").click(function() {
-        window.location.href = "marklist";
+        window.location.href = "showlist";
     });
     $("#menuBtn2").click(function() {
         var name = $("#menuText").val();

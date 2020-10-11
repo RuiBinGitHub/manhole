@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -22,6 +24,10 @@ import com.springboot.util.MyHelper;
 @Service
 public class ItemBizImpl implements ItemBiz {
 
+	
+	private static final Logger log = LoggerFactory.getLogger(ItemBizImpl.class);
+
+	
 	@Value(value = "${myfile}")
 	private String myfile;
 
@@ -78,6 +84,7 @@ public class ItemBizImpl implements ItemBiz {
 	public void replacItem(Manhole manhole, MultipartFile[] files) {
 		List<Item> items = manhole.getItems();
 		String path = myfile + "/ItemImage/";
+		log.info(files.length + "");
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isEmpty())
 				continue;

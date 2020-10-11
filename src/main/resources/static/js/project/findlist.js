@@ -45,7 +45,7 @@ $(document).ready(function() {
         }
         /*********************************************/
         $(this).find("input[type=button]:eq(0)").click(function() {
-            window.open("/survey/downfile?id=" + id);
+            window.open("/survey/project/downfile?id=" + id);
         });
         $(this).find("input[type=button]:eq(1)").click(function() {
         	if (!confirm(tipsText1))

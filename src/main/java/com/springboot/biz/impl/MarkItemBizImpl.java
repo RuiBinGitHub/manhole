@@ -64,7 +64,6 @@ public class MarkItemBizImpl implements MarkItemBiz {
 			map.put("name", "%" + map.get("name") + "%");
 		if (!StringUtils.isEmpty(map.get("page")))
 			PageHelper.startPage((int) map.get("page"), 15);
-
 		List<MarkItem> markItems = markItemDao.findViewMarkItem(map);
 		PageInfo<MarkItem> info = new PageInfo<MarkItem>(markItems);
 		return info;

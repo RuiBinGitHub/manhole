@@ -101,8 +101,8 @@ public class TestController {
 		return map;
 	}
 
-	@RequestMapping(value = "/appendpipe", method = RequestMethod.POST)
 	/** type：O表示出水 */
+	@RequestMapping(value = "/appendpipe", method = RequestMethod.POST)
 	public int abcd(int id, Pipe pipe, String type) {
 		Manhole manhole = manholeBiz.findInfoManhole(id, null);
 		List<Pipe> pipes = pipeBiz.findListPipe(manhole);

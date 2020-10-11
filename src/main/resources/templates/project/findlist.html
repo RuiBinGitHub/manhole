@@ -15,12 +15,22 @@
       <div id="mainMenu">
         <div id="menuTitle" th:text="#{menu.title.text}"></div>
         <div class="menu2"><a href="/survey/project/showlist" th:text="#{menu.div.text1}"></a></div>
-        <div class="menu1"><a href="/survey/project/findlist" th:text="#{menu.div.text2}"></a></div>
-        <div class="menu2"><a href="/survey/markinfo/markview" th:text="#{menu.div.text3}"></a></div>
-        <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text4}"></a></div>
-        <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
-        <div class="menu2"><a href="/survey/operator/findlist" th:text="#{menu.div.text6}"></a></div>
-        <div class="menu2"><a href="/survey/message/findlist" th:text="#{menu.div.text7}"></a></div>
+        <shiro:hasRole name="role2">
+          <div class="menu1"><a href="/survey/project/findlist" th:text="#{menu.div.text2}"></a></div>
+        </shiro:hasRole>
+        <shiro:hasRole name="role3">
+          <div class="menu2"><a href="/survey/markinfo/markview" th:text="#{menu.div.text3}"></a></div>
+        </shiro:hasRole>
+        <shiro:hasRole name="role3">
+          <div class="menu2"><a href="/survey/markinfo/showlist" th:text="#{menu.div.text4}"></a></div>
+        </shiro:hasRole>
+        <shiro:hasRole name="role2">
+          <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
+        </shiro:hasRole>
+        <shiro:hasRole name="role2">
+          <div class="menu2"><a href="/survey/operator/showlist" th:text="#{menu.div.text6}"></a></div>
+        </shiro:hasRole>
+        <div class="menu2"><a href="/survey/message/showlist" th:text="#{menu.div.text7}"></a></div>
         <div class="menu2"><a href="/survey/userinfo/center" th:text="#{menu.div.text8}"></a></div>
       </div>
       

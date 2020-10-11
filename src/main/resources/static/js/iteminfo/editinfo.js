@@ -112,6 +112,7 @@ $(document).ready(function() {
 		table.find("input[type=hidden]:eq(1)").val("");
 		table.find("input[type=hidden]:eq(2)").val("");
 		table.find("input[type=text]").val("");
+		table.find("input[type=file]").val("");
 		$("#form1").append(table);
 	});
 	
