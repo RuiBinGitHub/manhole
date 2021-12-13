@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.springboot.entity.Manhole;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -15,14 +16,13 @@ import com.springboot.dao.ProjectDao;
 import com.springboot.entity.Company;
 import com.springboot.entity.Project;
 import com.springboot.entity.User;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 
 @Service
 public class ProjectBizImpl implements ProjectBiz {
 
 	@Resource
 	private ProjectDao projectDao;
-
 	private Map<String, Object> map = null;
 
 	public void insertProject(Project project) {
@@ -38,7 +38,7 @@ public class ProjectBizImpl implements ProjectBiz {
 	}
 
 	public Project findInfoProject(int id, User user) {
-		map = MyHelper.getMap("id", id, "user", user);
+		map = AppUtils.getMap("id", id, "user", user);
 		return projectDao.findInfoProject(map);
 	}
 
@@ -46,23 +46,38 @@ public class ProjectBizImpl implements ProjectBiz {
 		return projectDao.findInfoProject(map);
 	}
 
-	public PageInfo<Project> findListProject(Map<String, Object> map) {
+	public PageInfo<Project> findListProject(Map<String, Object> map, int page, int size) {
 		if (!StringUtils.isEmpty(map.get("name")))
 			map.put("name", "%" + map.get("name") + "%");
-		if (!StringUtils.isEmpty(map.get("page")))
-			PageHelper.startPage((int) map.get("page"), 15);
+		PageHelper.startPage(page, size);
 		List<Project> projects = projectDao.findListProject(map);
-		PageInfo<Project> info = new PageInfo<Project>(projects);
-		return info;
+		return new PageInfo<>(projects);
+	}
+
+	public PageInfo<Project> showListProject(Map<String, Object> map, int page, int size, String sort, String type) {
+		if (!StringUtils.isEmpty(map.get("name")))
+			map.put("name", "%" + map.get("name") + "%");
+		String order = StringUtils.isEmpty(sort) ? null : sort + " " + type;
+		PageHelper.startPage(page, size, order);
+		List<Project> projects = projectDao.showListProject(map);
+		return new PageInfo<>(projects);
+	}
+
+	public PageInfo<Manhole> queryListManhole(Map<String, Object> map, int page, int size) {
+		if (!StringUtils.isEmpty(map.get("name")))
+			map.put("name", "%" + map.get("name") + "%");
+		PageHelper.startPage(page, size);
+		List<Manhole> manholes = projectDao.queryListManhole(map);
+		return new PageInfo<>(manholes);
 	}
 
 	public List<Project> mapListProject(Company company) {
-		map = MyHelper.getMap("company", company);
+		map = AppUtils.getMap("company", company);
 		return projectDao.mapListProject(map);
 	}
 
 	public int appendProject(Project project, User user) {
-		project.setDate(MyHelper.getDate(null));
+		project.setDate(AppUtils.getDate(null));
 		project.setState("未提交");
 		project.setUser(user);
 		insertProject(project);

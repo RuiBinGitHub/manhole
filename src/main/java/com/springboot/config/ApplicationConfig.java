@@ -23,68 +23,68 @@ import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 @Configuration
 public class ApplicationConfig implements WebMvcConfigurer {
 
-	@Resource
-	private MyRealm myRealm;
+    @Resource
+    private MyRealm myRealm;
 
-	private SecurityManager manager = null;
-	private ShiroFilterFactoryBean factoryBean = null;
+    @Bean
+    public ShiroFilterFactoryBean getShiroFilterFactoryBean() {
+        SecurityManager manager = new DefaultWebSecurityManager(myRealm);
+        ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
+        // 设置安全管理器
+        factoryBean.setSecurityManager(manager);
+        Map<String, String> filterMap = new HashMap<>();
+        filterMap.put("/userview/**", "anon");
+        filterMap.put("/company/**", "roles[role1]"); // 公司操作
+        filterMap.put("/project/**", "roles[role4]"); // 项目操作
+        filterMap.put("/manhole/**", "roles[role4]"); // 沙井操作
+        filterMap.put("/pipe/**", "roles[role4]"); // 管道操作
+        filterMap.put("/item/**", "roles[role4]"); // 图片操作
+        filterMap.put("/operator/**", "roles[role2]"); // 沙井操作
+        filterMap.put("/markinfo/**", "roles[role4]"); // 评分操作
+        filterMap.put("/message/**", "roles[role4]"); // 消息操作
+        filterMap.put("/userinfo/showlist", "roles[role2]"); // 人员管理
+        filterMap.put("/userinfo/update", "roles[role2]"); // 更新人员
+        filterMap.put("/userinfo/center", "roles[role4]"); // 个人中心
+        filterMap.put("/downfile", "roles[role4]"); // 下载操作
+        factoryBean.setFilterChainDefinitionMap(filterMap);
 
-	@Bean
-	public ShiroFilterFactoryBean getShiroFilterFactoryBean() {
-		manager = new DefaultWebSecurityManager(myRealm);
-		factoryBean = new ShiroFilterFactoryBean();
-		// 设置安全管理器
-		factoryBean.setSecurityManager(manager);
-		Map<String, String> filterMap = new HashMap<>();
-		filterMap.put("/userview/**", "anon");
-		filterMap.put("/company/**", "roles[role1]"); // 公司操作
-		filterMap.put("/project/**", "roles[role4]"); // 项目操作
-		filterMap.put("/manhole/**", "roles[role4]"); // 沙井操作
-		filterMap.put("/pipe/**", "roles[role4]"); // 管道操作
-		filterMap.put("/item/**", "roles[role4]"); // 图片操作
-		filterMap.put("/operator/**", "roles[role2]"); // 沙井操作
-		filterMap.put("/markinfo/**", "roles[role4]"); // 评分操作
-		filterMap.put("/message/**", "roles[role4]"); // 消息操作
-		filterMap.put("/userinfo/update", "roles[role2]"); // 更新人员
-		filterMap.put("/userinfo/center", "roles[role4]"); // 个人中心
-		filterMap.put("/downfile", "roles[role4]"); // 下载操作
+        // 配置跳转的登录页面
+        factoryBean.setLoginUrl("/userview/loginview");
+        // 设置未授权提示页面
+        factoryBean.setUnauthorizedUrl("/authorize");
+        return factoryBean;
+    }
 
-		factoryBean.setFilterChainDefinitionMap(filterMap);
-		// 配置跳转的登录页面
-		factoryBean.setLoginUrl("/userview/loginview");
-		// 设置未授权提示页面
-		factoryBean.setUnauthorizedUrl("/authorize");
-		return factoryBean;
-	}
+    /**
+     * 定义识图控制器
+     */
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("**/authorize").setViewName("common/authorize");
+        registry.addViewController("**/success").setViewName("common/success");
+        registry.addViewController("**/failure").setViewName("common/failure");
 
-	/** 定义识图控制器 */
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/operator/insertview").setViewName("operator/insert");
-		registry.addViewController("/userinfo/center").setViewName("userinfo/center");
-		registry.addViewController("**/authorize").setViewName("userview/authorize");
-		registry.addViewController("**/loginview").setViewName("userview/loginview");
-		registry.addViewController("**/resetview").setViewName("userview/resetview");
-		registry.addViewController("**/completes").setViewName("userview/completes");
-		registry.addViewController("**/success").setViewName("userview/success");
-		registry.addViewController("**/failure").setViewName("userview/failure");
-	}
+        registry.addViewController("**/loginview").setViewName("userview/loginview");
+        registry.addViewController("**/resetview").setViewName("userview/resetview");
+        registry.addViewController("**/completes").setViewName("userview/completes");
 
-	@Bean
-	public CorsFilter addCorsFilter() {
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.addAllowedOrigin("*"); // 1允许任何域名使用
-		configuration.addAllowedHeader("*"); // 2允许任何请求头
-		configuration.addAllowedMethod("*"); // 3允许任何方法
-		source.registerCorsConfiguration("/**", configuration);
-		CorsFilter corsFilter = new CorsFilter(source);
-		return corsFilter;
-	}
+        registry.addViewController("/operator/insertview").setViewName("operator/insert");
+        registry.addViewController("/userinfo/center").setViewName("userinfo/center");
+    }
 
-	@Bean
-	public ShiroDialect shiroDialect() {
-		ShiroDialect dialect = new ShiroDialect();
-		return dialect;
-	}
+    @Bean
+    public CorsFilter addCorsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("*"); // 1允许任何域名使用
+        configuration.addAllowedHeader("*"); // 2允许任何请求头
+        configuration.addAllowedMethod("*"); // 3允许任何方法
+        source.registerCorsConfiguration("/**", configuration);
+        return new CorsFilter(source);
+    }
+
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
+    }
 
 }

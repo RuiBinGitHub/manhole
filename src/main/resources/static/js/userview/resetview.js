@@ -1,152 +1,142 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-	var code = null;
-	
-	$(".textbox:eq(0)").attr("placeholder", "请输入登录账号");
-	$(".textbox:eq(1)").attr("placeholder", "请输入验证邮箱");
-	$(".textbox:eq(2)").attr("placeholder", "请输入新密码");
-	$(".textbox:eq(3)").attr("placeholder", "请确认新密码");
-	$(".code").attr("placeholder", "请输入验证码");
-	$(".textbox:eq(1)").attr("list", "list");
-	$(".textbox:eq(2)").attr("name", "pass");
-	$(".btn1").addClass("near");
-	/** *************************************************************** */
-	$("#tab1 .textbox:eq(1)").on("input", function(){
-    	var value = $(this).val();
-    	if(value.indexOf("@") != -1)
-    		value = value.substring(0 ,value.indexOf("@"));
-    	var context = "";
-    	context += "<option>" + value + "@qq.com</option>";
-    	context += "<option>" + value + "@126.com</option>";
-    	context += "<option>" + value + "@163.com</option>";
-    	context += "<option>" + value + "@sina.com</option>";
-    	context += "<option>" + value + "@sohu.com</option>";
-    	context += "<option>" + value + "@gmail.com</option>";
-    	context += "<option>" + value + "@outlook.com</option>";
-    	$("#list").html(context);
+    let code = null;
+
+    $("input[name=mail]").attr("list", "list");
+    $("input[name=code]").attr("placeholder", "请输入验证码");
+    $("#pass1").attr("name", "pass");
+    $(".btn1").addClass("near");
+    /** *************************************************************** */
+    $("input[name=mail]").on("input", function () {
+        let value = $(this).val();
+        if (value.indexOf("@") !== -1)
+            value = value.substring(0, value.indexOf("@"));
+        let context = "";
+        context += "<option>" + value + "@qq.com</option>";
+        context += "<option>" + value + "@126.com</option>";
+        context += "<option>" + value + "@163.com</option>";
+        context += "<option>" + value + "@sina.com</option>";
+        context += "<option>" + value + "@sohu.com</option>";
+        context += "<option>" + value + "@gmail.com</option>";
+        context += "<option>" + value + "@outlook.com</option>";
+        $("#list").html(context);
     });
-	
-	$(".commit").click(function() {
-        if (!checkUserName())
+
+    $(".commit").on("click", function () {
+        if (!checkName())
             return false;
         if (!checkMail() || !checkCode())
             return false;
-        if (!checkPassWord())
-        	return false;
+        if (!checkPass())
+            return false;
         $(this).css("background-color", "#999");
         $(this).attr("disabled", true);
         $("#form1").submit();
     });
-	
-	/** 检测账号 */
-    function checkUserName() {
-        var name = $("#tab1 .textbox:eq(0)").val();
+
+    /** 检测账号 */
+    function checkName() {
+        const name = $("input[name=name]").val();
         if (name.length < 6 || name.length > 16) {
-            $("#tab1 .textbox:eq(0)").css("border-color", "#f00");
-            showTips("请输入正确登录账号！");
+            $("input[name=name]").css("border-color", "#f00");
+            $("#tips").text("*请输入正确登录账号！");
             return false;
         }
         return true;
     }
-    
+
     /** 检测密码 */
-    function checkPassWord() {
-        var password1 = $("#tab1 input[type=password]:eq(0)").val();
-        var password2 = $("#tab1 input[type=password]:eq(1)").val();
+    function checkPass() {
+        const password1 = $("#tab1 input[type=password]:eq(0)").val();
+        const password2 = $("#tab1 input[type=password]:eq(1)").val();
         if (password1.length < 6 || password1.length > 16) {
             $("#tab1 input[type=password]:eq(0)").css("border-color", "#f00");
-            showTips("新密码格式输入不正确！");
+            $("#tips").text("*密码格式输入不正确！");
             return false;
         }
-        if (password1 != password2) {
+        if (password1 !== password2) {
             $("#tab1 input[type=password]:eq(0)").css("border-color", "#f00");
             $("#tab1 input[type=password]:eq(1)").css("border-color", "#f00");
-            showTips("两次密码输入不一致！");
+            $("#tips").text("*两次密码输入不一致！");
             return false;
         }
         return true;
     }
-    
+
     /** 检测邮箱 */
     function checkMail() {
-        if (!checkUserName())
+        if (!checkName())
             return false;
-        var name = $("#tab1 .textbox:eq(0)").val();
-        var mail = $("#tab1 .textbox:eq(1)").val();
-        var expr = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
-        if (mail == "" || !mail.match(expr)) {
-            $("#tab1 .textbox:eq(1)").css("border-color", "#f00");
-            showTips("请输入正确邮箱地址！");
+        const name = $("input[name=name]").val();
+        const mail = $("input[name=mail]").val();
+        const expr = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+        if (mail === "" || !mail.match(expr)) {
+            $("input[name=mail]").css("border-color", "#f00");
+            $("#tips").text("*请输入正确邮箱地址！");
             return false;
         }
-        if (!Ajax("checknamemail", {username: name, mail: mail})) {
+        if (!Ajax("check", {username: name, mail: mail})) {
             $("#tab1 .textbox:eq(1)").css("border-color", "#f00");
-            showTips("登录账号与邮箱地址不匹配！");
+            $("#tips").text("*登录账号与邮箱地址不匹配！");
             return false;
         }
         return true;
     }
-    
+
     /** 检测验证码 */
     function checkCode() {
-        var temp = $("#tab1 .code").val();
-        if (temp != null && temp == code)
-        	return true;
-        $("#tab1 .code").css("border-color", "#f00");
-        showTips("请输入正确的验证码！");
-        return false;
-    }
-    
-    var time = 0;
-    $(".btn1").click(function() {
-        if (!checkMail())
-            return false;
-        var mail = $("#tab1 .textbox:eq(1)").val();
-        if ((code = Ajax("sendmail", {"mail": mail})) == "") {
-            $("#tab1 .textbox:eq(1)").css("border-color", "#f00");
-            $("#tips").text("*Please check the input E-Mail!");
+        const temp = $("input[name=code]").val();
+        if (temp === "" || temp + "" !== code + "") {
+            $("input[name=code]").css("border-color", "#f00");
+            $("#tips").text("*验证码输入不正确！!");
             return false;
         }
-        time = 60;
+        return true;
+    }
+
+    $(".btn1").on("click", function () {
+        if (!checkName() || !checkMail())
+            return false;
+        const mail = $("input[name=mail]").val();
+        if ((code = Ajax("sendmail", {"mail": mail})) === "") {
+            $("input[name=mail]").css("border-color", "#f00");
+            $("#tips").text("*电子邮箱格式不正确");
+            return false;
+        }
         $(this).attr("disabled", true);
         $(".btn1").removeClass("near");
-        changeTime();
+        changeTime(60);
     });
 
-    function changeTime() {
-        if (time-- == 0) {
-        	$(".btn1").addClass("near");
-        	$(".btn1").attr("disabled", false);
+    function changeTime(time) {
+        if (time-- === 0) {
+            $(".btn1").addClass("near");
+            $(".btn1").attr("disabled", false);
             $(".btn1").attr("value", "获取验证码");
         } else {
             $(".btn1").attr("value", time + " 秒后重新获取");
-            setTimeout(changeTime, 1000);
+            setTimeout(changeTime, 1000, time);
         }
     }
-    $("#tab1 .textbox").bind("input", function() {
+
+    $("#tab1 .textbox").bind("input", function () {
         $(this).css("border-color", "#00BCDD");
-        $("#tips").text("");
     });
-    
+
     /** 执行AJAX操作 */
     function Ajax(url, data) {
-        var result = null;
+        let result = null;
         $.ajax({
             url: url,
             data: data,
             type: "post",
             async: false,
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 result = data;
             }
         });
         return result;
     }
-	/** *************************************************************** */
-	function showTips(text) {
-		$("#tips").show().delay(1800).hide(200);
-		$("#tips").text(text);
-	}
-	
+
 });

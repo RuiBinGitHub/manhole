@@ -1,95 +1,104 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
-  <head>
-	<title>个人项目</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="/survey/css/common/itemlist.css"/>
-	<link rel="stylesheet" type="text/css" href="/survey/css/project/findlist.css"/>
-	<script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="/survey/js/project/findlist.js"></script>
-  </head>
-  <body>
-    <div th:replace="navigation::navigation"></div>
-    <div id="main">
-      <div id="mainMenu">
+<head>
+    <title>个人项目</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/survey/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/survey/css/common/itemlist.css"/>
+    <link rel="stylesheet" type="text/css" href="/survey/css/project/findlist.css"/>
+    <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/survey/layui/layui-2.5.6.min.js"></script>
+    <script type="text/javascript" src="/survey/js/project/findlist.js"></script>
+</head>
+<body>
+<div th:replace="navigation::navigation"></div>
+<div id="main">
+    <div id="mainMenu">
         <div id="menuTitle" th:text="#{menu.title.text}"></div>
         <div class="menu2"><a href="/survey/project/showlist" th:text="#{menu.div.text1}"></a></div>
         <shiro:hasRole name="role2">
-          <div class="menu1"><a href="/survey/project/findlist" th:text="#{menu.div.text2}"></a></div>
+            <div class="menu1"><a href="/survey/project/findlist" th:text="#{menu.div.text2}"></a></div>
         </shiro:hasRole>
         <shiro:hasRole name="role3">
-          <div class="menu2"><a href="/survey/markinfo/markview" th:text="#{menu.div.text3}"></a></div>
+            <div class="menu2"><a href="/survey/markinfo/markview" th:text="#{menu.div.text3}"></a></div>
         </shiro:hasRole>
         <shiro:hasRole name="role3">
-          <div class="menu2"><a href="/survey/markinfo/showlist" th:text="#{menu.div.text4}"></a></div>
+            <div class="menu2"><a href="/survey/markinfo/showlist" th:text="#{menu.div.text4}"></a></div>
         </shiro:hasRole>
         <shiro:hasRole name="role2">
-          <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
+            <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
         </shiro:hasRole>
         <shiro:hasRole name="role2">
-          <div class="menu2"><a href="/survey/operator/showlist" th:text="#{menu.div.text6}"></a></div>
+            <div class="menu2"><a href="/survey/operator/showlist" th:text="#{menu.div.text6}"></a></div>
         </shiro:hasRole>
-        <div class="menu2"><a href="/survey/message/showlist" th:text="#{menu.div.text7}"></a></div>
-        <div class="menu2"><a href="/survey/userinfo/center" th:text="#{menu.div.text8}"></a></div>
-      </div>
-      
-      <div id="mainInfo">
+        <shiro:hasRole name="role2">
+            <div class="menu2"><a href="/survey/userinfo/showlist" th:text="#{menu.div.text7}"></a></div>
+        </shiro:hasRole>
+        <div class="menu2"><a href="/survey/message/showlist" th:text="#{menu.div.text8}"></a></div>
+        <div class="menu2"><a href="/survey/userinfo/center" th:text="#{menu.div.text9}"></a></div>
+    </div>
+
+    <input type="hidden" name="name" th:value="${param.name}"/>
+    <input type="hidden" name="sort" th:value="${param.sort}"/>
+    <input type="hidden" name="type" th:value="${param.type}"/>
+    <div id="mainInfo">
         <div id="infoTop" th:text="#{project.findlist.title}"></div>
-        <div id="infoMenu">
-          <span th:text="#{project.findlist.menu1}"></span>
-          <input id="menuBtn1" type="button" value="←"/>
-          <input id="menuText" th:value="${param.name}"/>
-          <input id="menuBtn2" type="button" th:value="#{project.findlist.menu2}"/>
-          <div style="height:100%;float:left;"></div>
-          <input type="button" id="showmap" th:value="#{project.findlist.button}"/>
+        <div id="infoMenu" style="width: 885px">
+            <span th:text="#{project.findlist.menu1}"></span>
+            <input id="menuBtn1" type="button" value="←"/>
+            <input id="menuText" th:value="${param.name}"/>
+            <input id="menuBtn2" type="button" th:value="#{project.findlist.menu2}"/>
+            <a id="menulink" href="querylists" target="_blank">井号查询</a>
         </div>
-        <table id="tab1">
-          <thead>
+        <div id="showmap" class="layui-btn layui-btn-sm" th:text="#{project.findlist.button}"></div>
+
+        <table id="tab1" class="layui-table">
+            <thead>
             <tr height="40px" style="background-color:#51596b;">
-              <th width="4%">NO</th>           
-			  <th width="18%" th:text="#{project.findlist.table.title1}"></th>
-			  <th width="14%" th:text="#{project.findlist.table.title2}"></th> 
-			  <th width="14%" th:text="#{project.findlist.table.title3}"></th>
-			  <th width="12%" th:text="#{project.findlist.table.title4}"></th>
-			  <th width="12%" th:text="#{project.findlist.table.title5}"></th>
-			  <th width="12%" th:text="#{project.findlist.table.title6}"></th>
-			  <th width="14%" th:text="#{project.findlist.table.title7}"></th>
-			</tr>       
-          </thead>
-          <tbody>
+                <th width="4%">No</th>
+                <th width="18%" th:text="#{project.findlist.table.title1}" data-name="name"></th>
+                <th width="14%" th:text="#{project.findlist.table.title2}" data-name="operator"></th>
+                <th width="14%" th:text="#{project.findlist.table.title3}" data-name="datetime1"></th>
+                <th width="12%" th:text="#{project.findlist.table.title4}" data-name="datetime2"></th>
+                <th width="12%" th:text="#{project.findlist.table.title5}" data-name="date"></th>
+                <th width="12%" th:text="#{project.findlist.table.title6}" data-name="userid"></th>
+                <th width="14%" th:text="#{project.findlist.table.title7}"></th>
+            </tr>
+            </thead>
+            <tbody>
             <tr th:each="project,status:${projects}" th:id="${project.id}">
-              <td th:text="${status.count+(page-1)*15}"></td>
-              <td><a th:href="@{findinfo(id=${project.id})}" th:text="${project.name}"></a></td>
-          	  <td th:text="${project.operator}"></td>
-          	  <td th:text="${project.datetime1}"></td>
-          	  <td th:text="${project.datetime2}"></td>
-          	  <td th:text="${project.date}"></td>
-          	  <td th:text="${project.user.name}"></td>
-		      <td>
-		        <input type="button" th:value="#{project.findlist.table.button1}" style="background-color:#3CB44B;">
-		        <input type="button" th:value="#{project.findlist.table.button2}" style="background-color:#2CACF1;">
-		        <input type="button" th:value="#{project.findlist.table.button3}" style="background-color:#F34D4D;">
-		      </td>
-          	</tr>
-          </tbody>
+                <td th:text="${status.count + (page - 1) * 15}"></td>
+                <td>
+                    <a th:href="@{checkview(id=${project.id})}" th:text="${project.name}"></a>
+                    <img src="/survey/img/展开.png" alt="" title="展开项目">
+                </td>
+                <td th:text="${project.operator}"></td>
+                <td th:text="${project.datetime1}"></td>
+                <td th:text="${project.datetime2}"></td>
+                <td th:text="${project.date}"></td>
+                <td th:text="${project.user.name}"></td>
+                <td>
+                    <input type="button" class="layui-btn layui-btn-xs" th:value="#{project.findlist.table.button1}"/>
+                    <input type="button" class="layui-btn layui-btn-xs layui-btn-normal" th:value="#{project.findlist.table.button2}"/>
+                    <input type="button" class="layui-btn layui-btn-xs layui-btn-danger" th:value="#{project.findlist.table.button3}"/>
+                </td>
+            </tr>
+            </tbody>
         </table>
-        <img th:if="${#lists.isEmpty(projects)}" src="/survey/img/null.png" style="margin:145px 400px;float:left;">
-        <table id="tab2" th:if="${!#lists.isEmpty(projects)}">
-          <tr height="65px">
-            <td width="45%" align="right"><input type="button" th:value="#{showlit.page.button1}" class="pagebtn"/></td>
-            <td width="10%" align="center"><a id="page1" th:text="${page}"></a> / <a id="page2" th:text="${cont}"></a></td>
-            <td width="45%" align="left"><input type="button" th:value="#{showlit.page.button2}" class="pagebtn"/></td>
-          </tr>
-        </table>
-      </div>
+
+        <img th:if="${#lists.isEmpty(projects)}" src="/survey/img/null.png" alt="" style="margin:145px 400px;float:left;">
+        <div th:if="${!#lists.isEmpty(projects)}" id="pageMain" class="layui-form-item">
+            <div id="page" th:data-p1="${page}" th:data-p2="${count}"></div>
+        </div>
     </div>
-    <!-- main结束 -->
-    <div id="tips"></div>
-    
-    <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
-      <p>香港麦斯迪埃高科技有限责任公司</p>
-      <p>Copyright © 2017 All Rights Reserved</p>	
-    </div>
-  </body>
+</div>
+<!-- main结束 -->
+<div id="tips"></div>
+
+<div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
+    <p>香港麦斯迪埃高科技有限责任公司</p>
+    <p>Copyright © 2017 All Rights Reserved</p>
+</div>
+</body>
 </html>

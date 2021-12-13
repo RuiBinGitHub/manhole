@@ -15,7 +15,7 @@ import com.springboot.dao.MessageDao;
 import com.springboot.entity.MarkItem;
 import com.springboot.entity.Message;
 import com.springboot.entity.User;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 
 @Service
 public class MessageBizImpl implements MessageBiz {
@@ -37,7 +37,7 @@ public class MessageBizImpl implements MessageBiz {
 	}
 
 	public Message findInfoMessage(int id, User user) {
-		map = MyHelper.getMap("id", id, "user", user);
+		map = AppUtils.getMap("id", id, "user", user);
 		return findInfoMessage(map);
 	}
 
@@ -47,14 +47,13 @@ public class MessageBizImpl implements MessageBiz {
 
 	public PageInfo<Message> findListMessage(Map<String, Object> map) {
 		if (!StringUtils.isEmpty(map.get("page")))
-			PageHelper.startPage((int) map.get("page"), 15);
+			PageHelper.startPage((int) map.get("page"), 10);
 		List<Message> messages = messageDao.findListMessage(map);
-		PageInfo<Message> info = new PageInfo<Message>(messages);
-		return info;
+		return new PageInfo<>(messages);
 	}
 
 	public void sendMessage(MarkItem markItem) {
-		String data = MyHelper.getDate(null);
+		String data = AppUtils.getDate(null);
 		Message message = new Message();
 		message.setTitle("您有项目被评分");
 		message.setState("未读");
@@ -65,7 +64,8 @@ public class MessageBizImpl implements MessageBiz {
 		insertMessage(message);
 	}
 
-	public int getCount(Map<String, Object> map) {
+	public int getCount(String state, User user) {
+		map = AppUtils.getMap("state", state, "user", user);
 		return messageDao.getCount(map);
 	}
 

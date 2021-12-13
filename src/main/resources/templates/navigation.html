@@ -1,73 +1,79 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" th:fragment="navigation">
-  <head>
-  	<link rel="stylesheet" type="text/css" href="/survey/css/navigation.css"/>
-  	<script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
-  	<script type="text/javascript">
-  		$(document).ready(function(){
-  			$("#navilogo").click(function(){
-  				window.location.href="/survey/project/showlist";
-  			});
-  			/** 设置消息 */
-  			var text = $(".naviItem:eq(1) a").text();
-  			var data = Ajax("/survey/message/getcount", {state: "未读"});
-			if (data.length > 10)
-				$(".naviItem:eq(1) a").text(text + "(0)");
-			else
-				$(".naviItem:eq(1) a").text(text + "(" + data + ")");
-			/** 切换语言 */
-  			$("#link").click(function(){
-  				var name = $(this).attr("class");
-  				Ajax("/survey/userview/change", {lang: name});
-  				window.location.reload();
-  			});
-  			/** AJAX操作 */
-  			function Ajax(url, data) {
-  		        var result = null;
-  		        $.ajax({
-  		            url: url,
-  		            data: data,
-  		            type: "post",
-  		            async: false,
-  		            datatype: "json",
-  		            success: function(data) {
-  		                result = data;
-  		            }
-  		        });
-  		        return result;
-  		    }
-  		});
-  	</script>
-  </head>
-  <body>
-    <div id="naviMain">
-      <div id="navi">
-        <div style="width:755px;height:100%;float:left;">
-          <img id="navilogo" src="/survey/img/msdi.png" title="首页">
-        </div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" th:fragment="navigation">
+<head>
+    <link rel="stylesheet" type="text/css" href="/survey/css/navigation.css"/>
+    <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#navilogo").on("click", function () {
+                window.location.href = "/survey/project/showlist";
+            });
+
+            if ($(".naviItem:eq(1) a").attr("href") !== undefined) {
+                const text = $(".naviItem:eq(1) a").text();
+                const data = Ajax("/survey/message/getcount", {state: "未读"});
+                if (data != null && data.length < 10)
+                    $(".naviItem:eq(1) a").text(text + "(" + data + ")");
+                else
+                    $(".naviItem:eq(1) a").text(text + "(0)");
+            }
+
+            $("#link").on("click", function () {
+                const name = $(this).attr("class");
+                Ajax("/survey/userview/change", {lang: name});
+                window.location.reload();
+            });
+
+            /** 执行AJAX操作 */
+            function Ajax(url, data) {
+                let result = null;
+                $.ajax({
+                    url: url,
+                    data: data,
+                    type: "post",
+                    async: false,
+                    datatype: "json",
+                    success: function (data) {
+                        result = data;
+                    }
+                });
+                return result;
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="naviMain">
+    <div id="navi">
+        <img id="navilogo" src="/survey/img/msdi.png" title="首页" alt="">
         <div class="naviItem" style="width:120px">
-          <img src="/survey/img/navi1.png"/>
-          <shiro:authenticated> 
-            <a href="/survey/userinfo/center"><shiro:principal property="name"/></a>
-          </shiro:authenticated>
+            <img src="/survey/img/navi1.png" alt=""/>
+            <shiro:authenticated>
+                <a href="/survey/userinfo/center">
+                    <shiro:principal property="name"/>
+                </a>
+            </shiro:authenticated>
+            <shiro:guest>
+                <a href="/survry/project/showlist">请登录</a>
+            </shiro:guest>
         </div>
         <div class="naviItem">
-          <img src="/survey/img/navi2.png"/>
-          <a href="/survey/message/showlist" th:text="#{navigation.item.text1}"></a>
+            <img src="/survey/img/navi2.png"/>
+            <a href="/survey/message/showlist" th:text="#{navigation.item.text1}"></a>
         </div>
         <div th:if="${session.i18n == 'en_US'}" class="naviItem">
-          <img src="/survey/img/navi3.png"/>
-          <a id="link" class="zh_CN">简体中文</a>
+            <img src="/survey/img/navi3.png"/>
+            <a id="link" class="zh_CN">简体中文</a>
         </div>
         <div th:if="${session.i18n != 'en_US'}" class="naviItem">
-          <img src="/survey/img/navi4.png"/>
-          <a id="link" class="en_US">English</a>
+            <img src="/survey/img/navi4.png"/>
+            <a id="link" class="en_US">English</a>
         </div>
         <div class="naviItem">
-          <img src="/survey/img/navi5.png"/>
-          <a href="/survey/userview/leave" th:text="#{navigation.item.text2}"></a>
+            <img src="/survey/img/navi5.png"/>
+            <a href="/survey/userview/leave" th:text="#{navigation.item.text2}"></a>
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>

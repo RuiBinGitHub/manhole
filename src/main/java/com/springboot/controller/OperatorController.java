@@ -15,7 +15,7 @@ import com.github.pagehelper.PageInfo;
 import com.springboot.biz.OperatorBiz;
 import com.springboot.entity.Operator;
 import com.springboot.entity.User;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 
 @RestController
 @RequestMapping(value = "/operator")
@@ -30,13 +30,13 @@ public class OperatorController {
 	@RequestMapping(value = "/showlist")
 	public ModelAndView findlistOperator(String name, @RequestParam(defaultValue = "1") int page) {
 		ModelAndView view = new ModelAndView("operator/showlist");
-		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("company", user.getCompany(), "page", page);
+		User user = (User) AppUtils.findMap("user");
+		map = AppUtils.getMap("company", user.getCompany(), "page", page);
 		if (!StringUtils.isEmpty(name))
 			map.put("name", name);
 		PageInfo<Operator> info = operatorBiz.findListOperator(map);
 		view.addObject("operators", info.getList());
-		view.addObject("cont", info.getPages());
+		view.addObject("count", info.getTotal());
 		view.addObject("page", page);
 		return view;
 	}
@@ -45,8 +45,8 @@ public class OperatorController {
 	@RequestMapping(value = "/updateview")
 	public ModelAndView updateView(@RequestParam(defaultValue = "0") int id) {
 		ModelAndView view = new ModelAndView("userview/failure");
-		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("id", id, "company", user.getCompany());
+		User user = (User) AppUtils.findMap("user");
+		map = AppUtils.getMap("id", id, "company", user.getCompany());
 		Operator operator = operatorBiz.findInfoOperator(map);
 		if (StringUtils.isEmpty(operator))
 			return view;
@@ -59,7 +59,7 @@ public class OperatorController {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public ModelAndView insert(Operator operator) {
 		ModelAndView view = new ModelAndView("userview/failure");
-		User user = (User) MyHelper.findMap("user");
+		User user = (User) AppUtils.findMap("user");
 		operator.setCompany(user.getCompany());
 		operatorBiz.insertOperator(operator);
 		view.setViewName("redirect:/success");
@@ -70,8 +70,8 @@ public class OperatorController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView update(Operator operator) {
 		ModelAndView view = new ModelAndView("userview/failure");
-		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("id", operator.getId(), "company", user.getCompany());
+		User user = (User) AppUtils.findMap("user");
+		map = AppUtils.getMap("id", operator.getId(), "company", user.getCompany());
 		if (operatorBiz.findInfoOperator(map) == null)
 			return view;
 		operator.setCompany(user.getCompany());
@@ -83,8 +83,8 @@ public class OperatorController {
 	/** 删除数据 */
 	@RequestMapping(value = "/delete")
 	public boolean delete(@RequestParam(defaultValue = "0") int id) {
-		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("id", id, "company", user.getCompany());
+		User user = (User) AppUtils.findMap("user");
+		map = AppUtils.getMap("id", id, "company", user.getCompany());
 		Operator operator = operatorBiz.findInfoOperator(map);
 		if (!StringUtils.isEmpty(operator))
 			operatorBiz.deleteOperator(operator);
@@ -94,8 +94,8 @@ public class OperatorController {
 	/** 判断名称是否存在 */
 	@RequestMapping(value = "/isexistname")
 	public boolean isExistName(int id, String name) {
-		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("name", name, "company", user.getCompany());
+		User user = (User) AppUtils.findMap("user");
+		map = AppUtils.getMap("name", name, "company", user.getCompany());
 		Operator operator = operatorBiz.findInfoOperator(map);
 		if (operator == null || operator.getId() == id)
 			return false;

@@ -1,42 +1,35 @@
-$(document).ready(function() {
-	
-	$(".textbox:eq(1)").attr("type", "password");
-	$(".textbox:eq(0)").attr("placeholder", "请输入登录账号");
-	$(".textbox:eq(1)").attr("placeholder", "请输入登录密码");
-	/** *************************************************************** */
-	var text = $("#tips").text();
-	if (text != null && text != "")
-		showTips(text);
-	$("input").keydown(function() {
-		if (event.keyCode == 13)
-			$(".commit").click();
-	});
-	$(".commit").click(function() {
-		var name = $(".textbox:eq(0)").val();
-		var pass = $(".textbox:eq(1)").val();
-		if (name == null || name == "") {
-			$(".textbox:eq(0)").css("border-color", "#f00");
-			showTips("请输入登录账号！");
-			return false;
-		}
-		if (pass == null || pass == "") {
-			$(".textbox:eq(1)").css("border-color", "#f00");
-			showTips("请输入登录密码！");
-			return false;
-		}
-		// 提交数据
-		$(this).css("background-color", "#ccc");
-		$(this).attr("disable", true);
-		$(this).val("登录中...");
-		$("#form1").submit();
-	});
+$(document).ready(function () {
 
-	$(".textbox").bind("input", function() {
-		$(this).css("border-color", "#00D3F8");
-	});
-	/** *************************************************************** */
-	function showTips(text) {
-		$("#tips").show().delay(1800).hide(200);
-		$("#tips span").text(text);
-	}
+    $("input[name=username]").attr("placeholder", "请输入登录账号");
+    $("input[name=password]").attr("placeholder", "请输入登录密码");
+    $("input[name=password]").attr("type", "password");
+    /** *************************************************************** */
+    $("input").on("keydown", function () {
+        if (event.which === 13)
+            $(".commit").click();
+    });
+
+    $(".commit").on("click", function () {
+        if ($("input[name=username]").val().length === 0) {
+            $("input[name=username]").css("border-color", "#f00");
+            $("#tips").text("*请输入登录账号！");
+            return false;
+        }
+        if ($("input[name=password]").val().length === 0) {
+            $("input[name=password]").css("border-color", "#f00");
+            $("#tips").text("*请输入登录密码！");
+            return false;
+        }
+        // 提交数据
+        $(this).css("background-color", "#CCC");
+        $(this).attr("disable", true);
+        $(this).val("登录中...");
+        $("#form1").submit();
+    });
+
+    $(".textbox").on("input", function () {
+        $(this).css("border-color", "#00D3F8");
+        $("#tips").text("");
+    });
+
 });

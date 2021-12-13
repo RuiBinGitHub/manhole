@@ -2,15 +2,34 @@
 
 #showmap {
 	width: 64px;
-	height: 30px;
-	color: #ffffff;
-	margin: 5px 0px 5px 10px;
-	background-color: #3CB44B;
-	border: none;
+	margin: 15px 3px;
 	float: left;
 }
 
-#showmap:hover {
-	background-color: #50c55f;
+#tab1 thead th:hover {
+	background-color: #5C657A;
 	cursor: pointer;
+}
+
+#tab1 tbody tr td a {
+	width: 145px;
+	height: 16px;
+	margin: 4px 0;
+	float: left;
+}
+
+#tab1 tbody tr td img {
+	width: 16px;
+	height: 16px;
+	margin: 4px;
+	cursor: pointer;
+	float: right;
+}
+
+#menulink {
+	margin: 0 8px;
+	color: #0000EE;
+	font: 16px simsun;
+	line-height: 40px;
+	text-decoration: underline;
 }

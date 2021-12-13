@@ -4,6 +4,11 @@ body {
 	background-color: #98DDFE;
 }
 
+input {
+	padding: 0;
+	outline: none;
+}
+
 #main {
 	width: 900px;
 	height: 480px;
@@ -31,10 +36,8 @@ body {
 .p1 {
 	width: 100%;
 	height: 30px;
-	color: #fff;
-	font-size: 18px;
-	font-family: 宋体;
-	font-weight: 600;
+	color: #ffffff;
+	font: 600 18px simsun;
 	margin-top: 24px;
 	text-align: center;
 	line-height: 30px;
@@ -44,9 +47,8 @@ body {
 .p2 {
 	width: 100%;
 	height: 40px;
-	color: #fff;
-	font-size: 14px;
-	font-family: Times New Roman;
+	color: #ffffff;
+	font: 14px "Times New Roman";
 	text-align: center;
 	line-height: 20px;
 	float: left;
@@ -65,93 +67,71 @@ body {
 
 #tab1 tr td span {
 	color: #fff;
-	font-size: 24px;
-	font-family: 宋体;
-	font-weight: 600;
+	font: 600 24px simsun;
+}
+
+#tips {
+	color: #f00;
+	font: 18px simsun;
 }
 
 .textbox {
 	width: 280px;
-	height: 32px;
-	color: #fff;
+	height: 30px;
 	border: none;
-	font-size: 18px;
-	font-family: 宋体;
+	color: #ffffff;
+	font: 18px simsun;
 	text-indent: 5px;
 	background-color: #32435D;
 	border-bottom: 2px solid #00D3F8;
-	outline: none;
-	float: left;
 }
 
 .code {
 	width: 135px;
 	height: 32px;
-	color: #fff;
 	border: none;
-	font-size: 18px;
-	font-family: 宋体;
+	color: #ffffff;
+	font: 18px simsun;
 	text-indent: 5px;
 	background-color: #32435D;
 	border-bottom: 2px solid #00D3F8;
-	outline: none;
 	float: left;
 }
 
 .btn1 {
 	width: 135px;
 	height: 36px;
-	color: #fff;
-	font-size: 14px;
-	font-family: 宋体;
+	color: #ffffff;
+	font: 14px simsun;
 	margin-left: 10px;
 	background-color: #32435D;
 	border: 2px solid #00D3F8;
 	border-radius: 5px;
 	cursor: pointer;
-	outline: none;
 }
 
 .near:hover {
 	color: #00D3F8;
-	background-color: #fff;
+	background-color: #999;
 }
 
 .commit {
 	width: 280px;
 	height: 30px;
-	color: #fff;
-	font-size: 18px;
-	font-family: 宋体;
+	color: #ffffff;
+	font: 18px simsun;
 	background-color: #00bcdd;
 	border-radius: 30px;
-	outline: none;
+	cursor: pointer;
 	border: none;
 }
 
 .commit:hover {
 	background-color: #00cef2;
-	cursor: pointer;
 }
-/** ******************************************************************** */
-// 删除输入框小三角
+
+/* 删除输入框小三角 */
 input::-webkit-calendar-picker-indicator {
 	-webkit-appearance: none;
 	display: none;
-}
-
-#tips {
-	top: 40%;
-	left: 45%;
-	padding: 10px 20px;
-	position: fixed;
-	color: #ffffff;
-	font-size: 18px;
-	font-family: simsun;
-	text-align: center;
-	line-height: 80px;
-	background-color: rgba(60, 60, 60, 0.8);
-	border-radius: 6px;
-	display: none;
-	z-index: 9;
 }

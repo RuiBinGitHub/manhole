@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$("input[type=text]:eq(2)").attr("placeholder", "请选择开始调查日期");
 	$("input[type=text]:eq(3)").attr("placeholder", "请选择结束调查日期");
 	$("textarea").attr("placeholder", "请输入任务内容");
+	$("input[name=name]").attr("maxlength", 32);
 	$("input[type=text]:eq(2)").attr("readonly", true);
 	$("input[type=text]:eq(3)").attr("readonly", true);
 	/** *************************************************************** */

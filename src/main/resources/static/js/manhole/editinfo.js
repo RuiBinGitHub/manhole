@@ -1,75 +1,81 @@
-$(document).ready(function() {
-	
-	$("#logo").attr("title", "编辑logo，Size：700px * 112px");
-	/** ***************************************************** */
-	$("#logo").dblclick(function() {
-		$("input[name=file]").click();
-	});
-	$("input[name=file]").change(function() {
-		if (this.files.length == 0)
+$(document).ready(function () {
+
+    /** 显示图片 */
+    const showImage = function (item, name, tagr) {
+        const file = item.getAsFile();
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const text = "<img src='" + e.target.result + "' alt=''>";
+            $(name).val(e.target.result);
+            $(tagr).html(text);
+        };
+        reader.readAsDataURL(file);
+    };
+
+    $("#logo").attr("title", "编辑图标，Size：700px * 112px");
+    /** ***************************************************** */
+    $("#logo").on("dblclick", function () {
+        $("input[name=file]").click();
+    });
+    $("input[name=file]").change(function () {
+        if (this.files.length === 0)
             return false;
-		var url = getURL(this.files[0]);
-		$("#logo").attr("src", url);
-		$("#edit img").show();
-	});
-	$("#edit img").click(function() {
-		console.log($("input[name=file]").length);
-		if ($("input[name=file]").length == 0) 
-			return false;
-		var path = window.location.href;
-		$("#iform").attr("action", "/survey/project/editlogo");
-		$("#iform input[name=path]").val(path);
-		$("#iform").submit();
-	});
-	
-	/** ***************************************************** */
-	if ($("input[name=id]").val() == "")
-    	$("input[name=id]").val(0);
-    var option = "<option value='N'>N</option><option value='Y'>Y</option>";
+        $("#logo").attr("src", getURL(this.files[0]));
+        $("#edit img").show();
+    });
+    $("#edit img").on("click", function () {
+        if ($("input[name=file]").length === 0)
+            return false;
+        $("#iform").attr("action", "/survey/project/editlogo");
+        $("#iform input[name=path]").val(window.location.href);
+        $("#iform").submit();
+    });
+
+    /** ***************************************************** */
+    if ($("input[name=id]").val() === "")
+        $("input[name=id]").val(0);
+
     /** 设置select的值 */
+    const option = "<option value='N'>N</option><option value='Y'>Y</option>";
     $("select").html(option);
-    $("select").each(function() {
+    $("select").each(function () {
         $(this).val($(this).attr("value"));
     });
-    
+
     /** 输入框获取焦点事件 */
-    $("input[type=text]").focus(function() {
+    $("input[type=text]").on("focus", function () {
         // $(this).select();
     });
-    
+
     /** 下拉列表获取焦点事件 */
-    $("select").focus(function() {
+    $("select").on("focus", function () {
         $(this).parent().css("background-color", "#1E90FF");
         $(this).parent().css("border-color", "#1E90FF");
     });
 
     /** 下拉列表失去焦点事件 */
-    $("select").blur(function() {
+    $("select").on("blur", function () {
         $(this).parent().css("background-color", "#FFFFFF");
         $(this).parent().css("border-color", "#000000");
     });
 
     /** 输入框内容修改事件 */
-    $("input[type=text]").on("input", function() {
+    $("input[type=text]").on("input", function () {
         $(this).css("background-color", "#fff");
     });
-    
+
     /** 输入框只能输入数字和小数点 */
-    $(".num1").keypress(function(event) {
-        if (event.which >= 48 && event.which <= 57 || event.which == 46)
-            return true;
-        return false;
+    $(".num1").on("keypress", function (event) {
+        return event.which >= 48 && event.which <= 57 || event.which === 46;
     });
 
     /** 输入框只能输入数字 */
-    $(".num2").keypress(function(event) {
-        if (event.which >= 48 && event.which <= 57)
-            return true;
-        return false;
+    $(".num2").on("keypress", function (event) {
+        return event.which >= 48 && event.which <= 57;
     });
 
     /** 输入框输入非法数值 */
-    $(".num1, .num2").on("input", function() {
+    $(".num1, .num2").on("input", function () {
         if (isNaN($(this).val()))
             $(this).css("background-color", "#f00");
         else
@@ -77,10 +83,10 @@ $(document).ready(function() {
     });
 
     /** node输入框内容修改事件 */
-    $("input[name=node]").on("input", function() {
-        if ($(this).val() != "") {
-            $("input[name=photono1]").val($(this).val() + "-P01");
-            $("input[name=photono2]").val($(this).val() + "-P02");
+    $("input[name=drainage]").on("input", function () {
+        if ($(this).val() !== "") {
+            $("input[name=photono1]").val($(this).val() + " - P01");
+            $("input[name=photono2]").val($(this).val() + " - P02");
         } else {
             $("input[name=photono1]").val("");
             $("input[name=photono2]").val("");
@@ -88,12 +94,10 @@ $(document).ready(function() {
     });
 
     /** 坐标输入框输入限制 */
-    $("input[name=gridx], input[name=gridy]").keypress(function(event) {
-        if (event.which >= 48 && event.which <= 57 || event.which == 46)
-            return true;
-        return false;
+    $("input[name=gridx], input[name=gridy]").on("keypress", function (event) {
+        return event.which >= 48 && event.which <= 57 || event.which === 46;
     });
-    $("input[name=gridx], input[name=gridy]").on("input", function() {
+    $("input[name=gridx], input[name=gridy]").on("input", function () {
         if (isNaN($(this).val()))
             $(this).css("background-color", "#f00");
         else
@@ -108,129 +112,131 @@ $(document).ready(function() {
     $("[name=rplan]").attr("placeholder", "(Y of attention required)");
     $("[name=rtype]").attr("placeholder", "Other(                  )");
     /** *************************************************************** */
-    $(".ptab").each(function(i) {
-    	var select = $(this).find("select");
-        var textbox = $(this).find("input");
-        if (textbox.val() == "" && select.val() == "N")
-        	textbox.val("N");
-        $(this).find("select").change(function() {
-            if ($(this).val() == "Y") {
+    $(".ptab").each(function () {
+        const select = $(this).find("select");
+        const textbox = $(this).find("input");
+        if (textbox.val() === "" && select.val() === "N")
+            textbox.val("N");
+        $(this).find("select").change(function () {
+            if ($(this).val() === "Y") {
                 textbox.focus();
                 textbox.val("");
             } else
                 textbox.val("N");
         });
-        
+
     });
     /** *************************************************************** */
-    $("#table5 td[class*=ctype]").each(function(i) {
-    	$(this).click(function() {
-    		if ($(this).attr("class") == "ctype1") {
-    			$(this).addClass("ctype2");
-    			$(this).removeClass("ctype1");
-    			$("input[name=ctype]").eq(i).val("N");
-    		} else {
-    			$(this).addClass("ctype1");
-    			$(this).removeClass("ctype2");
-    			$("input[name=ctype]").eq(i).val("Y");
-    		}
-    	});
+    $("#table5 td[class*=ctype]").each(function (i) {
+        $(this).on("click", function () {
+            if ($(this).attr("class") === "ctype1") {
+                $(this).addClass("ctype2");
+                $(this).removeClass("ctype1");
+                $("input[name=ctype]").eq(i).val("N");
+            } else {
+                $(this).addClass("ctype1");
+                $(this).removeClass("ctype2");
+                $("input[name=ctype]").eq(i).val("Y");
+            }
+        });
     });
     /** *************************************************************** */
-    $("input[name=mcover]").on("input", function() {
-        var level = Number($(this).val());
-        $("#table2 tbody tr").each(function() {
-            var value = $(this).find("input[type=text]:eq(7)").val();
-            if (value != "" && !isNaN(value))
+    $("input[name=mcover]").on("input", function () {
+        const level = Number($(this).val());
+        $("#table2 tbody tr").each(function () {
+            const value = $(this).find("input[type=text]:eq(7)").val();
+            if (value !== "" && !isNaN(value))
                 $(this).find("input[type=text]:eq(8)").val((level - value).toFixed(2));
         });
-        $("#table3 tbody tr").each(function() {
-            var value = $(this).find("input[type=text]:eq(7)").val();
-            if (value != "" && !isNaN(value))
+        $("#table3 tbody tr").each(function () {
+            const value = $(this).find("input[type=text]:eq(7)").val();
+            if (value !== "" && !isNaN(value))
                 $(this).find("input[type=text]:eq(8)").val((level - value).toFixed(2));
         });
     });
-    $("#table2 tbody tr, #table3 tbody tr").each(function() {
-    	var textbox1 = $(this).find("input[type=text]:eq(7)");
-        var textbox2 = $(this).find("input[type=text]:eq(8)");
-        $(this).find("input[type=text]:eq(7)").on("input", function() {
-            var level = $("input[name=mcover]").val();
-            if ($(this).val() != "" && level != "")
-            	textbox2.val((level - $(this).val()).toFixed(2));
-            if ($(this).val() == "" || isNaN($(this).val()))
-            	textbox2.val("");
+    $("#table2 tbody tr, #table3 tbody tr").each(function () {
+        const textbox1 = $(this).find("input[type=text]:eq(7)");
+        const textbox2 = $(this).find("input[type=text]:eq(8)");
+        $(this).find("input[type=text]:eq(7)").on("input", function () {
+            const level = $("input[name=mcover]").val();
+            if ($(this).val() !== "" && level !== "")
+                textbox2.val((level - $(this).val()).toFixed(2));
+            if ($(this).val() === "" || isNaN($(this).val()))
+                textbox2.val("");
         });
-        $(this).find("input[type=text]:eq(8)").on("input", function() {
-            var level = $("input[name=mcover]").val();
-            if ($(this).val() != "" && level != "")
-            	textbox1.val((level - $(this).val()).toFixed(2));
-            if ($(this).val() == "" || isNaN($(this).val()))
-            	textbox1.val("");
+        $(this).find("input[type=text]:eq(8)").on("input", function () {
+            const level = $("input[name=mcover]").val();
+            if ($(this).val() !== "" && level !== "")
+                textbox1.val((level - $(this).val()).toFixed(2));
+            if ($(this).val() === "" || isNaN($(this).val()))
+                textbox1.val("");
         });
     });
     /** *************************************************************** */
-    $("#item1").click(function() {
-		if (!checkInput() || !setControlName())
-			return false;
-		$("input[name=type]").val("save");
-		$(this).css("background-color", "#ccc");
-		$(this).attr("disable", true);
-		$(this).val("上传中...");
-		$("#form1").submit();
-	});
-    $("#item2").click(function() {
-		if (!checkInput() || !setControlName())
-			return false;
-		$("input[name=type]").val("next");
-		$(this).css("background-color", "#ccc");
-		$(this).attr("disable", true);
-		$(this).val("上传中...");
-		$("#form1").submit();
-	});
-    $("#item3").click(function() {
-    	$("body,html").animate({scrollTop: 0}, 100);
+    $("#item1").on("click", function () {
+        if (!checkInput() || !setControlName())
+            return false;
+        $("input[name=type]").val("save");
+        $(this).css("background-color", "#ccc");
+        $(this).attr("disable", true);
+        $(this).val("上传中...");
+        $("#form1").submit();
     });
-	/** *************************************************************** */
-	function checkInput() {
-		if ($("input[name=node]").val() == "") {
+    $("#item2").on("click", function () {
+        if (!checkInput() || !setControlName())
+            return false;
+        $("input[name=type]").val("next");
+        $(this).css("background-color", "#ccc");
+        $(this).attr("disable", true);
+        $(this).val("上传中...");
+        $("#form1").submit();
+    });
+    $("#item3").on("click", function () {
+        $("body,html").animate({scrollTop: 0}, 100);
+    });
+
+    /** *************************************************************** */
+    function checkInput() {
+        if ($("input[name=node]").val() === "") {
             $("input[name=node]").css("background-color", "#f00");
             $("input[name=node]").focus();
             return false;
         }
-        if ($("input[name=areacode]").val() == "") {
+        if ($("input[name=areacode]").val() === "") {
             $("input[name=areacode]").css("background-color", "#f00");
             $("input[name=areacode]").focus();
             return false;
         }
-        if ($("input[name=surveyname]").val() == "") {
+        if ($("input[name=surveyname]").val() === "") {
             $("input[name=surveyname]").css("background-color", "#f00");
             $("input[name=surveyname]").focus();
             return false;
         }
-        if ($("input[name=surveydate]").val() == "") {
+        if ($("input[name=surveydate]").val() === "") {
             $("input[name=surveydate]").css("background-color", "#f00");
             $("input[name=surveydate]").focus();
             return false;
         }
-        if ($("input[name=projectno]").val() == "") {
+        if ($("input[name=projectno]").val() === "") {
             $("input[name=projectno]").css("background-color", "#f00");
             $("input[name=projectno]").focus();
             return false;
         }
-        if ($("input[name=workorder]").val() == "") {
+        if ($("input[name=workorder]").val() === "") {
             $("input[name=workorder]").css("background-color", "#f00");
             $("input[name=workorder]").focus();
             return false;
         }
-        if ($("input[name=location]").val() == "") {
+        if ($("input[name=location]").val() === "") {
             $("input[name=location]").css("background-color", "#f00");
             $("input[name=location]").focus();
             return false;
         }
         return true;
-	}
-	function setControlName() {
-		$("#table2 tbody tr").each(function(i) {
+    }
+
+    function setControlName() {
+        $("#table2 tbody tr").each(function (i) {
             $(this).find("input[type=hidden]:eq(0)").attr("name", "pipes[" + i + "].id");
             $(this).find("input[type=text]:eq(0)").attr("name", "pipes[" + i + "].upstream");
             $(this).find("input[type=text]:eq(1)").attr("name", "pipes[" + i + "].shape");
@@ -245,33 +251,34 @@ $(document).ready(function() {
             $(this).find("input[type=text]:eq(10)").attr("name", "pipes[" + i + "].office1");
             $(this).find("input[type=text]:eq(11)").attr("name", "pipes[" + i + "].office2");
         });
-        $("#table3 tbody tr").each(function(i) {
-            var i = i + 8;
-            $(this).find("input[type=hidden]:eq(0)").attr("name", "pipes[" + i + "].id");
-            $(this).find("input[type=text]:eq(0)").attr("name", "pipes[" + i + "].upstream");
-            $(this).find("input[type=text]:eq(1)").attr("name", "pipes[" + i + "].shape");
-            $(this).find("input[type=text]:eq(2)").attr("name", "pipes[" + i + "].size1");
-            $(this).find("input[type=text]:eq(3)").attr("name", "pipes[" + i + "].size2");
-            $(this).find("input[type=text]:eq(4)").attr("name", "pipes[" + i + "].backdrop");
-            $(this).find("input[type=text]:eq(5)").attr("name", "pipes[" + i + "].material");
-            $(this).find("input[type=text]:eq(6)").attr("name", "pipes[" + i + "].lining");
-            $(this).find("input[type=text]:eq(7)").attr("name", "pipes[" + i + "].depth");
-            $(this).find("input[type=text]:eq(8)").attr("name", "pipes[" + i + "].level");
-            $(this).find("input[type=text]:eq(9)").attr("name", "pipes[" + i + "].photo");
-            $(this).find("input[type=text]:eq(10)").attr("name", "pipes[" + i + "].office1");
-            $(this).find("input[type=text]:eq(11)").attr("name", "pipes[" + i + "].office2");
+        $("#table3 tbody tr").each(function (i) {
+            const index = i + 8;
+            $(this).find("input[type=hidden]:eq(0)").attr("name", "pipes[" + index + "].id");
+            $(this).find("input[type=text]:eq(0)").attr("name", "pipes[" + index + "].upstream");
+            $(this).find("input[type=text]:eq(1)").attr("name", "pipes[" + index + "].shape");
+            $(this).find("input[type=text]:eq(2)").attr("name", "pipes[" + index + "].size1");
+            $(this).find("input[type=text]:eq(3)").attr("name", "pipes[" + index + "].size2");
+            $(this).find("input[type=text]:eq(4)").attr("name", "pipes[" + index + "].backdrop");
+            $(this).find("input[type=text]:eq(5)").attr("name", "pipes[" + index + "].material");
+            $(this).find("input[type=text]:eq(6)").attr("name", "pipes[" + index + "].lining");
+            $(this).find("input[type=text]:eq(7)").attr("name", "pipes[" + index + "].depth");
+            $(this).find("input[type=text]:eq(8)").attr("name", "pipes[" + index + "].level");
+            $(this).find("input[type=text]:eq(9)").attr("name", "pipes[" + index + "].photo");
+            $(this).find("input[type=text]:eq(10)").attr("name", "pipes[" + index + "].office1");
+            $(this).find("input[type=text]:eq(11)").attr("name", "pipes[" + index + "].office2");
         });
         return true;
-	}
-	/** *************************************************************** */
+    }
+
+    /** *************************************************************** */
     // 输入框复制事件
-    document.getElementById("picture1").addEventListener("paste", function(e) {
-        var cdata = e.clipboardData;
-        var items = cdata.items;
+    document.getElementById("picture1").addEventListener("paste", function (e) {
+        const cdata = e.clipboardData;
+        const items = cdata.items;
         if (e.clipboardData && items) {
-            var item = items[0];
-            var types = cdata.types || [];
-            for (var i = 0; i < types.length; i++) {
+            let item = items[0];
+            const types = cdata.types || [];
+            for (let i = 0; i < types.length; i++) {
                 if (types[i] === "Files") {
                     item = items[i];
                     break;
@@ -282,13 +289,13 @@ $(document).ready(function() {
         }
     }, false);
     // 输入框复制事件
-    document.getElementById("picture2").addEventListener("paste", function(e) {
-        var cdata = e.clipboardData;
-        var items = cdata.items;
+    document.getElementById("picture2").addEventListener("paste", function (e) {
+        const cdata = e.clipboardData;
+        const items = cdata.items;
         if (e.clipboardData && items) {
-            var item = items[0];
-            var types = cdata.types || [];
-            for (var i = 0; i < types.length; i++) {
+            let item = items[0];
+            const types = cdata.types || [];
+            for (let i = 0; i < types.length; i++) {
                 if (types[i] === "Files") {
                     item = items[i];
                     break;
@@ -299,35 +306,24 @@ $(document).ready(function() {
         }
     }, false);
 
-    $("#picture1").on("input", function() {
-        if ($(this).html() == "" || $(this).html().length == 28)
+    $("#picture1").on("input", function () {
+        if ($(this).html() === "" || $(this).html().length === 28)
             $("#path1").val("");
     });
-    $("#picture2").on("input", function() {
-        if ($(this).html() == "" || $(this).html().length == 28)
+    $("#picture2").on("input", function () {
+        if ($(this).html() === "" || $(this).html().length === 28)
             $("#path2").val("");
     });
 
-    /** 显示图片 */
-    var showImage = function(item, name, tagr) {
-        var file = item.getAsFile();
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            var text = "<img src='" + e.target.result + "'>";
-            $(name).val(e.target.result);
-            $(tagr).html(text);
-        };
-        reader.readAsDataURL(file);
-    };
-    
+
     /** 根據文件獲取路徑 */
     function getURL(file) {
-        var url = null;
-        if (window.createObjectURL != undefined)
+        let url = null;
+        if (window.createObjectURL !== undefined)
             url = window.createObjectURL(file);
-        else if (window.URL != undefined)
+        else if (window.URL !== undefined)
             url = window.URL.createObjectURL(file);
-        else if (window.webkitURL != undefined)
+        else if (window.webkitURL !== undefined)
             url = window.webkitURL.createObjectURL(file);
         return url;
     }

@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DecimalFormat;
+import java.text.Format;
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +23,7 @@ import com.springboot.biz.ManholeBiz;
 import com.springboot.biz.ProjectBiz;
 import com.springboot.entity.Manhole;
 import com.springboot.entity.Project;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 import com.springboot.util.PDFHelper;
 import com.springboot.util.ZipFileHelper;
 
@@ -41,16 +44,17 @@ public class DownFileController {
 		Project project = projectBiz.findInfoProject(id, null);
 		if (StringUtils.isEmpty(project))
 			return; // 查询项目为空
-		String name = MyHelper.UUIDCode();
+		String name = AppUtils.UUIDCode();
 		String srcPath = myfile + "/report/";
 		String zipPath = myfile + "/compre/";
 		File srcFile = new File(srcPath + name + "/");
 		srcFile.mkdirs();
+		Format format = new DecimalFormat("#00");
 		List<Manhole> manholes = manholeBiz.findListManhole(project);
 		for (Manhole manhole : manholes)
-			pdfHelper.initPDF(manhole, srcFile.getPath(), manhole.getNode());
+			pdfHelper.initPDF(manhole, srcFile.getPath(), manhole.getDrainage());
 
-		HttpServletResponse response = MyHelper.getResponse();
+		HttpServletResponse response = AppUtils.getResponse();
 		String fileName = project.getDate() + "_" + project.getName();
 		File zipFile = ZipFileHelper.toZip(srcPath + name, zipPath, fileName);
 		response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".zip");
@@ -69,7 +73,7 @@ public class DownFileController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for (File file : srcFile.listFiles())
+		for (File file : Objects.requireNonNull(srcFile.listFiles()))
 			file.delete();
 		srcFile.delete();
 		zipFile.delete();
@@ -80,15 +84,15 @@ public class DownFileController {
 		Manhole manhole = manholeBiz.findInfoManhole(id, null);
 		if (StringUtils.isEmpty(manhole))
 			return; // 查询项目为空
-		String name = MyHelper.UUIDCode();
+		String name = AppUtils.UUIDCode();
 		String srcPath = myfile + "/report/";
 		File srcFile = new File(srcPath + name + "/");
 		srcFile.mkdirs();
 
-		pdfHelper.initPDF(manhole, srcFile.getPath(), manhole.getNode());
-		HttpServletResponse response = MyHelper.getResponse();
-		File zipFile = new File(srcFile.getPath() + "/" + manhole.getNode() + ".pdf");
-		response.setHeader("Content-disposition", "attachment;filename=" + manhole.getNode() + ".pdf");
+		pdfHelper.initPDF(manhole, srcFile.getPath(), "01");
+		HttpServletResponse response = AppUtils.getResponse();
+		File zipFile = new File(srcFile.getPath() + "/"  + "01.pdf");
+		response.setHeader("Content-disposition", "attachment;filename=" + manhole.getDrainage() + ".pdf");
 		response.setContentType("application/octet-stream");
 		try {
 			int len = -1;

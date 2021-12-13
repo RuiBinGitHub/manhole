@@ -19,49 +19,48 @@ import org.springframework.util.StringUtils;
 import com.springboot.biz.UserBiz;
 import com.springboot.entity.Company;
 import com.springboot.entity.User;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 
 @Component(value = "myRealm")
 public class MyRealm extends AuthorizingRealm {
 
-	@Resource
-	private UserBiz userBiz;
+    @Resource
+    private UserBiz userBiz;
 
-	private Map<String, Object> map = null;
-	private SimpleAuthorizationInfo info1 = null; // 授权逻辑信息
-	private SimpleAuthenticationInfo info2 = null; // 认证逻辑信息
+    /**
+     * 执行授权逻辑
+     */
+    public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection collection) {
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        User user = (User) collection.getPrimaryPrincipal();
+        Company company = user.getCompany();
+        if ("role1".equals(user.getRole())) {
+            info.addRole("role1");
+        } else if ("role2".equals(user.getRole())) {
+            info.addRole("role2");
+            info.addRole("role4");
+        } else if ("role3".equals(user.getRole())) {
+            info.addRole("role3");
+            info.addRole("role4");
+        } else if ("role4".equals(user.getRole()))
+            info.addRole("role4");
+        if (company.getLevel() == 3)
+            info.addRole("vrole");
+        return info;
+    }
 
-	/** 执行授权逻辑 */
-	public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection collection) {
-		info1 = new SimpleAuthorizationInfo();
-		User user = (User) collection.getPrimaryPrincipal();
-		Company company = user.getCompany();
-		if ("role1".equals(user.getRole())) {
-			info1.addRole("role1");
-		} else if ("role2".equals(user.getRole())) {
-			info1.addRole("role2");
-			info1.addRole("role4");
-		} else if ("role3".equals(user.getRole())) {
-			info1.addRole("role3");
-			info1.addRole("role4");
-		} else if ("role4".equals(user.getRole()))
-			info1.addRole("role4");
-		if ("版本2".equals(company.getLevel()))
-			info1.addRole("vrole");
-		return info1;
-	}
-
-	/** 执行认证逻辑 */
-	public AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
-		UsernamePasswordToken tempToken = (UsernamePasswordToken) token;
-		String username = tempToken.getUsername();
-		String password = new String((char[]) tempToken.getCredentials());
-		map = MyHelper.getMap("username", username, "password", password);
-		User user = userBiz.findInfoUser(map);
-		if (StringUtils.isEmpty(user)) // 账号密码错误
-			throw new IncorrectCredentialsException();
-		MyHelper.pushMap("user", user);
-		info2 = new SimpleAuthenticationInfo(user, password, "");
-		return info2;
-	}
+    /**
+     * 执行认证逻辑
+     */
+    public AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
+        UsernamePasswordToken tempToken = (UsernamePasswordToken) token;
+        String username = tempToken.getUsername();
+        String password = new String((char[]) tempToken.getCredentials());
+        Map<String, Object> map = AppUtils.getMap("username", username, "password", password);
+        User user = userBiz.findInfoUser(map);
+        if (StringUtils.isEmpty(user)) // 账号密码错误
+            throw new IncorrectCredentialsException();
+        AppUtils.pushMap("user", user);
+        return new SimpleAuthenticationInfo(user, password, "");
+    }
 }

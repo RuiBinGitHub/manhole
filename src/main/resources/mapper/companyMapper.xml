@@ -5,19 +5,19 @@
 
 	<!-- 插入数据 -->
 	<insert id="insertCompany" parameterType="Company" useGeneratedKeys="true" keyProperty="id">
-		insert into company values(null, #{name}, #{code}, #{cont},	#{term}, #{level}, #{date})
+		insert into company values(null, #{name}, #{code}, #{count}, #{level}, #{date}, #{term})
 	</insert>
 
 	<!-- 更新数据 -->
 	<update id="updateCompany" parameterType="Company">
-		update company set name = #{name}, code = #{code}, cont = #{cont}, term = #{term}, level = #{level}, date = #{date} where id=#{id}
+		update company set count = #{count}, level = #{level}, term = #{term} where id = #{id}
 	</update>
-	
+
 	<!-- 删除数据 -->
 	<delete id="deleteCompany" parameterType="Company">
 		delete from company where id = #{id}
 	</delete>
-	
+
 	<select id="findInfoCompany" parameterType="Map" resultType="Company">
 		select * from company where id != 0
 		<if test="id != null">
@@ -30,7 +30,7 @@
 			and code = #{code}
 		</if>
 	</select>
-	
+
 	<select id="findListCompany" parameterType="Map" resultType="Company">
 		select * from company where id != 0
 		<if test="name != null">

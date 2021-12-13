@@ -1,203 +1,175 @@
 @CHARSET "UTF-8";
 
 body {
-	background-color: #E8E8E8;
+    background-color: #E8E8E8;
 }
 
 input {
-	padding: 0px;
+    padding: 0;
 }
 
 #main {
-	width: 1000px;
-	margin: 15px auto;
+    width: 1000px;
+    margin: 10px auto;
 }
 
 #mainInfo {
-	width: 100%;
-	max-height: 720px;
-	background-color: #fff;
-	float: left;
+    width: 100%;
+    max-height: 720px;
+    background-color: #fff;
+    float: left;
 }
 
 #mainTop {
-	width: 100%;
-	height: 48px;
-	font-size: 24px;
-	font-family: 宋体;
-	font-weight: 600;
-	text-indent: 20px;
-	line-height: 48px;
-	border-bottom: 2px solid #5EA500;
-	float: left;
+    width: 100%;
+    height: 48px;
+    font: 600 24px simsun;
+    text-indent: 20px;
+    line-height: 48px;
+    border-bottom: 2px solid #5EA500;
+    float: left;
 }
 
 .infoTop {
-	width: 785px;
-	height: 40px;
-	font-size: 18px;
-	font-family: 宋体;
-	font-weight: 600;
-	line-height: 40px;
-	margin: 20px 105px 5px 105px;
-	border-bottom: 2px solid #51596B;
-	float: left;
+    width: 785px;
+    height: 40px;
+    font: 600 18px simsun;
+    margin: 20px 105px 5px;
+    border-bottom: 2px solid #51596B;
+    float: left;
 }
 
 .infoTop div {
-	width: 100px;
-	height: 100%;
-	color: #ffffff;
-	text-align: center;
-	background-color: #51596B;
-	float: left;
+    width: 100px;
+    height: 100%;
+    color: #ffffff;
+    text-align: center;
+    line-height: 40px;
+    background-color: #51596B;
+    float: left;
 }
 
 .infoTop input {
-	width: 64px;
-	height: 30px;
-	color: #ffffff;
-	margin: 0px 10px 0px 0px;
-	background-color: #3CB44B;
-	border: none;
-	float: right;
+    width: 75px;
+    height: 30px;
+    color: #ffffff;
+    font: 18px simsun;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    float: right;
 }
 
 .infoTop input:hover {
-	background-color: #50c55f;
-	cursor: pointer;
+    color: #ff8800;
 }
 
 #table1 {
-	margin-top: 15px;
-	margin-left: 105px;
-	border-bottom: 2px solid #51596B;
-	float: left;
+    margin: 15px 105px;
+    float: left;
 }
 
 #table1 tr {
-	height: 40px;
-	font-size: 18px;
-	font-family: 宋体;
-	font-weight: 600;
+    height: 40px;
+    font: 600 18px simsun;
 }
 
 #table1 .cell {
-	border-bottom: 1px solid #999;
-	text-indent: 5px;
+    text-indent: 5px;
+    border-bottom: 1px solid #999;
 }
 
 #table1 tr td {
-	padding: 0px;
+    padding: 0;
 }
 
 #table1 textarea {
-	width: 600px;
-	height: 90px;
-	padding: 5px;
-	font-size: 18px;
-	font-family: 宋体;
-	border: 1px solid #999;
-	outline: none;
-	resize: none;
-}
-
-#listTitle {
-	width: 785px;
-	height: 40px;
-	font-size: 16px;
-	font-family: 仿宋;
-	font-weight: 600;
-	margin: 0px 105px 0px 105px;
-	background-color: #51596B;
-	float: left;
-}
-
-#listTitle div {
-	height: 100%;
-	color: #fff;
-	font-size: 18px;
-	text-align: center;
-	line-height: 40px;
-	float: left;
-}
-
-#mainlist {
-	width: 785px;
-	max-height: 240px;
-	font-size: 16px;
-	font-family: 仿宋;
-	font-weight: 600;
-	margin: 0px 105px 40px 105px;
-	float: left;
+    width: 600px;
+    height: 90px;
+    padding: 5px;
+    font: 600 18px simsun;
+    border: 1px solid #999;
+    outline: none;
+    resize: none;
 }
 
 #table2 {
-	width: 100%;
-	border-collapse: collapse;
-	table-layout: fixed;
+    width: 785px;
+    margin: 0 105px 40px;
+    border-bottom: 1px solid #F1F1F1;
+    float: left;
 }
 
-#table2 tr {
-	height: 24px;
-	font-size: 16px;
-	text-align: center;
-	background-color: #ffffff;
+#table2 thead tr,
+#table2 tbody tr {
+    width: 100%;
+    display: table;
 }
 
-#table2 tr:nth-child(even) {
-	background-color: #f0f0f0;
+#table2 thead tr th,
+#table2 tbody tr td {
+    padding: 0;
 }
 
-#table2 tr:hover {
-	background-color: #FFD58D;
+#table2 thead {
+    color: #ffffff;
+    font: 600 18px simsun;
+    background-color: #51596B;
 }
 
-#table2 tr td {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+#table2 tbody {
+    max-height: 240px;
+    font: 600 16px fangsong;
+    text-align: center;
+    overflow-y: scroll;
+    display: block;
+}
+
+#table2 tbody tr {
+    height: 30px;
+    cursor: pointer;
+}
+
+#table2 tbody tr a {
+    color: #2440B3;
+}
+
+#table2 tbody tr a:hover {
+    text-decoration: underline;
 }
 
 #table2 tr td input {
-	width: 40px;
-	height: 20px;
-	color: #ffffff;
-	font-size: 15px;
-	font-family: 仿宋;
-	border: none;
+    width: 48px;;
+    height: 20px;
+    color: #ffffff;
+    font: 16px fangsong;
+    cursor: pointer;
+    border: none;
 }
 
-#table2 tr td input:hover {
-	cursor: pointer;
-	color: #F37B1D;
+#table2 tr input:hover {
+    color: #ff0;
+}
+
+#table2 tbody tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+
+#table2 tbody tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+#table2 tbody tr:hover {
+    background-color: #FFD58D;
 }
 
 #null {
-	width: 785px;
-	height: 160px;
-	color: #666666;
-	font-size: 24px;
-	font-family: 宋体;
-	text-align: center;
-	line-height: 120px;
-	margin-left: 105px;
-	margin-bottom: 40px;
-	float: left;
-}
-/** ********************************************************* */
-#tips {
-	top: 40%;
-	left: 45%;
-	padding: 10px 20px;
-	position: fixed;
-	color: #ffffff;
-	font-size: 18px;
-	font-family: simsun;
-	text-align: center;
-	line-height: 80px;
-	background-color: rgba(60, 60, 60, 0.8);
-	border-radius: 6px;
-	display: none;
-	z-index: 9;
+    width: 785px;
+    height: 160px;
+    color: #666666;
+    margin: 0 105px 40px;
+    font: 600 24px simsun;
+    text-align: center;
+    line-height: 120px;
+    float: left;
 }

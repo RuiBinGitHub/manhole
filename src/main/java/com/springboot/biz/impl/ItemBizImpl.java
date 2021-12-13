@@ -19,7 +19,7 @@ import com.springboot.dao.ItemDao;
 import com.springboot.entity.Item;
 import com.springboot.entity.Manhole;
 import com.springboot.entity.User;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 
 @Service
 public class ItemBizImpl implements ItemBiz {
@@ -57,12 +57,16 @@ public class ItemBizImpl implements ItemBiz {
 	}
 
 	public Item findInfoItem(int id, User user) {
-		map = MyHelper.getMap("id", id, "user", user);
+		map = AppUtils.getMap("id", id, "user", user);
+		return itemDao.findInfoItem(map);
+	}
+
+	public Item findInfoItem(Map<String, Object> map) {
 		return itemDao.findInfoItem(map);
 	}
 
 	public List<Item> findListItem(Manhole manhole) {
-		map = MyHelper.getMap("manhole", manhole);
+		map = AppUtils.getMap("manhole", manhole);
 		return itemDao.findListItem(map);
 	}
 
@@ -88,9 +92,9 @@ public class ItemBizImpl implements ItemBiz {
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isEmpty())
 				continue;
-			String name = MyHelper.UUIDCode();
+			String name = AppUtils.UUIDCode();
 			File dest = new File(path + name + ".png");
-			MyHelper.moveFile(files[i], dest);
+			AppUtils.moveFile(files[i], dest);
 			if (i % 2 == 0)
 				items.get(i / 2).setPath1(name);
 			else

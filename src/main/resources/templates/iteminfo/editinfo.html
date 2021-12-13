@@ -1,110 +1,147 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-  	<title>上传图片</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="/survey/css/iteminfo/editinfo.css"/>
+<head>
+    <title>上传图片</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/survey/css/iteminfo/editinfo.css"/>
     <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/survey/js/iteminfo/editinfo.js"></script>
-  </head>
-  <body>
-    <div th:replace="navigation::navigation"></div>
-    <span id="node" th:text="${manhole.node}" style="display:none"></span>
-    <span id="localtion" th:text="${manhole.location}" style="display:none"></span>
-    <div id="main">
-      <div id="mainTop">上传图片</div>
-      <div id="mainInfo">
+</head>
+<body>
+<div th:replace="navigation::navigation"></div>
+
+<span id="drainage" th:text="${manhole.drainage}" style="display:none"></span>
+<span id="localtion" th:text="${manhole.location}" style="display:none"></span>
+<div id="main">
+    <div id="mainTop">上传图片</div>
+    <div id="mainInfo">
         <form id="form1" action="update" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="id" th:value="${param.id}"/>
-        <table class="table" th:each="item:${items}">
-          <tr height="80px">
-            <td colspan="3">
-              <img th:if="${manhole.project.path==null || manhole.project.path==''}" id="logo" src="/survey/img/title.png"/>
-      		  <img th:if="${manhole.project.path!=null && manhole.project.path!=''}" id="logo" th:src="${path+manhole.project.path+'.png'}"/>
-            </td>
-            <td colspan="2"><div class="title">Manhole Survey Photographs</div></td>
-          </tr>
-          <tr height="25px">
-            <td style="text-indent:5px;">Project No.:</td>
-            <td class="icell" th:text="${manhole.projectno}"></td>
-            <td></td>
-            <td>Manhole Reference: </td>
-            <td class="icell" th:text="${manhole.node}"></td>
-          </tr>
-          <tr height="25px">
-            <td style="text-indent:5px;">WO No.: </td>
-            <td class="icell" th:text="${manhole.workorder}"></td>
-            <td colspan="3"><input type="hidden" th:value="${item.id}"/></td>
-          </tr>
-          <tr height="5px"><td colspan="5"></td></tr>
-          <!-- 输出图片 -->
-          <tr>
-            <td rowspan="8" colspan="4" align="center" class="mcell">
-              <img th:if="${#strings.isEmpty(item.path1)}" src="/survey/img/appimg.png"/>
-              <img th:if="${!#strings.isEmpty(item.path1)}" th:src="${path + item.path1 + '.png'}"/>
-              <input type="file" accept="image/*" style="display:none"/>
-              <input type="hidden" name="" th:value="${item.path1}"/>
-            </td>
-            <td height="25px" class="mcell">Photograph No. :</td>
-          </tr>
-          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.photo1}"/></td></tr>
-          <tr><td height="25px" class="mcell">Location:</td></tr>
-          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.location1}"/></td></tr>
-          <tr><td height="25px" class="mcell">Description:</td></tr>
-          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.explain1}" list="list"/></td></tr>
-          <tr><td height="25px" class="mcell">Remark:</td></tr>
-          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.remark1}"/></td></tr>
-          <tr height="32px"><td colspan="5" class="mcell"></td></tr>
-          <tr>
-            <td rowspan="8" colspan="4" class="mcell" align="center">
-              <img th:if="${#strings.isEmpty(item.path2)}" src="/survey/img/appimg.png"/>
-              <img th:if="${!#strings.isEmpty(item.path2)}" th:src="${path + item.path2 + '.png'}"/>
-              <input type="file" accept="image/*" style="display:none"/>
-              <input type="hidden" name="" th:value="${item.path2}"/>
-            </td>
-            <td height="25px" class="mcell">Photograph No. :</td>
-          </tr>
-          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.photo2}"/></td></tr>
-          <tr><td height="25px" class="mcell">Location:</td></tr>
-          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.location2}"/></td></tr>
-          <tr><td height="25px" class="mcell">Description:</td></tr>
-          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.explain2}" list="list"/></td></tr>
-          <tr><td height="25px" class="mcell">Remark:</td></tr>
-          <tr><td height="50px" class="mcell"><input type="text" th:value="${item.remark2}"/></td></tr>
-        </table>
+            <input type="hidden" name="id" th:value="${param.id}"/>
+            <table class="table" th:each="item:${items}">
+                <tr height="80px">
+                    <td colspan="3">
+                        <img th:if="${manhole.project.path==null || manhole.project.path==''}" id="logo" src="/survey/img/title.png"/>
+                        <img th:if="${manhole.project.path!=null && manhole.project.path!=''}" id="logo" th:src="${path+manhole.project.path+'.png'}"/>
+                    </td>
+                    <td colspan="2">
+                        <div class="title">Manhole Survey Photographs</div>
+                    </td>
+                </tr>
+                <tr height="25px">
+                    <td style="text-indent:5px;">Project No.:</td>
+                    <td class="icell" th:text="${manhole.projectno}"></td>
+                    <td></td>
+                    <td>Manhole Reference:</td>
+                    <td class="icell" th:text="${manhole.node}"></td>
+                </tr>
+                <tr height="25px">
+                    <td style="text-indent:5px;">WO No.:</td>
+                    <td class="icell" th:text="${manhole.workorder}"></td>
+                    <td colspan="3"><input type="hidden" th:value="${item.id}"/></td>
+                </tr>
+                <tr height="5px">
+                    <td colspan="5"></td>
+                </tr>
+                <!-- 输出图片 -->
+                <tr>
+                    <td rowspan="8" colspan="4" align="center" class="mcell">
+                        <img th:if="${#strings.isEmpty(item.path1)}" src="/survey/img/appimg.png"/>
+                        <img th:if="${!#strings.isEmpty(item.path1)}" th:src="${path + item.path1 + '.png'}"/>
+                        <input type="file" accept="image/*" style="display:none"/>
+                        <input type="hidden" name="" th:value="${item.path1}"/>
+                    </td>
+                    <td height="25px" class="mcell">Photograph No. :</td>
+                </tr>
+                <tr>
+                    <td height="50px" class="mcell"><input type="text" th:value="${item.photo1}"/></td>
+                </tr>
+                <tr>
+                    <td height="25px" class="mcell">Location:</td>
+                </tr>
+                <tr>
+                    <td height="50px" class="mcell"><input type="text" th:value="${item.location1}"/></td>
+                </tr>
+                <tr>
+                    <td height="25px" class="mcell">Description:</td>
+                </tr>
+                <tr>
+                    <td height="50px" class="mcell"><input type="text" th:value="${item.explain1}" list="list"/></td>
+                </tr>
+                <tr>
+                    <td height="25px" class="mcell">Remark:</td>
+                </tr>
+                <tr>
+                    <td height="50px" class="mcell"><input type="text" th:value="${item.remark1}"/></td>
+                </tr>
+                <tr height="32px">
+                    <td colspan="5" class="mcell"></td>
+                </tr>
+                <tr>
+                    <td rowspan="8" colspan="4" class="mcell" align="center">
+                        <img th:if="${#strings.isEmpty(item.path2)}" src="/survey/img/appimg.png"/>
+                        <img th:if="${!#strings.isEmpty(item.path2)}" th:src="${path + item.path2 + '.png'}"/>
+                        <input type="file" accept="image/*" style="display:none"/>
+                        <input type="hidden" name="" th:value="${item.path2}"/>
+                    </td>
+                    <td height="25px" class="mcell">Photograph No. :</td>
+                </tr>
+                <tr>
+                    <td height="50px" class="mcell"><input type="text" th:value="${item.photo2}"/></td>
+                </tr>
+                <tr>
+                    <td height="25px" class="mcell">Location:</td>
+                </tr>
+                <tr>
+                    <td height="50px" class="mcell"><input type="text" th:value="${item.location2}"/></td>
+                </tr>
+                <tr>
+                    <td height="25px" class="mcell">Description:</td>
+                </tr>
+                <tr>
+                    <td height="50px" class="mcell"><input type="text" th:value="${item.explain2}" list="list"/></td>
+                </tr>
+                <tr>
+                    <td height="25px" class="mcell">Remark:</td>
+                </tr>
+                <tr>
+                    <td height="50px" class="mcell"><input type="text" th:value="${item.remark2}"/></td>
+                </tr>
+            </table>
         </form>
-        <div id="append"><div>+</div></div>
-      </div>
+        <div id="append">
+            <div>+</div>
+        </div>
     </div>
-    <!-- main结束 -->
-    <div id="tips"><span></span></div>
-    
-    <div id="item0" style="bottom:302px;">导入图片</div>
-    <div id="item1" style="bottom:252px;" th:text="#{iteminfo.editinfo.button1}"></div>
-    <div id="item2" style="bottom:202px;" th:text="#{iteminfo.editinfo.button2}"></div>
-    <div id="item3" style="bottom:152px;" th:text="#{iteminfo.editinfo.button3}"></div>
-    <div id="item4" style="bottom:102px;" th:text="#{iteminfo.editinfo.button4}"></div>
-    
-    <form id="form2" action="imports" enctype="multipart/form-data" method="post">
-      <input type="hidden" name="id" th:value="${param.id}"/>
-      <input type="file" name="files" style="display:none;"/>
-    </form>
-    
-    <datalist id="list">
-      <option>Manhole Condition</option>
-      <option>Manhole Location</option>
-      <option>Manhole Internal Photo</option>
-      <option>COVER</option>
-      <option>IRON / LADDER</option>
-      <option>SHAFT</option>
-      <option>CHAMBER</option>
-      <option>BENCHING</option>
-      <option>OTHERS</option>
-    </datalist>
-    <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
-      <p>香港麦斯迪埃高科技有限责任公司</p>
-      <p>Copyright © 2017 All Rights Reserved</p>	
-    </div>
-  </body>
+</div>
+<!-- main结束 -->
+<div id="tips"><span></span></div>
+
+<div id="item0" style="bottom:302px;">导入图片</div>
+<div id="item1" style="bottom:252px;" th:text="#{iteminfo.editinfo.button1}"></div>
+<div id="item2" style="bottom:202px;" th:text="#{iteminfo.editinfo.button2}"></div>
+<div id="item3" style="bottom:152px;" th:text="#{iteminfo.editinfo.button3}"></div>
+<div id="item4" style="bottom:102px;" th:text="#{iteminfo.editinfo.button4}"></div>
+
+<form id="form2" action="imports" enctype="multipart/form-data" method="post">
+    <input type="hidden" name="id" th:value="${param.id}"/>
+    <input type="file" name="files" style="display:none;"/>
+</form>
+
+<datalist id="list">
+    <!--<option>Manhole Condition</option>-->
+    <option>Manhole Location</option>
+    <option>Manhole Internal Photo</option>
+    <option>COVER</option>
+    <option>IRON / LADDER</option>
+    <option>SHAFT</option>
+    <option>CHAMBER</option>
+    <option>BENCHING</option>
+    <option>OTHERS</option>
+</datalist>
+<div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
+    <p>香港麦斯迪埃高科技有限责任公司</p>
+    <p>Copyright © 2017 All Rights Reserved</p>
+</div>
+</body>
 </html>

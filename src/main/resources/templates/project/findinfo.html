@@ -1,76 +1,89 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-  	<title>任务信息</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="/survey/css/project/findinfo.css"/>
-	<script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="/survey/js/project/findinfo.js"></script>
-  </head>
-  <body>
-    <div th:replace="navigation::navigation"></div>
-    
-    <input type="hidden" id="index" th:value="${project.id}"/>
-    <div id="main">
-      <div id="mainInfo">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>任务信息</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/survey/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/survey/css/project/findinfo.css"/>
+    <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/survey/js/project/findinfo.js"></script>
+</head>
+<body>
+<div th:replace="navigation::navigation"></div>
+
+<input type="hidden" name="id" th:value="${project.id}"/>
+<div id="main">
+    <div id="mainInfo">
         <div id="mainTop" th:text="#{project.findinfo.title}"></div>
         <div class="infoTop">
-	  	  <div th:text="#{project.findinfo.title1}"></div>
-	  	</div>
-	    <table id="table1">
-	      <tr>
-	  		<td width="130px" th:text="#{project.findinfo.label1}"></td>
-	    	<td width="215px" class="cell" th:text="${project.name}"></td>
-	    	<td width="80px"></td>
-	    	<td width="130px" th:text="#{project.findinfo.label2}"></td>
-	    	<td width="215px" class="cell" th:text="${project.operator}"></td>
-	   	  </tr>
-	      <tr>
-	    	<td th:text="#{project.findinfo.label3}"></td>
-	    	<td class="cell" th:text="${project.datetime1}"></td>
-	    	<td></td>
-	    	<td th:text="#{project.findinfo.label4}"></td>
-	    	<td class="cell" th:text="${project.datetime2}"></td>
-	      </tr>
-	      <tr style="height:5px;"><td colspan="4"></td></tr>
-	      <tr>
-	    	<td valign="top" th:text="#{project.findinfo.label5}"></td>
-	    	<td colspan="4"><textarea th:text="${project.content}"></textarea></td>
-	      </tr>
-	    </table>
-	    
-	  	<div class="infoTop">
-	  	  <div th:text="#{project.findinfo.title2}"></div>
-	  	</div>
-	  	<div id="listTitle">
-	  	  <div style="width:40px;">No</div>
-	  	  <div style="width:123px;" th:text="#{project.findinfo.list.span1}"></div>
-	  	  <div style="width:123px;" th:text="#{project.findinfo.list.span2}"></div>
-	  	  <div style="width:123px;" th:text="#{project.findinfo.list.span3}"></div>
-	  	  <div style="width:123px;" th:text="#{project.findinfo.list.span4}"></div>
-	  	  <div style="width:123px;" th:text="#{project.findinfo.list.span5}"></div>
-	  	  <div style="width:112px;" th:text="#{project.findinfo.list.span6}"></div>
-	  	</div>
-	  	<div id="mainlist" style="overflow-y:scroll;">
-	  	<table id="table2">
-       	  <tr th:each="manhole,status:${manholes}" th:id="${manhole.id}">
-            <td width="5%" th:text="${status.count}"></td>
-            <td width="16%" th:text="${manhole.node}"></td>
-            <td width="16%" th:text="${manhole.workorder}"></td>
-            <td width="16%" th:text="${manhole.areacode}"></td>
-            <td width="16%" th:text="${manhole.surveyname}"></td>
-            <td width="16%" th:text="${manhole.surveydate}"></td>
-            <td width="15%"><input type="button" th:value="#{project.findinfo.list.button}"></td>
-          </tr>
-	    </table>
-	  	</div>
-	  	<div id="null" th:if="${#lists.isEmpty(manholes)}">暂无沙井信息！</div>
-      </div>
+            <div th:text="#{project.findinfo.title1}"></div>
+        </div>
+        <table id="table1">
+            <colgroup>
+                <col style="width: 130px">
+                <col style="width: 215px">
+                <col style="width: 80px">
+                <col style="width: 130px">
+                <col style="width: 215px">
+            </colgroup>
+            <tr>
+                <td align="right" th:text="#{project.findinfo.label1}"></td>
+                <td class="cell" th:text="${project.name}"></td>
+                <td></td>
+                <td align="right" th:text="#{project.findinfo.label2}"></td>
+                <td class="cell" th:text="${project.operator}"></td>
+            </tr>
+            <tr>
+                <td align="right" th:text="#{project.findinfo.label3}"></td>
+                <td class="cell" th:text="${project.datetime1}"></td>
+                <td></td>
+                <td align="right" th:text="#{project.findinfo.label4}"></td>
+                <td class="cell" th:text="${project.datetime2}"></td>
+            </tr>
+            <tr style="height:10px;">
+                <td colspan="4"></td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" th:text="#{project.findinfo.label5}"></td>
+                <td colspan="4"><textarea th:text="${project.content}"></textarea></td>
+            </tr>
+        </table>
+
+        <div class="infoTop">
+            <div th:text="#{project.findinfo.title2}"></div>
+        </div>
+        <table id="table2">
+            <thead>
+            <tr height="40px">
+                <th style="width:40px;">No</th>
+                <th style="width:123px;" th:text="#{project.findinfo.list.span1}"></th>
+                <th style="width:123px;" th:text="#{project.findinfo.list.span2}"></th>
+                <th style="width:123px;" th:text="#{project.findinfo.list.span3}"></th>
+                <th style="width:123px;" th:text="#{project.findinfo.list.span4}"></th>
+                <th style="width:123px;" th:text="#{project.findinfo.list.span5}"></th>
+                <th style="padding-right:17px" th:text="#{project.findinfo.list.span6}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="manhole,status:${manholes}" th:id="${manhole.id}">
+                <td width="40px" th:text="${status.count}"></td>
+                <td width="123px"><a th:text="${manhole.drainage}" th:href="@{/manhole/findinfo(id=${manhole.id})}"></a></td>
+                <td width="123px" th:text="${manhole.workorder}"></td>
+                <td width="123px" th:text="${manhole.areacode}"></td>
+                <td width="123px" th:text="${manhole.surveyname}"></td>
+                <td width="123px" th:text="${manhole.surveydate}"></td>
+                <td><input type="button" th:value="#{project.findinfo.list.button}" style="background-color:#2CACF1;"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="null" th:if="${#lists.isEmpty(manholes)}">暂无沙井信息！</div>
     </div>
-    <div style="width:100%;margin-top:20px;float:left;color:#ccc;text-align: center;font-size:14px;">
-      <p>香港麦斯迪埃高科技有限责任公司</p>
-      <p>Copyright © 2017 All Rights Reserved</p>	
-    </div>
-  </body>
+</div>
+
+<div style="width:100%;margin:20px 0;color:#ccc;text-align:center;font-size:14px;float:left;">
+    <p style="line-height: 20px;margin: 10px 0;">香港麦斯迪埃高科技有限责任公司</p>
+    <p style="line-height: 20px;margin: 10px 0;">Copyright © 2017 All Rights Reserved</p>
+</div>
+</body>
 </html>

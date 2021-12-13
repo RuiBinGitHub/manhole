@@ -18,13 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.hutool.core.util.StrUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-public class MyHelper {
+public class AppUtils {
 
 	/** 获取参数列表 */
 	public static Map<String, Object> getMap(Object... values) {
@@ -150,4 +151,11 @@ public class MyHelper {
 			e.printStackTrace();
 		}
 	}
+
+	public static String substring(String text, int beg, int end) {
+		if (text != null && end == 0)
+			end = text.length();
+		return StrUtil.sub(text, beg, end);
+	}
+
 }

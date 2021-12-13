@@ -18,7 +18,7 @@ import com.springboot.biz.ProjectBiz;
 import com.springboot.entity.Manhole;
 import com.springboot.entity.Project;
 import com.springboot.entity.User;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 
 @RestController
 @RequestMapping(value = "/geominfo")
@@ -41,8 +41,8 @@ public class GeomInfoController {
 	@RequestMapping(value = "/showlist")
 	public ModelAndView showlist() {
 		ModelAndView view = new ModelAndView("geominfo/showlist");
-		User user = (User) MyHelper.findMap("user");
-		map = MyHelper.getMap("xy", "", "company", user.getCompany());
+		User user = (User) AppUtils.findMap("user");
+		map = AppUtils.getMap("xy", "", "company", user.getCompany());
 		List<Project> projects = projectBiz.mapListProject(user.getCompany());
 		List<Manhole> manholes = manholeBiz.findListManhole(map);
 		view.addObject("projects", projects);

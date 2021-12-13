@@ -21,5 +21,5 @@ public interface MessageBiz {
 
 	void sendMessage(MarkItem markItem);
 
-	int getCount(Map<String, Object> map);
+	int getCount(String state, User user);
 }

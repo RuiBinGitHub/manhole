@@ -15,16 +15,15 @@
 #navilogo {
 	width: 106px;
 	height: 50px;
-	margin: 15px 10px;
+	margin: 15px 634px 15px 10px;
 	cursor: pointer;
+	float: left;
 }
 
 .naviItem {
 	width: 108px;
 	height: 100%;
-	font-size: 18px;
-	font-family: 宋体;
-	text-align: center;
+	font: 18px simsun;
 	line-height: 80px;
 	float: left;
 }
@@ -32,14 +31,18 @@
 .naviItem img {
 	width: 24px;
 	height: 24px;
-	margin-top: 28px;
+	margin: 28px 0;
 	float: left;
 }
 
 .naviItem a {
+	width: 80px;
+	height: 100%;
 	color: #BABABA;
-	margin-left: 6px;
+	text-indent: 6px;
+	text-overflow: ellipsis;
 	text-decoration: none;
+	overflow: hidden;
 	cursor: pointer;
 	float: left;
 }

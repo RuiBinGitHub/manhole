@@ -1,139 +1,112 @@
 @charset "UTF-8";
 
 body {
-	background-color: #98DDFE;
+    background-color: #98DDFE;
 }
 
 input {
-	padding: 0px;
+    padding: 0;
+    outline: none;
 }
 
 #main {
-	width: 900px;
-	height: 480px;
-	margin: 215px auto;
-	background-color: #32435D;
-	border-radius: 6px;
+    width: 900px;
+    height: 480px;
+    margin: 215px auto;
+    background-color: #32435D;
+    border-radius: 6px;
 }
 
 #title {
-	width: 270px;
-	height: 180px;
-	margin-top: 125px;
-	margin-left: 100px;
-	float: left;
+    width: 270px;
+    height: 180px;
+    margin-top: 125px;
+    margin-left: 100px;
+    float: left;
 }
 
 #title img {
-	width: 106px;
-	height: 50px;
-	margin-top: 20px;
-	margin-left: 82px;
-	float: left;
+    width: 106px;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 82px;
+    float: left;
 }
 
 .p1 {
-	width: 100%;
-	height: 30px;
-	color: #fff;
-	font-size: 18px;
-	font-family: 宋体;
-	font-weight: 600;
-	margin-top: 24px;
-	text-align: center;
-	line-height: 30px;
-	float: left;
+    width: 100%;
+    height: 30px;
+    color: #ffffff;
+    font: 600 18px simsun;
+    margin-top: 24px;
+    text-align: center;
+    line-height: 30px;
+    float: left;
 }
 
 .p2 {
-	width: 100%;
-	height: 40px;
-	color: #fff;
-	font-size: 14px;
-	font-family: Times New Roman;
-	text-align: center;
-	line-height: 20px;
-	float: left;
+    width: 100%;
+    height: 40px;
+    color: #ffffff;
+    font: 14px "Times New Roman";
+    text-align: center;
+    line-height: 20px;
+    float: left;
 }
 
-#info {
-	width: 300px;
-	margin-top: 80px;
-	margin-left: 120px;
-	float: left;
+#tab1 {
+    width: 300px;
+    margin-top: 80px;
+    margin-left: 120px;
+    float: left;
 }
 
-#info tr {
-	height: 56px;
+#tab1 tr {
+    height: 56px;
 }
 
-#info tr td span {
-	color: #fff;
-	font-size: 24px;
-	font-family: 宋体;
-	font-weight: 600;
+#tab1 tr td span {
+    color: #ffffff;
+    font: 600 24px simsun;
 }
 
-#info tr td a {
-	color: #fff;
-	font-size: 18px;
-	font-family: 宋体;
-	text-decoration: none;
+#tab1 tr td a {
+    color: #ffffff;
+    font: 18px simsun;
+    text-decoration: none;
 }
 
-#info tr td a:hover {
-	text-decoration: underline;
+#tab1 tr td a:hover {
+    text-decoration: underline;
+}
+
+#tips {
+    color: #f00;
+    font: 18px simsun;
 }
 
 .textbox {
-	width: 280px;
-	height: 30px;
-	color: #fff;
-	border: none;
-	font-size: 18px;
-	font-family: 宋体;
-	text-indent: 5px;
-	background-color: #32435D;
-	border-bottom: 2px solid #00D3F8;
-	outline: none;
+    width: 280px;
+    height: 30px;
+    border: none;
+    color: #ffffff;
+    font: 18px simsun;
+    text-indent: 5px;
+    background-color: #32435D;
+    border-bottom: 2px solid #00D3F8;
 }
 
 .commit {
-	width: 280px;
-	height: 30px;
-	color: #fff;
-	font-size: 18px;
-	font-family: 宋体;
-	background-color: #00bcdd;
-	border-radius: 30px;
-	outline: none;
-	border: none;
+    width: 280px;
+    height: 30px;
+    color: #ffffff;
+    font: 18px simsun;
+    background-color: #00bcdd;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
 }
 
 .commit:hover {
-	background-color: #00cef2;
-	cursor: pointer;
-}
-/** ******************************************************************** */
-#tips {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	line-height: 800px;
-	background-color: rgba(255, 255, 255, 0);
-	position: fixed;
-	display: none;
-	z-index: 10;
-}
-
-#tips span {
-	color: #ffffff;
-	font-size: 18px;
-	font-family: 宋体;
-	text-align: center;
-	padding: 30px 20px;
-	background-color: rgba(60, 60, 60, 0.8);
-	border-radius: 6px;
+    background-color: #00cef2;
 }

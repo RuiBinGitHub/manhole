@@ -21,7 +21,7 @@ import com.springboot.entity.MarkItem;
 import com.springboot.entity.MarkPipe;
 import com.springboot.entity.Project;
 import com.springboot.entity.User;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 
 @Service
 @Transactional
@@ -51,7 +51,7 @@ public class MarkItemBizImpl implements MarkItemBiz {
 	}
 
 	public MarkItem findInfoMarkItem(int id, User user) {
-		map = MyHelper.getMap("id", id, "user", user);
+		map = AppUtils.getMap("id", id, "user", user);
 		return markItemDao.findInfoMarkItem(map);
 	}
 
@@ -81,7 +81,7 @@ public class MarkItemBizImpl implements MarkItemBiz {
 
 	public int appendMarkItem(Project project, User user) {
 		MarkItem markItem = new MarkItem();
-		markItem.setDate(MyHelper.getDate(null));
+		markItem.setDate(AppUtils.getDate(null));
 		markItem.setProject(project);
 		markItem.setUser(user);
 		insertMarkItem(markItem);

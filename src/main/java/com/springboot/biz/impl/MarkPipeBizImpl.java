@@ -12,7 +12,7 @@ import com.springboot.dao.MarkPipeDao;
 import com.springboot.entity.MarkItem;
 import com.springboot.entity.MarkPipe;
 import com.springboot.entity.User;
-import com.springboot.util.MyHelper;
+import com.springboot.util.AppUtils;
 
 @Service
 public class MarkPipeBizImpl implements MarkPipeBiz {
@@ -35,7 +35,7 @@ public class MarkPipeBizImpl implements MarkPipeBiz {
 	}
 
 	public MarkPipe findInfoMarkPipe(int id, User user) {
-		map = MyHelper.getMap("id", id, "user", user);
+		map = AppUtils.getMap("id", id, "user", user);
 		return markPipeDao.findInfoMarkPipe(map);
 	}
 
@@ -44,7 +44,7 @@ public class MarkPipeBizImpl implements MarkPipeBiz {
 	}
 
 	public List<MarkPipe> findListMarkPipe(MarkItem markItem) {
-		map = MyHelper.getMap("markItem", markItem);
+		map = AppUtils.getMap("markItem", markItem);
 		return markPipeDao.findListMarkPipe(map);
 	}
 

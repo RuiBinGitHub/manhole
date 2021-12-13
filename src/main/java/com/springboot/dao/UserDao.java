@@ -17,4 +17,6 @@ public interface UserDao {
 
 	List<User> findListUser(Map<String, Object> map);
 
+	List<User> exportUser(Map<String, Object> map);
+
 }

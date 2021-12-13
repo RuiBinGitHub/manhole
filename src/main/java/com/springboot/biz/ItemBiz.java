@@ -1,6 +1,7 @@
 package com.springboot.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +18,8 @@ public interface ItemBiz {
 	void deleteItem(Item item);
 
 	Item findInfoItem(int id, User user);
+
+	Item findInfoItem(Map<String, Object> map);
 
 	List<Item> findListItem(Manhole manhole);
 	

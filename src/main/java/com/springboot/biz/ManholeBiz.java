@@ -27,4 +27,6 @@ public interface ManholeBiz {
 
 	int replacManhole(Manhole manhole, User user);
 
+	void checkManhole(Manhole manhole, User user);
+
 }

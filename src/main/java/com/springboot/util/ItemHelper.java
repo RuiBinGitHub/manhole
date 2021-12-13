@@ -36,7 +36,7 @@ public class ItemHelper {
 		String type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 		for (int i = 0; files != null && i < files.length; i++) {
 			if (type.equals(files[i].getContentType())) {
-				workbook = MyHelper.getWorkbook(files[i]);
+				workbook = AppUtils.getWorkbook(files[i]);
 				break;
 			}
 		}
@@ -77,9 +77,9 @@ public class ItemHelper {
 		for (int i = 0; files != null && i < files.length; i++) {
 			System.out.println(files[i].getOriginalFilename());
 			if (files[i].getOriginalFilename().contains(name)) {
-				String path = MyHelper.UUIDCode();
+				String path = AppUtils.UUIDCode();
 				File file = new File(myfile + "/ItemImage/" + name + ".png");
-				MyHelper.moveFile(files[i], file);
+				AppUtils.moveFile(files[i], file);
 				return path;
 			}
 		}

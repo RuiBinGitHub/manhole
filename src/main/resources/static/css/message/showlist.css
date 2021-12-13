@@ -12,37 +12,37 @@ body {
 }
 
 #title1 span {
-	font-size: 18px;
-	font-family: 仿宋;
-	font-weight: 600;
+	font: 600 18PX fangsong;
+	cursor: pointer;
 }
 
 #title1 span:hover {
 	border-bottom: 2px solid #000000;
-	cursor: pointer;
 }
 
 #choice {
-	border-bottom: 2px solid #5AABE1;
 	color: #5AABE1;
+	border-bottom: 2px solid #5AABE1;
 }
 
 #title2 {
 	width: 980px;
-	color: #fff;
-	margin: 0px 10px 0px 10px;
-	font-size: 20px;
-	font-family: 宋体;
-	font-weight: 600;
-	text-align: center;
+	margin: 0 10px;
+	font-family: Times New Roman, fantasy;
 	float: left;
+}
+
+#title2 tr {
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	background-color: #39B549;
 }
 
 #mtab1 {
 	width: 980px;
-	margin: 0px 10px;
-	font-size: 18px;
-	font-family: 宋体;
+	margin: 0 10px;
+	font: 18px simsun;
 	background-color: #FFFFFF;
 	border-collapse: collapse;
 }
@@ -58,114 +58,71 @@ body {
 
 #mtab1 tr td a {
 	color: #00f;
-	font-family: 宋体;
 	margin-left: 30px;
+	font-family: simsun, fantasy;
+	cursor: pointer;
 }
 
 #mtab1 tr td a:hover {
 	text-decoration: underline;
-	cursor: pointer;
 }
 
 #mtab1 tr td input {
 	width: 60px;
 	height: 24px;
+	font: 16px fangsong;
 	background-color: #ff662d;
+	cursor: pointer;
+	outline: none;
 	border: none;
 	color: #fff;
 }
 
 #mtab1 tr td input:hover {
 	background-color: #ff804f;
-	cursor: pointer;
 }
+
 /******************************************************************/
-#page {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	background-color: rgba(60, 60, 60, 0.2);
-	display: none;
-	z-index: 2;
-}
 
 #webform {
-	top: 50%;
-	left: 50%;
-	width: 644px;
-	height: 445px;
-	position: absolute;
-	margin: -240px -320px;
-	background-color: #FFF;
-}
-
-.title {
-	width: 520px;
-	height: 24px;
-	font-size: 18px;
-	font-weight: 600;
-	margin: 15px 25px;
-	text-indent: 10px;
-	line-height: 24px;
-	border-left: 5px solid #39B549;
-	float: left;
-}
-
-.colse {
-	width: 24px;
-	height: 24px;
-	font-size: 18px;
-	font-weight: 600;
-	margin: 15px 20px;
-	text-align: center;
-	line-height: 24px;
-	float: left;
-}
-
-.colse:hover {
-	cursor: pointer;
-	color: #f00;
+	display: none;
 }
 
 #info1 {
-	width: 592px;
-	font-size: 18px;
-	font-family: 宋体;
-	text-indent: 10px;
+	width: 590px;
+	font: 18px simsun;
 	margin: 20px 25px 10px 25px;;
 	background-color: #fff;
 	border: 1px solid #ccc;
-	border-radius: 4px;
 }
 
 #info1 tr {
 	height: 30px;
-}
-
-#info1 a {
-	color: #999;
-	font-size: 18px;
-	font-family: 宋体;
+	text-indent: 10px;
 }
 
 #info2 {
 	width: 590px;
-	height: 220px;
-	font-size: 18px;
-	font-family: 宋体;
-	word-break: break-all;
-	margin: 0px 25px 0px 25px;
+	height: 240px;
+	margin: 0 25px;
+	font: 18px simsun;
 	background-color: #fff;
 	border: 1px solid #ccc;
-	border-radius: 4px;
+	word-break: break-all;
 }
 
 #info2 p {
-	width: 540px;
-	height: 35px;
-	margin: 0px 15px;
+	width: 100%;
+	height: 40px;
 	line-height: 40px;
+	text-indent: 15px;
 	float: left;
+}
+
+#info2 a {
+	color: #00f;
+}
+
+#info2 a:hover {
+	text-decoration: underline;
 }

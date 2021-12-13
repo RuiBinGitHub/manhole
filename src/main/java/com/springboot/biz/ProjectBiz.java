@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
 import com.springboot.entity.Company;
+import com.springboot.entity.Manhole;
 import com.springboot.entity.Project;
 import com.springboot.entity.User;
 
@@ -20,7 +21,11 @@ public interface ProjectBiz {
 	
 	Project findInfoProject(Map<String, Object> map);
 
-	PageInfo<Project> findListProject(Map<String, Object> map);
+	PageInfo<Project> findListProject(Map<String, Object> map, int page, int size);
+
+	PageInfo<Project> showListProject(Map<String, Object> map, int page, int size, String sort, String type);
+
+	PageInfo<Manhole> queryListManhole(Map<String, Object> map, int page, int size);
 
 	List<Project> mapListProject(Company company);
 	

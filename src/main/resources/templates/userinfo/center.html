@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
-  <head>
+<html lang=="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
     <title>用户中心</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="icon" type="image/x-icon" href="/survey/favicon.ico"/>
@@ -8,92 +8,107 @@
     <link rel="stylesheet" type="text/css" href="/survey/css/userinfo/center.css"/>
     <script type="text/javascript" src="/survey/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/survey/js/userinfo/center.js"></script>
-  </head>
-  <body>
-    <div th:replace="navigation::navigation"></div>
-    <div id="main">
-      <div id="mainMenu">
+</head>
+<body>
+<div th:replace="navigation::navigation"></div>
+<div id="main">
+    <div id="mainMenu">
         <div id="menuTitle" th:text="#{menu.title.text}"></div>
         <div class="menu2"><a href="/survey/project/showlist" th:text="#{menu.div.text1}"></a></div>
         <shiro:hasRole name="role2">
-          <div class="menu2"><a href="/survey/project/findlist" th:text="#{menu.div.text2}"></a></div>
+            <div class="menu2"><a href="/survey/project/findlist" th:text="#{menu.div.text2}"></a></div>
         </shiro:hasRole>
         <shiro:hasRole name="role3">
-          <div class="menu2"><a href="/survey/markinfo/markview" th:text="#{menu.div.text3}"></a></div>
+            <div class="menu2"><a href="/survey/markinfo/markview" th:text="#{menu.div.text3}"></a></div>
         </shiro:hasRole>
         <shiro:hasRole name="role3">
-          <div class="menu2"><a href="/survey/markinfo/showlist" th:text="#{menu.div.text4}"></a></div>
+            <div class="menu2"><a href="/survey/markinfo/showlist" th:text="#{menu.div.text4}"></a></div>
         </shiro:hasRole>
         <shiro:hasRole name="role2">
-          <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
+            <div class="menu2"><a href="/survey/markinfo/findlist" th:text="#{menu.div.text5}"></a></div>
         </shiro:hasRole>
         <shiro:hasRole name="role2">
-          <div class="menu2"><a href="/survey/operator/showlist" th:text="#{menu.div.text6}"></a></div>
+            <div class="menu2"><a href="/survey/operator/showlist" th:text="#{menu.div.text6}"></a></div>
         </shiro:hasRole>
-        <div class="menu2"><a href="/survey/message/showlist" th:text="#{menu.div.text7}"></a></div>
-        <div class="menu1"><a href="/survey/userinfo/center" th:text="#{menu.div.text8}"></a></div>
-      </div>
-      
-      <div id="mainInfo">
+        <shiro:hasRole name="role2">
+            <div class="menu2"><a href="/survey/userinfo/showlist" th:text="#{menu.div.text7}"></a></div>
+        </shiro:hasRole>
+        <div class="menu2"><a href="/survey/message/showlist" th:text="#{menu.div.text8}"></a></div>
+        <div class="menu1"><a href="/survey/userinfo/center" th:text="#{menu.div.text9}"></a></div>
+    </div>
+
+    <div id="mainInfo">
         <div id="infoTop" th:text="#{userinfo.center.title}"></div>
         <img id="img1" src="/survey/img/头像.png">
         <table id="table1">
-          <tr>
-            <td width="14%"><a th:text="#{userinfo.center.table1.label1}"></a></td>
-            <td width="24%" th:text="${session.user.name}"></td>
-            <td width="12%"><a th:text="#{userinfo.center.table1.label2}"></a></td>
-            <td width="50%" th:if="${session.user.role=='role2'}">管理人员</td>
-            <td width="50%" th:if="${session.user.role=='role3'}">评分人员</td>
-            <td width="50%" th:if="${session.user.role=='role4'}">编辑人员</td>
-          </tr>
-          <tr>
-            <td><a th:text="#{userinfo.center.table1.label3}"></a></td>
-            <td th:text="${session.user.email}"></td>
-            <td><a th:text="#{userinfo.center.table1.label4}"></a></td>
-            <td th:text="${session.user.phone}"></td>
-          </tr>
-          <tr>
-            <td><a th:text="#{userinfo.center.table1.label5}"></a></td>
-            <td th:text="${session.user.company.date}"></td>
-            <td><a th:text="#{userinfo.center.table1.label6}"></a></td>
-            <td th:text="${session.user.company.term}"></td>
-          </tr>
+            <tr>
+                <td width="14%"><a th:text="#{userinfo.center.table1.label1}"></a></td>
+                <td width="24%" th:text="${session.user.name}"></td>
+                <td width="12%"><a th:text="#{userinfo.center.table1.label2}"></a></td>
+                <td width="50%" th:if="${session.user.role=='role2'}">管理人员</td>
+                <td width="50%" th:if="${session.user.role=='role3'}">评分人员</td>
+                <td width="50%" th:if="${session.user.role=='role4'}">编辑人员</td>
+            </tr>
+            <tr>
+                <td><a th:text="#{userinfo.center.table1.label3}"></a></td>
+                <td th:text="${session.user.email}"></td>
+                <td><a th:text="#{userinfo.center.table1.label4}"></a></td>
+                <td th:text="${session.user.phone}"></td>
+            </tr>
+            <tr>
+                <td><a th:text="#{userinfo.center.table1.label5}"></a></td>
+                <td th:text="${session.user.company.date}"></td>
+                <td><a th:text="#{userinfo.center.table1.label6}"></a></td>
+                <td th:text="${session.user.company.term}"></td>
+            </tr>
         </table>
-        
+
         <div id="info1">
-          <div id="title1">数据统计</div>
-          <div style="width:140px;text-align:right;">编辑项目数量：</div>
-          <div style="width:36px;text-align:right;color:#FA6210">0</div>
-          <div style="width:275PX;text-indent:10px;">个</div>
-          <div style="width:140px;text-align:right;">编辑项目数量：</div>
-          <div style="width:36px;text-align:right;color:#FA6210">0</div>
-          <div style="width:275PX;text-indent:10px;">个</div>
-          <div style="width:140px;text-align:right;">编辑项目数量：</div>
-          <div style="width:36px;text-align:right;color:#FA6210">0</div>
-          <div style="width:275PX;text-indent:10px;">个</div>
-          <div style="width:140px;text-align:right;">编辑项目数量：</div>
-          <div style="width:36px;text-align:right;color:#FA6210">0</div>
-          <div style="width:275PX;text-indent:10px;">个</div>
+            <div id="title1">数据统计</div>
+            <div style="width:140px;text-align:right;">编辑项目数量：</div>
+            <div style="width:36px;text-align:right;color:#FA6210">0</div>
+            <div style="width:275PX;text-indent:10px;">个</div>
+            <div style="width:140px;text-align:right;">编辑项目数量：</div>
+            <div style="width:36px;text-align:right;color:#FA6210">0</div>
+            <div style="width:275PX;text-indent:10px;">个</div>
+            <div style="width:140px;text-align:right;">编辑项目数量：</div>
+            <div style="width:36px;text-align:right;color:#FA6210">0</div>
+            <div style="width:275PX;text-indent:10px;">个</div>
+            <div style="width:140px;text-align:right;">编辑项目数量：</div>
+            <div style="width:36px;text-align:right;color:#FA6210">0</div>
+            <div style="width:275PX;text-indent:10px;">个</div>
         </div>
-        
+
         <div id="title2">安全设置</div>
         <div class="line"><a>登录密码设置</a><img src="/survey/img/加号.png"/>
-        <table id="reset1">
-          <tr><td width="40%" align="right"><span>*</span>原 密 码：</td><td width="60%"><input type="password"/></td></tr>
-          <tr><td width="40%" align="right"><span>*</span>新 密 码：</td><td width="60%"><input type="password"/></td></tr>
-          <tr><td width="40%" align="right"><span>*</span>确认密码：</td><td width="60%"><input type="password"/></td></tr>
-          <tr><td width="40%" align="right"></td><td width="60%"><input type="button" value="确定"/></td></tr>
-        </table>
+            <table id="reset1">
+                <tr>
+                    <td width="40%" align="right"><span>*</span>原 密 码：</td>
+                    <td width="60%"><input type="password"/></td>
+                </tr>
+                <tr>
+                    <td width="40%" align="right"><span>*</span>新 密 码：</td>
+                    <td width="60%"><input type="password"/></td>
+                </tr>
+                <tr>
+                    <td width="40%" align="right"><span>*</span>确认密码：</td>
+                    <td width="60%"><input type="password"/></td>
+                </tr>
+                <tr>
+                    <td width="40%" align="right"></td>
+                    <td width="60%"><input type="button" value="确定"/></td>
+                </tr>
+            </table>
         </div>
-        
+
         <div class="line"><a>电子邮箱设置</a><img src="/survey/img/加号.png"/>
-          <div id="reset2" style="display:none">
-          呵呵呵
-          </div>
+            <div id="reset2" style="display:none">
+              
+            </div>
         </div>
         <div class="line"><a>手机号码设置</a><img src="/survey/img/加号.png"/></div>
-      </div>
     </div>
-    <div id="tips"></div>
-  </body>
+</div>
+<div id="tips"></div>
+</body>
 </html>
